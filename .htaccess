@@ -1,0 +1,16 @@
+Options +FollowSymLinks +ExecCGI -Indexes
+
+ErrorDocument 404 /erros/404.php
+
+<IfModule mod_rewrite.c>                                               
+    RewriteEngine On
+
+    #Redirecionamentos do frontend
+    RewriteRule ^/?$                           /src/pages/landing/        
+    RewriteRule ^sobre/?$                      /src/pages/about/           
+
+
+    #Redirecionamentos de api
+    RewriteRule ^api/?$                        /src/api/                    
+
+</IfModule>
