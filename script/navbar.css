@@ -1,0 +1,32 @@
+header #logo {
+    width: 35px;
+}
+  
+header #logo:hover {
+    box-shadow: 0 0 4px 2px var(--accents-3);
+    border-radius: 60px;
+}
+
+header .nav-link {
+    color: var(--accents-6);
+    font-weight: 500;
+}
+  
+header .navbar-text i {
+    transition: all 0.3s;
+}
+  
+header .navbar-text i:hover {
+    color: var(--accents-9);
+}
+  
+header #user {
+    background-color: var(--cyan);
+    background-image: linear-gradient(140deg, rgb(121, 255, 225), rgb(50, 145, 255) 100%);
+  
+    padding: 1px 6px;
+}
+  
+header #user-nav i:hover {
+    color: var(--hover);
+}
