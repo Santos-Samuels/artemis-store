@@ -8,6 +8,8 @@ ErrorDocument 404 /erros/404.php
     #Redirecionamentos do frontend
     RewriteRule ^/?$                           /src/pages/landing/        
     RewriteRule ^sobre/?$                      /src/pages/about/           
+    RewriteRule ^produtos/?$                      /src/pages/products/           
+    RewriteRule ^contato/?$                      /src/pages/contact/           
 
 
     #Redirecionamentos de api
