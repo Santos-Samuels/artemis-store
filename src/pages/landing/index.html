@@ -9,8 +9,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
-    <link rel="stylesheet" href="src/css/global.css">
-    <link rel="stylesheet" href="src/css/navbar.css">
+    <link rel="stylesheet" href="/src/css/global.css">
+    <link rel="stylesheet" href="/src/css/navbar.css">
+    <link rel="stylesheet" href="/src/pages/landing/style.css">
+    <link rel="stylesheet" href="/src/css/footer.css">
 </head>
 <body>
     <header>
@@ -52,9 +54,105 @@
     </header>
 
     <main>
-        
+      <section >
+        <img class="w-100" src="assets/img/landing-image.jpg" alt="landing-image">
+      </section>
+
+      <section class="m-4">
+        <div class="row">
+          <div class="col offer-container">
+            <div class="position-absolute p-4 offer-label">
+              <h3>Colar blue stone</h3>
+              <p>a partir de <span class="fw-bold price fs-2">29,90</span></p>
+            </div>
+            <img class="w-100" src="assets/img/colar-blue-stone.jpeg" alt="Colar blue stone">
+          </div>
+
+          <div class="col row">
+            <div class="offer-container">
+              <div class="position-absolute p-4 offer-label">
+                <h3 class="fs-3">Alianças simple style</h3>
+                <p>a partir de <span class="fw-bold price fs-2">69,90</span></p>
+              </div>
+              <img class="w-100" src="assets/img/aliancas-simple-style" alt="Alianças simple style">
+            </div>
+            <div class="col offer-container">
+              <div class="position-absolute p-4 offer-label">
+                <h3>Colar white stone</h3>
+                <p>a partir de <span class="fw-bold price fs-2">29,90</span></p>
+              </div>
+              <img class="w-100" src="assets/img/colar-white-stone.jpeg" alt="Colar white stone">
+            </div>
+            <div class="col offer-container">
+              <div class="position-absolute p-4 offer-label">
+                <h3>Conjunto joia gold</h3>
+                <p>a partir de <span class="fw-bold price fs-2">119.90</span></p>
+              </div>
+              <img class="w-100" src="assets/img/conjunto-joias-gold.jpeg" alt="Conjunto joia gold">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="container">
+        <h1 class="pb-4 text-center">Acessórios</h1>
+        <div class="row" id="accessory-offer-container"></div>
+      </section>
     </main>
 
+    <footer class="mt-5 bg-accents p-4">
+      <div class="container p-4 d-flex align-items-center justify-content-between flex-nowrap">
+        <div class="align-self-lg-start footer-content">
+          <h2>LOGO</h2>
+
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="/">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/sobre">Sobre</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/produtos">Produtos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/contato">Contato</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="align-self-lg-start footer-content">
+          <h5 class="mb-3">Redes Sociais</h5>
+          <div class="d-flex flex-column">
+            <a class="social-link"><i class="bi bi-instagram fs-4 pe-2"></i> Instagram</a>
+            <a class="mt-2 social-link"><i class="bi bi-facebook fs-4 pe-2"></i> Facebook</a>
+            <a class="mt-2 social-link"><i class="bi bi-twitter fs-4 pe-2"></i> Twitter</a>
+            <a class="mt-2 social-link"><i class="bi bi-whatsapp fs-4 pe-2"></i> WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="align-self-lg-start footer-content">
+          <h5 class="mb-3">Endereço</h5>
+          <a class="text-light text-decoration-none">
+            <i class="bi bi-pin-map-fill fs-4 pe-2"></i>
+            Rua Bla Bla Bla Bla, nº 145 <br>
+            Bairro Bla Bla Bla - Centro <br>
+            Feira de Santana - BA <br>
+            CEP: 0000-000</a>
+
+        </div>
+
+        <div class="align-self-lg-start footer-content">
+          <h5 class="mb-3">Envie sugestões</h5>
+          <input class="form-control mb-2" type="email" name="email" id="email" placeholder="E-mail">
+          <textarea class="form-control mb-2" name="suggestion" id="suggestion" placeholder="Sugestão"></textarea>
+          <button class="btn btn-outline-light">Enviar</button>
+        </div>
+      </div>
+    </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="/src/script/products-list.js"></script>
+    <script src="/src/script/app.js"></script>
 </body>
 </html>

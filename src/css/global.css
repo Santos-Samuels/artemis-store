@@ -1,70 +1,100 @@
 :root {
-    --primary: #fff;
-    --primary-2: #f1f3f5;
-    --secondary: #000;
-    --secondary-2: #111;
-    --selection: var(--cyan);
-    --text-base: #000;
-    --text-primary: #000;
-    --text-secondary: #fff;
-    --hover: rgba(0,0,0,0.075);
-    --hover-1: rgba(0,0,0,0.15);
-    --hover-2: rgba(0,0,0,0.25);
-    --cyan: #22b8cf;
-    --green: #37b679;
-    --red: #da3c3c;
-    --pink: #e64980;
-    --purple: #f81ce5;
-    --blue: #0070f3;
-    --violet: #5f3dc4;
-    --violet-light: #7048e8;
-    --accents-0: #f8f9fa;
-    --accents-1: #f1f3f5;
-    --accents-2: #e9ecef;
-    --accents-3: #dee2e6;
-    --accents-4: #ced4da;
-    --accents-5: #adb5bd;
-    --accents-6: #868e96;
-    --accents-7: #495057;
-    --accents-8: #343a40;
-    --accents-9: #212529;
-    /* --font-sans: -apple-system,system-ui,BlinkMacSystemFont,"Helvetica Neue","Helvetica",sans-serif; */
-  }
+  --primary: #A65B99;
+  --primary-hover: #8b4a80;
+  --primary-2: #613673;
+  --secondary: #BABFBD;
+  --secondary-2: #A6A18A;
+  --selection: #A68933;
+  --text-primary: #000;
+  --text-secondary: #fff;
+  --text-secondary-2: #BABFBD;
+  --text-secondary-3: #c4ad6b;
+  --text-secondary-3-hover: #A68933;
+  --cyan: #22b8cf;
+  --green: #37b679;
+  --red: #da3c3c;
+  --pink: #e64980;
+  --purple: #f81ce5;
+  --blue: #0070f3;
+  --violet: #5f3dc4;
+  --violet-light: #7048e8;
+  --accents-0: #f8f9fa;
+  --accents-1: #f1f3f5;
+  --accents-2: #e9ecef;
+  --accents-3: #dee2e6;
+  --accents-4: #ced4da;
+  --accents-5: #adb5bd;
+  --accents-6: #868e96;
+  --accents-7: #495057;
+  --accents-8: #343a40;
+  --accents-9: #212529;
+  /* --font-sans: -apple-system,system-ui,BlinkMacSystemFont,"Helvetica Neue","Helvetica",sans-serif; */
+}
   
-  .zoom {
-    -webkit-transition: -webkit-transform .5s ease;
-    transition: transform .6s ease;
-  }
-  
-  .zoom:hover {
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1);
-  }
-  
-  .bg-violet {
-    background-color: var(--violet);
-  }
-  
-  .bg-pink {
-    background-color: var(--pink);
-  }
-  
-  .bg-accents {
-    background-color: var(--accents-9);
-  }
-  
-  .bg-white {
-    background-color: var(--primary);
-  }
-  
-  .bg-black {
-    background-color: var(--secondary);
-  }
-  
-  .text-white {
-    color: var(--primary);
-  }
-  
-  .bg-products {
-    background-image: url("./assets/image/bg-products.svg");
-  }
+.zoom {
+  -webkit-transition: -webkit-transform .5s ease;
+  transition: transform .6s ease;
+}
+
+.zoom:hover {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+.bg-violet {
+  background-color: var(--violet);
+}
+
+.bg-pink {
+  background-color: var(--pink);
+}
+
+.bg-accents {
+  background-color: var(--accents-9);
+  color: var(--text-secondary);
+}
+
+.bg-white {
+  background-color: var(--primary);
+}
+
+.bg-black {
+  background-color: var(--secondary);
+}
+
+.text-white {
+  color: var(--primary);
+}
+
+.bg-products {
+  background-image: url("./assets/image/bg-products.svg");
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  border: none;
+  font-weight: 600;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+}
+
+.nav-link {
+  color: var(--text-secondary-2);
+  font-weight: 500;
+}
+
+.nav-link:hover {
+  color: var(--text-secondary);
+}
+
+.social-link {
+  text-decoration: none;
+  cursor: pointer;
+  color: var(--text-secondary-3);
+}
+
+.social-link:hover {
+  color: var(--text-secondary-3-hover);
+}

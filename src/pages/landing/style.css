@@ -1,0 +1,44 @@
+main .offer-container {
+    cursor: pointer;
+}
+
+main .offer-container:hover .offer-label {
+    border-radius: 3px;
+    background-color: rgba(0, 0, 0, 0.445);
+}
+
+main .offer-container:hover .offer-label span{
+    color: var( --purple);
+}
+
+main .offer-label {
+    color: var(--text-secondary);
+}
+
+main .price {
+    color: var(--primary);
+}
+
+
+
+/* @media (max-width: 900px) {
+    .offer-label h3 {
+        font-size: 1.3rem !important;
+    }
+}
+
+
+@media (max-width: 600px) {
+    .offer-label {
+        padding: 2rem;
+    }
+
+    .offer-label h3 {
+        font-size: 1rem !important;
+    }
+
+    .offer-label span {
+        font-size: 1rem;
+    }
+} */
+
