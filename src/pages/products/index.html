@@ -12,10 +12,11 @@
     <link rel="stylesheet" href="/src/css/navbar.css">
     <link rel="stylesheet" href="/src/css/accountModal.css">
     <link rel="stylesheet" href="/src/css/global.css">
+    <link rel="stylesheet" href="style.css">
     
     <title>Artemis - Produtos</title>
 </head>
-<body>
+<body onload="loadProducts(products)">
   <header>
       <section class="w-100 h-100 position-absolute hide account-modal-container" id="login-container">
         <div class="position-fixed center p-5 top-50 start-50 translate-middle account-modal-content" id="login-content">
@@ -86,7 +87,65 @@
         </div>
       </nav>
   </header>
-  Aqui é o products
+  
+  <main class="d-flex">
+    <aside class="p-4">
+      <h3>Filtrar</h3>
+      <div class="category-container">
+        <h4>Categoria</h4>
+        <div class="category-content">
+          <input class="form-check-input" type="checkbox" name="ring-category" id="ring-category">
+          <label class="form-check-label" for="ring-category">Anel</label> <br>
+
+          <input class="form-check-input" type="checkbox" name="necklace-category" id="necklace-category">
+          <label class="form-check-label" for="necklace-category">Colar</label> <br>
+
+          <input class="form-check-input" type="checkbox" name="pendant-category" id="pendant-category">
+          <label class="form-check-label" for="pendant-category">Pingente</label> <br>
+
+          <input class="form-check-input" type="checkbox" name="offer-category" id="offer-category">
+          <label class="form-check-label" for="offer-category">Oferta</label> <br>
+        </div>
+      </div>
+
+      <div class="category-container">
+        <h4>Tamanho</h4>
+        <div class="category-content">
+          <input class="form-check-input" type="checkbox" name="p-size" id="p-size">
+          <label class="form-check-label" for="p-size">P</label> <br>
+
+          <input class="form-check-input" type="checkbox" name="m-size" id="m-size">
+          <label class="form-check-label" for="m-size">M</label> <br>
+
+          <input class="form-check-input" type="checkbox" name="g-size" id="g-size">
+          <label class="form-check-label" for="g-size">G</label> <br>
+
+          <input class="form-check-input" type="checkbox" name="gg-size" id="gg-size">
+          <label class="form-check-label" for="gg-size">GG</label> <br>
+        </div>
+      </div>
+
+      <div class="category-container">
+        <h4>Preço</h4>
+        <div class="category-content">
+          <label class="form-check-label" for="min-price">Valor mínimo:</label>
+          <input class="form-control" type="number" name="min-price" id="min-price">
+
+          <label class="form-check-label" for="max-price">Valor máximo:</label>
+          <input class="form-control" type="number" name="max-price" id="max-price">
+        </div>
+      </div>
+
+      <!-- <div class="category-content mt-4">
+        <button class="btn btn-dark">Filtrar</button>
+      </div> -->
+    </aside>
+
+    <section>
+      <div class="d-flex flex-wrap justify-content-center" id="products-container">
+      </div>
+    </section>
+  </main>
 
   <footer class="mt-5 bg-accents p-4">
     <div class="container p-4 d-flex align-items-center justify-content-between flex-wrap">
@@ -131,6 +190,7 @@
   </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="/src/script/products-list.js"></script>
     <script src="/src/script/app.js"></script>
 </body>
 </html>

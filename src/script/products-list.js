@@ -3,28 +3,28 @@ var products = [
         title: "Colar blue stone",
         category: "colar",
         price: 29.90,
-        image: "assets/img/colar-blue-stone.jpeg"
+        image: "/assets/img/colar-blue-stone.jpeg"
     },
 
     {
         title: "Alianças simple style",
         category: "aliança",
         price: 69.90,
-        image: "assets/img/aliancas-simple-style"
+        image: "/assets/img/aliancas-white-stone.jpeg"
     },
 
     {
         title: "Colar white stone",
         category: "colar",
         price: 29.90,
-        image: "assets/img/colar-white-stone.jpeg"
+        image: "/assets/img/colar-white-stone.jpeg"
     },
 
     {
         title: "Conjunto joia gold",
         category: "conjunto",
         price: 119.90,
-        image: "assets/img/conjunto-joias-gold.jpeg"
+        image: "/assets/img/conjunto-joias-gold.jpeg"
     },
 
     {

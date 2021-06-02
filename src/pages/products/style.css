@@ -1,0 +1,14 @@
+main aside {
+}
+
+main .category-container {
+    margin-top: 15px;
+}
+
+main .category-content {
+    margin-left: 10px;
+}
+
+main .product img {
+    width: 250px;
+}
