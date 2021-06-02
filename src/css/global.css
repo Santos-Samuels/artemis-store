@@ -98,3 +98,15 @@
 .social-link:hover {
   color: var(--text-secondary-3-hover);
 }
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.hide {
+  display: none;
+}

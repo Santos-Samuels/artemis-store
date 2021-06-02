@@ -17,4 +17,21 @@ const loadAccessoryOffer = (products) => {
     }
 }
 
+
+const ToggleModal = (modalContainer) => {
+    const modal = document.querySelector(modalContainer)
+    const body = document.querySelector('body')
+
+    if(modal.classList.contains('hide') == true) {
+        modal.classList.remove('hide')
+        body.style.overflow = "hidden"
+    }
+    else {
+        modal.classList.add('hide')
+        body.style.overflow = "auto"
+    }
+}
+
+
+
 loadAccessoryOffer(products)

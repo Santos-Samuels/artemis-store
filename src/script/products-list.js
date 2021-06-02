@@ -30,7 +30,7 @@ var products = [
     {
         title: "Calsinha cintura alta nude",
         category: "calsinha",
-        price: 24.99,
+        price: 29.90,
         image: "https://mash.vteximg.com.br/arquivos/ids/180722/CALCINHA-CINTURA-ALTA-SEMI-COMPRESSAO-MICROFIBRA-SEM-COSTURA-SHE_76101.jpg?v=637357050169270000"
     },
 
@@ -44,7 +44,7 @@ var products = [
     {
         title: "Calsinha cintura alta nude",
         category: "calsinha",
-        price: 24.99,
+        price: 29.90,
         image: "https://mash.vteximg.com.br/arquivos/ids/180722/CALCINHA-CINTURA-ALTA-SEMI-COMPRESSAO-MICROFIBRA-SEM-COSTURA-SHE_76101.jpg?v=637357050169270000"
     },
 
