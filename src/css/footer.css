@@ -1,3 +1,7 @@
+.footer-content {
+    min-width: 200px;
+}
+
 @media (max-width: 600px) {
     footer .container {
         flex-direction: column;

@@ -2,6 +2,10 @@ main .offer-container {
     cursor: pointer;
 }
 
+main .offer-label {
+    transition: all 0.5s;
+}
+
 main .offer-container:hover .offer-label {
     border-radius: 3px;
     background-color: rgba(0, 0, 0, 0.445);

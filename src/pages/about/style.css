@@ -1,0 +1,17 @@
+#about-container {
+    max-width: 800px;
+}
+
+.about-content {
+    max-width: 200px;
+}
+
+@media (max-width: 770px) {
+    #about-container {
+        flex-direction: column;
+    }
+
+    .about-content {
+        margin: 15px auto;
+    }
+}

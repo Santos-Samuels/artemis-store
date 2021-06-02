@@ -17,11 +17,15 @@ header .navbar-text i:hover {
   
 header #user {
     background-color: var(--cyan);
-    background-image: linear-gradient(140deg, rgb(121, 255, 225), rgb(50, 145, 255) 100%);
+    background-image: linear-gradient(140deg, pink, var(--primary-2) 100%);
   
     padding: 1px 6px;
 }
   
 header #user-nav i:hover {
     color: var(--hover);
+}
+
+.active {
+    color: var(--primary-hover);
 }
