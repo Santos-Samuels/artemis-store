@@ -4,7 +4,7 @@ const loadAccessoryOffer = (products) => {
     for(i=0; i<products.length;  i++) {
         if(products[i].category == "calsinha") {
             html = `
-                <div class="col">
+                <div class="col mb-5">
                     <img class="w-100" src="${products[i].image}" alt="${products[i].title}">
                     <h5 class="pt-2">${products[i].title}</h5>
                     <p>Por: <span class="fw-bold price fs-2">${products[i].price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span></p>

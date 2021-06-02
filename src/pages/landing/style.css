@@ -17,32 +17,27 @@ main .offer-container:hover .offer-label span{
 
 main .offer-label {
     color: var(--text-secondary);
+    padding: 2rem;
 }
 
 main .price {
     color: var(--primary);
+    font-size: 2rem;
 }
 
 
 
-/* @media (max-width: 900px) {
-    .offer-label h3 {
-        font-size: 1.3rem !important;
+@media (max-width: 1000px) {
+    main .offer-label {
+        padding: 1rem;
+        max-width: 200px;
     }
 }
 
 
-@media (max-width: 600px) {
-    .offer-label {
-        padding: 2rem;
+@media (max-width: 700px) {
+    main .offer-label {
+        display: none;
     }
-
-    .offer-label h3 {
-        font-size: 1rem !important;
-    }
-
-    .offer-label span {
-        font-size: 1rem;
-    }
-} */
+}
 
