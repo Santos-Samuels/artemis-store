@@ -1,0 +1,21 @@
+#contact-container {
+    max-width: 900px;
+}
+
+.contact-content {
+    width: 280px;
+    border: 2px solid var(--primary);
+    border-left: 8px solid var(--primary);
+    border-radius: 8px;
+    padding: 35px;
+}
+
+@media (max-width: 770px) {
+    #contact-container {
+        flex-direction: column;
+    }
+
+    .contact-content {
+        margin: 15px auto;
+    }
+}
