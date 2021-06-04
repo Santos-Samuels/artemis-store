@@ -116,3 +116,9 @@
 .border-b {
   border-bottom: 1px solid var(--accents-5);
 }
+
+.price {
+  color: var(--primary);
+  font-size: 2rem;
+  font-weight: 700;
+}

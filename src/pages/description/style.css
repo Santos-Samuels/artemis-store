@@ -1,0 +1,10 @@
+ul li {
+    list-style: none;
+}
+
+#desc-header  a{
+    color: var(--primary);
+}
+#desc-header  a:hover{
+    color: var(--primary-hover);
+}
