@@ -1,0 +1,89 @@
+#admin-container {
+    background-color: var(--accents-2);
+    max-width: 250px;
+    transition: all 0.5s;
+}
+
+#admin-menu-content a {
+    color: var(--accents-9);
+    font-size: 1.2rem;
+    transition: all 0.3s;
+    white-space: nowrap;
+}
+
+#admin-menu-content a:hover {
+    background-color: var(--accents-4);
+}
+
+#admin-menu-content .active {
+    background-color: var(--accents-4);
+}
+
+#circle-container {
+    max-width: 800px;
+}
+
+#init-container .circle {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: 3px solid var(--primary-low-opacity);
+    padding-top: 20px;
+}
+
+#init-container .circle i {
+    color: var(--accents-7);
+}
+
+#init-container .circle p {
+    color: var(--accents-6);
+    width: 120px;
+}
+
+#init-container .circle span {
+    color: var(--primary);
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+#sale-container {
+    width: 250px;
+    padding: 10px;
+    background-color: #f2f2f2;
+    border-radius: 8px;
+}
+
+#sale-product-content img {
+    width: 230px;
+    border-radius: 8px;
+}
+
+#sale-product-content h5 {
+    color: var(--text-primary-2);
+
+}
+
+#sale-product-content span {
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+#sale-customer-content h4 {
+    border-bottom: 1px solid var(--accents-5);
+}
+
+
+@media (max-width: 770px) {
+    #admin-container {
+        width: 200px;
+    }
+
+    #circle-container {
+        flex-direction: column;
+    }
+
+    .circle {
+        margin: auto;
+    }
+}

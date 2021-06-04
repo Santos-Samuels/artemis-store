@@ -33,7 +33,6 @@ const ToggleModal = (modalContainer) => {
 }
 
 
-
 const loadProducts = (products) => {
     const productsDiv = document.querySelector('#products-container')
 
@@ -50,3 +49,27 @@ const loadProducts = (products) => {
         productsDiv.insertAdjacentHTML('beforeend', html)
     });
 }
+
+const setContainerOption = (optionContainer, linkId) => {
+    const container = document.querySelector(optionContainer)
+    const link = document.querySelector(linkId)
+    const containers = document.querySelectorAll('.option-container')
+    const optionLinks = document.querySelectorAll('.option-link')
+
+    containers.forEach(container => {
+        container.classList.add('hide')
+    });
+
+    optionLinks.forEach(container => {
+        container.classList.remove('active')
+    });
+
+    if(container.classList.contains('hide') == true) {
+        link.classList.add('active')
+        container.classList.remove('hide')
+    }
+}
+
+// const loadSales = () => {
+
+// }

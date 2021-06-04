@@ -11,11 +11,12 @@
     <link rel="stylesheet" href="/src/css/navbar.css">
     <link rel="stylesheet" href="/src/css/accountModal.css">
     <link rel="stylesheet" href="/src/css/global.css">
-    <link rel="stylesheet" href="/src/pages/products/style.css">
+    <link rel="stylesheet" href="/src/css/footer.css">
+    <link rel="stylesheet" href="/src/pages/admin/style.css">
     
-    <title>Artemis - Produtos</title>
+    <title>Artemis - Admin</title>
 </head>
-<body onload="loadProducts(products)">
+<body>
   <header>
       <section class="w-100 h-100 position-absolute hide account-modal-container" id="login-container">
         <div class="position-fixed center p-5 top-50 start-50 translate-middle account-modal-content" id="login-content">
@@ -66,7 +67,7 @@
               <a class="nav-link" href="/sobre">Sobre</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="/produtos">Produtos</a>
+              <a class="nav-link" href="/produtos">Produtos</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/contato">Contato</a>
@@ -86,63 +87,64 @@
         </div>
       </nav>
   </header>
-  
-  <main class="d-flex">
-    <aside class="p-4">
-      <h3>Filtrar</h3>
-      <div class="category-container">
-        <h4>Categoria</h4>
-        <div class="category-content">
-          <input class="form-check-input" type="checkbox" name="ring-category" id="ring-category">
-          <label class="form-check-label" for="ring-category">Anel</label> <br>
 
-          <input class="form-check-input" type="checkbox" name="necklace-category" id="necklace-category">
-          <label class="form-check-label" for="necklace-category">Colar</label> <br>
+  <main>
+    <section class="d-flex">
+        <aside class="p-3 p-lg-4" id="admin-container">
+            <h3 class="border-b pb-1">Menu</h3>
+            
+            <div class="d-flex flex-column" id="admin-menu-content">
+                <a class="text-decoration-none cursor-pointer p-2 option-link" id="painel-option" onclick="setContainerOption('#init-container', '#painel-option')"><i class="bi bi-speedometer"></i>  Painel</a>
+                <a class="text-decoration-none cursor-pointer p-2 option-link" id="sale-option" onclick="setContainerOption('#sale-container', '#sale-option')"><i class="bi bi-cart-fill"></i>  Vendas</a>
+                <a class="text-decoration-none cursor-pointer p-2 option-link" id="products-option" onclick=""><i class="bi bi-box-seam"></i>  Produtos</a>
+                <a class="products-option-menu text-decoration-none cursor-pointer p-2 option-link" id="new-product-option" onclick=""><i class="bi bi-plus-lg"></i>  Adicionar</a>
+                <a class="products-option-menu text-decoration-none cursor-pointer p-2 option-link" id="edit-product-option" onclick=""><i class="bi bi-pencil-fill"></i>  Editar</a>
+                <a class="text-decoration-none cursor-pointer p-2 option-link" id="promotion-option" onclick=""><i class="bi bi-tag-fill"></i>  Promoções</a>
+            </div>
+        </aside>
+    
+        <section class="container option-container" id="init-container">
+            <h5 class="border-b pb-1 mb-4">PAINEL DE CONTROLE</h5>
+            <div class="d-flex flex-wrap justify-content-between text-center m-auto" id="circle-container">
+                <div class="circle mt-3">
+                    <i class="bi bi-cart-fill fs-1"></i>
+                    <p class="m-auto"><span>30</span> Novos Pedidos</p>
+                </div>
+                <div class="circle mt-3">
+                    <i class="bi bi-check-lg fs-1"></i>
+                    <p class="m-auto"><span>240</span> Pedidos Concluídos</p>
+                </div>
+                <div class="circle mt-3">
+                    <i class="bi bi-box-seam fs-1"></i>
+                    <p class="m-auto"><span>335</span> Produtos Cadastrados</p>
+                </div>
+            </div>
+        </section>
 
-          <input class="form-check-input" type="checkbox" name="pendant-category" id="pendant-category">
-          <label class="form-check-label" for="pendant-category">Pingente</label> <br>
+        <section class="container hide option-container" id="sale-container">
+            <div id="sale-product-content">
+                <div class="d-flex flex-nowrap justify-content-between align-items-center pb-2" id="header-sale-container">
+                    <p class="m-0">Nº do pedido: #0001</p>
+                    <i class="bi bi-exclamation-circle-fill fs-5 order-status" title="Pedido em andamento"></i>
+                </div>
+                <img class="mb-3" src="https://mash.vteximg.com.br/arquivos/ids/180722/CALCINHA-CINTURA-ALTA-SEMI-COMPRESSAO-MICROFIBRA-SEM-COSTURA-SHE_76101.jpg?v=637357050169270000" alt="">
+                <h5>Calsinha cintura alta nude</h5>
+                <p><span>R$: 29,90</span> <br>
+                    <i class="bi bi-credit-card"> Cartão de Crédito</i></p>
+                <p><i class="bi bi-info-circle"></i> Tamanho P</p>
+            </div>
+    
+            <div id="sale-customer-content">
+                <h4 class="pb-1 mb-3">Informações do Cliente</h4>
+                <p><i class="bi bi-person-fill"></i> Antono Cardoso dos Santos</p>
+                <p><i class="bi bi-geo-alt-fill"></i> Rua Não Sei o Que, nº 581 <br>Bairro do esquecimento <br>Feira de Santana - BA <br> CEP: 00000-000</p>
+            </div>
 
-          <input class="form-check-input" type="checkbox" name="offer-category" id="offer-category">
-          <label class="form-check-label" for="offer-category">Oferta</label> <br>
-        </div>
-      </div>
+            <div id="sale-status-content">
+                <button class="btn btn-success w-100">Concluir Pedido</button>
+            </div>
+        </section>
 
-      <div class="category-container">
-        <h4>Tamanho</h4>
-        <div class="category-content">
-          <input class="form-check-input" type="checkbox" name="p-size" id="p-size">
-          <label class="form-check-label" for="p-size">P</label> <br>
-
-          <input class="form-check-input" type="checkbox" name="m-size" id="m-size">
-          <label class="form-check-label" for="m-size">M</label> <br>
-
-          <input class="form-check-input" type="checkbox" name="g-size" id="g-size">
-          <label class="form-check-label" for="g-size">G</label> <br>
-
-          <input class="form-check-input" type="checkbox" name="gg-size" id="gg-size">
-          <label class="form-check-label" for="gg-size">GG</label> <br>
-        </div>
-      </div>
-
-      <div class="category-container">
-        <h4>Preço</h4>
-        <div class="category-content">
-          <label class="form-check-label" for="min-price">Valor mínimo:</label>
-          <input class="form-control" type="number" name="min-price" id="min-price">
-
-          <label class="form-check-label" for="max-price">Valor máximo:</label>
-          <input class="form-control" type="number" name="max-price" id="max-price">
-        </div>
-      </div>
-
-      <!-- <div class="category-content mt-4">
-        <button class="btn btn-dark">Filtrar</button>
-      </div> -->
-    </aside>
-
-    <section>
-      <div class="d-flex flex-wrap justify-content-center" id="products-container">
-      </div>
     </section>
   </main>
 
@@ -169,7 +171,7 @@
 
       <div class="align-self-lg-start footer-content">
         <h5 class="mb-3">Redes Sociais</h5>
-        <div class="d-flex flex-column pb-5">
+        <div class="d-flex flex-column">
           <a href="https://www.instagram.com/artemis.joia/" target="_blank" class="social-link"><i class="bi bi-instagram fs-4 pe-2"></i> Instagram</a>
           <a href="http://api.whatsapp.com/send?l=pt_BR&phone=557599182279&text=Olá, Artemis Semijóias e Acessórios! Vir pelo site!" target="_blank" class="mt-2 social-link"><i class="bi bi-whatsapp fs-4 pe-2"></i> WhatsApp</a>
         </div>
@@ -183,11 +185,12 @@
           Bairro Bla Bla Bla - Centro <br>
           Feira de Santana - BA <br>
           CEP: 0000-000</a>
+
       </div>
+    </div>
   </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-    <script src="/src/script/products-list.js"></script>
-    <script src="/src/script/app.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+  <script src="/src/script/app.js"></script>
 </body>
 </html>

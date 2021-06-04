@@ -1,11 +1,13 @@
 :root {
   --primary: #A65B99;
+  --primary-low-opacity: #a65b9980;
   --primary-hover: #8b4a80;
   --primary-2: #613673;
   --secondary: #BABFBD;
   --secondary-2: #A6A18A;
   --selection: #A68933;
   --text-primary: #000;
+  --text-primary-2: #3f3f3f;
   --text-secondary: #fff;
   --text-secondary-2: #BABFBD;
   --text-secondary-3: #c4ad6b;
@@ -109,4 +111,8 @@
 
 .hide {
   display: none;
+}
+
+.border-b {
+  border-bottom: 1px solid var(--accents-5);
 }
