@@ -1,5 +1,5 @@
 :root {
-  --primary: #A65B99;
+  --primary: rgb(166, 91, 153);
   --primary-low-opacity: #a65b9980;
   --primary-hover: #8b4a80;
   --primary-2: #613673;
@@ -81,6 +81,19 @@
 .btn-primary:hover {
   background-color: var(--primary-hover);
 }
+
+.btn-primary:not(:disabled):not(.disabled).active:focus,
+.btn-primary:not(:disabled):not(.disabled):active:focus,
+.show>.btn-primary.dropdown-toggle:focus,
+.btn:focus {
+  background-color: var(--primary-hover);
+  box-shadow: 0 0 0 0.2rem rgba(166, 91, 153, 0.25);
+}
+
+.form-control:focus {
+  border-color: var(--primary-hover);
+  box-shadow: 0 0 0 0.2rem rgba(166, 91, 153, 0.25);
+} 
 
 .nav-link {
   color: var(--text-secondary-2);
