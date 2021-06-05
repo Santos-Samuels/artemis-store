@@ -1,3 +1,11 @@
+#sidebar-button {
+    height: 50px;
+}
+
+#sidebar-options {
+    width: 200px;
+}
+
 #admin-container {
     background-color: var(--accents-2);
     max-width: 250px;
@@ -46,11 +54,13 @@
     font-weight: 700;
 }
 
-#sale-container {
+#sale-content {
     width: 250px;
     padding: 10px;
     background-color: #f2f2f2;
     border-radius: 8px;
+    border: 1px solid var(--accents-5);
+    margin: 0 15px 15px;
 }
 
 #sale-product-content img {

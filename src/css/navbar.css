@@ -27,5 +27,13 @@ header #user-nav i:hover {
 }
 
 .active {
-    color: var(--primary-hover);
+    border: 2px solid var(--primary-low-opacity);
+}
+
+.list-group-item:hover {
+    background-color: var(--primary-low-opacity);
+}
+
+.nav-link:hover {
+    background-color: var(--primary-low-opacity);
 }

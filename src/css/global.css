@@ -91,7 +91,7 @@
 }
 
 .form-control:focus {
-  border-color: var(--primary-hover);
+  border-color: var(--primary-low-opacity);
   box-shadow: 0 0 0 0.2rem rgba(166, 91, 153, 0.25);
 } 
 

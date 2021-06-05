@@ -18,93 +18,112 @@
 </head>
 <body>
   <header>
-      <section class="w-100 h-100 position-absolute hide account-modal-container" id="login-container">
-        <div class="position-fixed center p-5 top-50 start-50 translate-middle account-modal-content" id="login-content">
-          <i class="bi bi-x-lg position-absolute cursor-pointer" onclick="ToggleModal('#login-container')"></i>
-          <img class="mb-4" src="/assets/img/logo-acme.png" id="login-logo">
-    
-          <form id="login-form">
-            <input class="form-control mt-3" type="email" name="login-email" id="login-email" placeholder="Email">  
-            <input class="form-control mt-3" type="password" name="login-password" id="login-password" placeholder="Senha">
-            <button class="btn btn-primary mt-3 w-100">ENTRAR</button>
-          </form>
-    
-          <p class="mt-4">Não tem uma conta? <span class="cursor-pointer text-primary link" onclick="ToggleModal('#login-container'), ToggleModal('#signup-container')">Cadastre-se</span></p>
+    <section class="w-100 h-100 position-absolute hide account-modal-container" id="login-container">
+      <div class="position-fixed center p-5 top-50 start-50 translate-middle account-modal-content" id="login-content">
+        <i class="bi bi-x-lg position-absolute cursor-pointer" onclick="ToggleModal('#login-container')"></i>
+        <img class="mb-4" src="/assets/img/logo-acme.png" id="login-logo">
+  
+        <form id="login-form">
+          <input class="form-control mt-3" type="email" name="login-email" id="login-email" placeholder="Email">  
+          <input class="form-control mt-3" type="password" name="login-password" id="login-password" placeholder="Senha">
+          <button class="btn btn-primary mt-3 w-100">ENTRAR</button>
+        </form>
+  
+        <p class="mt-4">Não tem uma conta? <span class="cursor-pointer text-primary link" onclick="ToggleModal('#login-container'), ToggleModal('#signup-container')">Cadastre-se</span></p>
+      </div>
+    </section>
+  
+    <section class="w-100 h-100 position-absolute hide account-modal-container" id="signup-container">
+      <div class="position-fixed center p-5 top-50 start-50 translate-middle account-modal-content" id="signup-content">
+        <i class="bi bi-x-lg position-absolute cursor-pointer" onclick="ToggleModal('#signup-container')"></i>
+        <img class="mb-4" src="/assets/img/logo-acme.png" id="signup-logo">
+  
+        <form id="signup-form">
+          <input class="form-control mt-3" type="text" name="signup-first-name" id="signup-first-name" placeholder="Primeiro nome">
+          <input class="form-control mt-3" type="text" name="signup-last-name" id="signup-last-name" placeholder="Último nome">
+          <input class="form-control mt-3" type="email" name="signup-email" id="signup-email" placeholder="Email">
+          <input class="form-control mt-3" type="password" name="signup-password" id="signup-password" placeholder="Senha">
+          <input class="form-control mt-3" type="password" name="signup-password-2" id="signup-password-2" placeholder="Confirmar senha">
+          <button class="btn btn-primary mt-3 w-100">EFETUAR CADASTRO</button>
+        </form>
+  
+        <p class="mt-4">Já tem uma conta? <span class="cursor-pointer link text-primary" onclick="ToggleModal('#signup-container'), ToggleModal('#login-container')">Entrar</span></p>
+      </div>
+    </section>
+
+    <nav class="navbar navbar-expand-lg navbar-light p-4">
+      <a class="navbar-brand fw-bold" href=""><img class="zoom" id="logo" src="/assets/img/logo-acme.png" alt="logo"> ACME</a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/sobre">Sobre</a>
+          </li>
+          <li class="nav-item">
+            <div class="dropdown">
+              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-box-seam"></i>  Produtos</a>
+              
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <a class="list-group-item list-group-item-action list-group-item-light">Jóia</a>
+                <a class="list-group-item list-group-item-action list-group-item-light">Seminóia</a>
+                <a class="list-group-item list-group-item-action list-group-item-light">Bijuteria</a>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/contato">Contato</a>
+          </li>
+        </ul>
+
+        <span class="input-group d-flex w-50 me-auto">
+          <input class="form-control" type="search" name="search" id="search" placeholder="Pesquisar produtos ...">
+          <button class="btn btn-outline-secondary"><i class="bi bi-search"></i></button>
+        </span>
+        
+        <div class="navbar-text d-flex align-items-center fs-4">
+          <i class="bi bi-bag pe-4 zoom"></i>
+          <i class="bi bi-heart pe-4 zoom"></i>
+          <i class="bi bi-person-fill rounded-circle zoom" id="user" onclick="ToggleModal('#login-container')"></i>
         </div>
-      </section>
-    
-      <section class="w-100 h-100 position-absolute hide account-modal-container" id="signup-container">
-        <div class="position-fixed center p-5 top-50 start-50 translate-middle account-modal-content" id="signup-content">
-          <i class="bi bi-x-lg position-absolute cursor-pointer" onclick="ToggleModal('#signup-container')"></i>
-          <img class="mb-4" src="/assets/img/logo-acme.png" id="signup-logo">
-    
-          <form id="signup-form">
-            <input class="form-control mt-3" type="text" name="signup-first-name" id="signup-first-name" placeholder="Primeiro nome">
-            <input class="form-control mt-3" type="text" name="signup-last-name" id="signup-last-name" placeholder="Último nome">
-            <input class="form-control mt-3" type="email" name="signup-email" id="signup-email" placeholder="Email">
-            <input class="form-control mt-3" type="password" name="signup-password" id="signup-password" placeholder="Senha">
-            <input class="form-control mt-3" type="password" name="signup-password-2" id="signup-password-2" placeholder="Confirmar senha">
-            <button class="btn btn-primary mt-3 w-100">EFETUAR CADASTRO</button>
-          </form>
-    
-          <p class="mt-4">Já tem uma conta? <span class="cursor-pointer link text-primary" onclick="ToggleModal('#signup-container'), ToggleModal('#login-container')">Entrar</span></p>
-        </div>
-      </section>
-  
-      <nav class="navbar navbar-expand-lg navbar-light p-4">
-        <a class="navbar-brand fw-bold" href=""><img class="zoom" id="logo" src="/assets/img/logo-acme.png" alt="logo"> ACME</a>
-  
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-  
-        <div class="collapse navbar-collapse" id="navbarText">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" href="/">Inicio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/sobre">Sobre</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/produtos">Produtos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/contato">Contato</a>
-            </li>
-          </ul>
-  
-          <span class="input-group d-flex w-50 me-auto">
-            <input class="form-control" type="search" name="search" id="search" placeholder="Pesquisar produtos ...">
-            <button class="btn btn-outline-secondary"><i class="bi bi-search"></i></button>
-          </span>
-          
-          <div class="navbar-text d-flex align-items-center fs-4">
-            <i class="bi bi-bag pe-4 zoom"></i>
-            <i class="bi bi-heart pe-4 zoom"></i>
-            <i class="bi bi-person-fill rounded-circle zoom" id="user" onclick="ToggleModal('#login-container')"></i>
-          </div>
-        </div>
-      </nav>
-  </header>
+      </div>
+    </nav>
+</header>
 
   <main>
-    <section class="d-flex">
-        <aside class="p-3 p-lg-4" id="admin-container">
-            <h3 class="border-b pb-1">Menu</h3>
-            
-            <div class="d-flex flex-column" id="admin-menu-content">
-                <a class="text-decoration-none cursor-pointer p-2 option-link" id="painel-option" onclick="setContainerOption('#init-container', '#painel-option')"><i class="bi bi-speedometer"></i>  Painel</a>
-                <a class="text-decoration-none cursor-pointer p-2 option-link" id="sale-option" onclick="setContainerOption('#sale-container', '#sale-option')"><i class="bi bi-cart-fill"></i>  Vendas</a>
-                <a class="text-decoration-none cursor-pointer p-2 option-link" id="products-option" onclick=""><i class="bi bi-box-seam"></i>  Produtos</a>
-                <a class="products-option-menu text-decoration-none cursor-pointer p-2 option-link" id="new-product-option" onclick=""><i class="bi bi-plus-lg"></i>  Adicionar</a>
-                <a class="products-option-menu text-decoration-none cursor-pointer p-2 option-link" id="edit-product-option" onclick=""><i class="bi bi-pencil-fill"></i>  Editar</a>
-                <a class="text-decoration-none cursor-pointer p-2 option-link" id="promotion-option" onclick=""><i class="bi bi-tag-fill"></i>  Promoções</a>
+    <section class="d-flex" id="wrapper">
+      <button class="sidebar-toggler btn btn-primary" id="sidebar-button" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarText" aria-controls="sidebarText" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="bi bi-layout-text-sidebar-reverse fs-4"></i>
+      </button>
+        <!-- Sidebar-->
+        <div class="border-end bg-white collapse sidebar-collapse" id="sidebarText">
+          <h5 class="sidebar-heading border-bottom bg-light p-2">MENU</h5>
+            <div class="list-group list-group-flush" id="sidebar-options">
+                <a class="list-group-item list-group-item-action list-group-item-light p-3 option-link" id="painel-option" onclick="setContainerOption('#init-container', '#painel-option')"><i class="bi bi-speedometer"></i>  Painel</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3 option-link" id="sale-option" onclick="setContainerOption('#sale-container', '#sale-option')"><i class="bi bi-cart-fill"></i>  Vendas</a>
+                
+                <div class="dropdown">
+                  <a class="list-group-item list-group-item-action list-group-item-light p-3 option-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" id="products-option"><i class="bi bi-box-seam"></i>  Produtos</a>
+                  
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3 option-link" id="new-product-option"  onclick="setContainerOption('#new-product-container', '#new-product-option')"><i class="bi bi-plus-lg"></i>  Adicionar</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3 option-link" id="edit-product-option" onclick=""><i class="bi bi-pencil-fill"></i>  Editar</a>
+                  </ul>
+                </div>
+                
+                <a class="list-group-item list-group-item-action list-group-item-light p-3 option-link" id="promotion-option" onclick=""><i class="bi bi-tag-fill"></i>  Promoções</a>
             </div>
-        </aside>
+          </div>
+        </div>
     
-        <section class="container option-container" id="init-container">
-            <h5 class="border-b pb-1 mb-4">PAINEL DE CONTROLE</h5>
+        <section class="container hide option-container" id="init-container">
+            <h5 class="border-b pb-1 mb-4 mt-2">PAINEL DE CONTROLE</h5>
             <div class="d-flex flex-wrap justify-content-between text-center m-auto" id="circle-container">
                 <div class="circle mt-3">
                     <i class="bi bi-cart-fill fs-1"></i>
@@ -122,29 +141,136 @@
         </section>
 
         <section class="container hide option-container" id="sale-container">
-            <div id="sale-product-content">
+          <h5 class="border-b pb-1 mb-4 mt-2">CONTROLE DE VENDAS</h5>
+          <div class="d-flex justify-content-center flex-wrap">
+            <article id="sale-content">
+              <div id="sale-product-content">
                 <div class="d-flex flex-nowrap justify-content-between align-items-center pb-2" id="header-sale-container">
-                    <p class="m-0">Nº do pedido: #0001</p>
-                    <i class="bi bi-exclamation-circle-fill fs-5 order-status" title="Pedido em andamento"></i>
+                  <p class="m-0">Nº do pedido: #0001</p>
+                  <i class="bi bi-exclamation-circle-fill fs-5 order-status" title="Pedido em andamento"></i>
                 </div>
                 <img class="mb-3" src="https://mash.vteximg.com.br/arquivos/ids/180722/CALCINHA-CINTURA-ALTA-SEMI-COMPRESSAO-MICROFIBRA-SEM-COSTURA-SHE_76101.jpg?v=637357050169270000" alt="">
                 <h5>Calsinha cintura alta nude</h5>
                 <p><span>R$: 29,90</span> <br>
-                    <i class="bi bi-credit-card"> Cartão de Crédito</i></p>
+                  <i class="bi bi-credit-card"> Cartão de Crédito</i></p>
                 <p><i class="bi bi-info-circle"></i> Tamanho P</p>
-            </div>
+              </div>
     
-            <div id="sale-customer-content">
+              <div id="sale-customer-content">
                 <h4 class="pb-1 mb-3">Informações do Cliente</h4>
                 <p><i class="bi bi-person-fill"></i> Antono Cardoso dos Santos</p>
+                <p><i class="bi bi-telephone-fill"></i> (75) 9 9800-0098</p>
                 <p><i class="bi bi-geo-alt-fill"></i> Rua Não Sei o Que, nº 581 <br>Bairro do esquecimento <br>Feira de Santana - BA <br> CEP: 00000-000</p>
-            </div>
-
-            <div id="sale-status-content">
-                <button class="btn btn-success w-100">Concluir Pedido</button>
-            </div>
+              </div>
+  
+              <div id="sale-status-content">
+                <button class="btn btn-success w-100">Finalizar Venda</button>
+              </div>
+            </article>
+            <article id="sale-content">
+              <div id="sale-product-content">
+                <div class="d-flex flex-nowrap justify-content-between align-items-center pb-2" id="header-sale-container">
+                  <p class="m-0">Nº do pedido: #0001</p>
+                  <i class="bi bi-exclamation-circle-fill fs-5 order-status" title="Pedido em andamento"></i>
+                </div>
+                <img class="mb-3" src="https://mash.vteximg.com.br/arquivos/ids/180722/CALCINHA-CINTURA-ALTA-SEMI-COMPRESSAO-MICROFIBRA-SEM-COSTURA-SHE_76101.jpg?v=637357050169270000" alt="">
+                <h5>Calsinha cintura alta nude</h5>
+                <p><span>R$: 29,90</span> <br>
+                  <i class="bi bi-credit-card"> Cartão de Crédito</i></p>
+                <p><i class="bi bi-info-circle"></i> Tamanho P</p>
+              </div>
+    
+              <div id="sale-customer-content">
+                <h4 class="pb-1 mb-3">Informações do Cliente</h4>
+                <p><i class="bi bi-person-fill"></i> Antono Cardoso dos Santos</p>
+                <p><i class="bi bi-telephone-fill"></i> (75) 9 9800-0098</p>
+                <p><i class="bi bi-geo-alt-fill"></i> Rua Não Sei o Que, nº 581 <br>Bairro do esquecimento <br>Feira de Santana - BA <br> CEP: 00000-000</p>
+              </div>
+  
+              <div id="sale-status-content">
+                <button class="btn btn-success w-100">Finalizar Venda</button>
+              </div>
+            </article>
+          </div>
         </section>
+        
 
+        <section class="container option-container" id="new-product-container">
+          <h5 class="border-b pb-1 mb-4 mt-2">CADASTRAR PRODUTO</h5>
+          <form action="">
+            <div class="row g-2">
+              <input class="form-control" type="file" id="product-image" src="" alt="">
+            </div>
+
+            <div class="row mt-2 g-2">
+              <div class="col">
+                <label class="form-label" for="product-name">Nome do produto</label>
+                <input class="form-control" type="text" name="product-name" id="product-name">
+              </div>
+              <div class="col-4 col-lg-3">
+                <label class="form-label" for="product-color">Cor</label>
+                <select class="form-select" name="product-color" id="product-color">
+                  <option value="preto">Preto</option>
+                  <option value="branco">Branco</option>
+                  <option value="ouro">Ouro</option>
+                  <option value="prata">Prata</option>
+                  <option value="bronze">Bronze</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row mt-2 g-2">
+              <div class="col">
+                <label class="form-label" for="product-info">Descrição</label>
+                <input class="form-control" type="text" name="product-info" id="product-info">
+              </div>
+              <div class="col-4 col-lg-3">
+                <label class="form-label" for="product-color">Cor</label>
+                <select class="form-select" name="product-color" id="product-color">
+                  <option value="pp">PP</option>
+                  <option value="p">P</option>
+                  <option value="m">M</option>
+                  <option value="g">G</option>
+                  <option value="gg">GG</option>
+                  <option value="xg">XG</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="row mt-2 g-2">
+              <div class="col-6 col-md-3 col-lg-3">
+                <label class="form-label" for="product-price">Preço</label>
+                <input class="form-control" type="number" name="product-price" id="product-price">
+              </div>
+              <div class="col-6 col-md-3 col-lg-3">
+                <label class="form-label" for="product-quantity">Quantidade</label>
+                <input class="form-control" type="number" name="product-quantity" id="product-quantity">
+              </div>
+              <div class="col-6 col-md-3 col-lg-3">
+                <label class="form-label" for="product-type">Tipo</label>
+                <select class="form-select" name="product-type" id="product-type">
+                  <option value="anel">Anel</option>
+                  <option value="colar">Colar</option>
+                  <option value="brinco">Brinco</option>
+                  <option value="pulseira">Pulseira</option>
+                  <option value="calcinha">Calcinha</option>
+                </select>
+              </div>
+              <div class="col-6 col-md-3 col-lg-3">
+                <label class="form-label" for="product-type">Categoria</label>
+                <select class="form-select" name="product-type" id="product-type">
+                  <option value="">Jóia</option>
+                  <option value="">Semijóias</option>
+                  <option value="">Bijuterias</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row g-2 mt-3 justify-content-end">
+              <button class="btn btn-primary col-12 col-lg-3" type="button">Cadastrar</button>
+            </div>
+          </form>
+        </section>
     </section>
   </main>
 
