@@ -1,11 +1,3 @@
-#sidebar-button {
-    height: 50px;
-}
-
-#sidebar-options {
-    width: 200px;
-}
-
 #admin-container {
     background-color: var(--accents-2);
     max-width: 250px;
@@ -83,6 +75,10 @@
     border-bottom: 1px solid var(--accents-5);
 }
 
+.active {
+    color: black;
+    background-color: var(--primary-low-opacity);
+}
 
 @media (max-width: 770px) {
     #admin-container {

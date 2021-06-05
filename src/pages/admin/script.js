@@ -1,17 +1,27 @@
-window.addEventListener('DOMContentLoaded', event => {
+const toggleDropDown = () => {
+    const links = document.querySelectorAll('.dropdown-link')
 
-    // Toggle the side navigation
-    const sidebarToggle = document.body.querySelector('#sidebarToggle');
-    if (sidebarToggle) {
-        // Uncomment Below to persist sidebar toggle between refreshes
-        // if (localStorage.getItem('sb|sidebar-toggle') === 'true') {
-        //     document.body.classList.toggle('sb-sidenav-toggled');
-        // }
-        sidebarToggle.addEventListener('click', event => {
-            event.preventDefault();
-            document.body.classList.toggle('sb-sidenav-toggled');
-            localStorage.setItem('sb|sidebar-toggle', document.body.classList.contains('sb-sidenav-toggled'));
-        });
+    links.forEach(link => {
+        link.classList.contains('hide') ? link.classList.remove('hide') : link.classList.add('hide')
+    });
+}
+
+const setContainerOption = (optionContainer, linkId) => {
+    const container = document.querySelector(optionContainer)
+    const link = document.querySelector(linkId)
+    const containers = document.querySelectorAll('.option-container')
+    const optionLinks = document.querySelectorAll('.option-link')
+
+    containers.forEach(container => {
+        container.classList.add('hide')
+    });
+
+    optionLinks.forEach(container => {
+        container.classList.remove('active')
+    });
+
+    if(container.classList.contains('hide') == true) {
+        link.classList.add('active')
+        container.classList.remove('hide')
     }
-
-});
+}

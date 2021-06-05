@@ -43,14 +43,6 @@
   transform: scale(1.1);
 }
 
-.bg-violet {
-  background-color: var(--violet);
-}
-
-.bg-pink {
-  background-color: var(--pink);
-}
-
 .bg-accents {
   background-color: var(--accents-9);
   color: var(--text-secondary);
