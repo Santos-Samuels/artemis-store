@@ -10,8 +10,9 @@ ErrorDocument 404 /erros/404.php
     RewriteRule ^sobre/?$                      /src/pages/about/           
     RewriteRule ^produtos/?$                      /src/pages/products/           
     RewriteRule ^contato/?$                      /src/pages/contact/           
-    RewriteRule ^admin/?$                      /src/pages/admin/  
     RewriteRule ^descricao/?$                      /src/pages/description/         
+    RewriteRule ^admin-login/?$                      /src/pages/admin-login/  
+    RewriteRule ^admin/?$                      /src/pages/admin/  
 
 
     #Redirecionamentos de api

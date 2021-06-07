@@ -1,3 +1,54 @@
+#toggle-sidebar-button,
+#toggle-sidebar-logo {
+    display: none;
+}
+
+header #user {
+    background-color: var(--cyan);
+    background-image: linear-gradient(140deg, pink, var(--primary-2) 100%);
+  
+    padding: 1px 6px;
+}
+  
+header #user-nav i:hover {
+    color: var(--hover);
+}
+
+#sidebar-container {
+    transition: all 0.5s;
+}
+
+#sidebar-header {
+    background-color: var(--primary);
+    color: var(--text-secondary);
+}
+
+.option-link{
+    background-color: #fafafa;
+    border-bottom: 1px solid var(--accents-3);
+    padding: 1rem 4rem;
+    transition: all 0.5s;
+}
+
+.option-link:hover {
+    color: var(--text-primary) !important;
+    background-color: var(--primary-low-opacity);
+}
+
+#sidebar-options {
+    transition: all 0.5s;
+    white-space: nowrap;
+}
+
+.dropdown-link {
+    background-color: var(--accents-2);
+    transition: all 0.8s;
+}
+
+.dropdown-link:hover {
+    padding-left: 2rem;
+}
+
 #admin-container {
     background-color: var(--accents-2);
     max-width: 250px;
@@ -71,16 +122,32 @@
     font-size: 1.5rem;
 }
 
-#sale-customer-content h4 {
-    border-bottom: 1px solid var(--accents-5);
-}
-
 .active {
-    color: black;
+    color: black !important;
     background-color: var(--primary-low-opacity);
 }
 
+.order-price {
+    white-space: nowrap;
+}
+
+
 @media (max-width: 770px) {
+    #toggle-sidebar-button,
+    #toggle-sidebar-logo {
+        display: initial;
+    }
+
+    #logo-contianer h1,
+    #sidebar-header h5 {
+        display: none;
+    }
+
+    .toggle-sidebar {
+        position: absolute;
+        transform: translateX(-500px);
+    }
+
     #admin-container {
         width: 200px;
     }
