@@ -28,12 +28,27 @@ header #user-nav i:hover {
 
 .active {
     border: 2px solid var(--primary-low-opacity);
+    border-radius: 5px;
 }
 
 .list-group-item:hover {
     background-color: var(--primary-low-opacity);
 }
 
+.nav-item {
+    margin: 0 3px;
+}
+
 .nav-link:hover {
     background-color: var(--primary-low-opacity);
+    border-radius: 5px;
 }
+
+.nav-link {
+    color: var(--text-secondary-2);
+    font-weight: 500;
+  }
+  
+  .nav-link:hover {
+    color: var(--text-secondary);
+  }

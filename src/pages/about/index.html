@@ -17,7 +17,7 @@
     <title>Artemis - Sobre</title>
 </head>
 <body>
-  <header>
+  <header class="shadow-sm mb-4">
     <section class="w-100 h-100 position-absolute hide account-modal-container" id="login-container">
       <div class="position-fixed center p-5 top-50 start-50 translate-middle account-modal-content" id="login-content">
         <i class="bi bi-x-lg position-absolute cursor-pointer" onclick="ToggleModal('#login-container')"></i>
@@ -64,18 +64,10 @@
             <a class="nav-link" href="/">Inicio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/sobre">Sobre</a>
+            <a class="nav-link active" href="/sobre">Sobre</a>
           </li>
           <li class="nav-item">
-            <div class="dropdown">
-              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-box-seam"></i>  Produtos</a>
-              
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <a class="list-group-item list-group-item-action list-group-item-light">Jóia</a>
-                <a class="list-group-item list-group-item-action list-group-item-light">Seminóia</a>
-                <a class="list-group-item list-group-item-action list-group-item-light">Bijuteria</a>
-              </ul>
-            </div>
+            <a class="nav-link" href="/produtos"><i class="bi bi-box-seam"></i>  Produtos</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/contato">Contato</a>
@@ -84,7 +76,6 @@
 
         <span class="input-group d-flex w-50 me-auto">
           <input class="form-control" type="search" name="search" id="search" placeholder="Pesquisar produtos ...">
-          <button class="btn btn-outline-secondary"><i class="bi bi-search"></i></button>
         </span>
         
         <div class="navbar-text d-flex align-items-center fs-4">

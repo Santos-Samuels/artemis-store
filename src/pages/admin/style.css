@@ -49,6 +49,13 @@ header #user-nav i:hover {
     padding-left: 2rem;
 }
 
+.dropdown-edit {
+    background-color: #fafafa;
+}
+.dropdown-edit:hover {
+    background-color: var(--accents-3);
+}
+
 #admin-container {
     background-color: var(--accents-2);
     max-width: 250px;
@@ -131,6 +138,13 @@ header #user-nav i:hover {
     white-space: nowrap;
 }
 
+.banner-index {
+    background-color: var(--primary);
+    color: var(--text-primary);
+    font-size: 26px;
+    padding: 8px 18px;
+}
+
 
 @media (max-width: 770px) {
     #toggle-sidebar-button,
@@ -152,11 +166,12 @@ header #user-nav i:hover {
         width: 200px;
     }
 
-    #circle-container {
-        flex-direction: column;
-    }
-
     .circle {
         margin: auto;
+    }
+
+    .banner-index {
+        font-size: 16px;
+        padding: 4px 12px;
     }
 }

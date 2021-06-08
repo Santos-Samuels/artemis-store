@@ -5,7 +5,7 @@ const loadAccessoryOffer = (products) => {
         if(products[i].category == "calsinha") {
             const html = `
                 <article class="col mb-5">
-                    <img class="w-100" src="${products[i].image}" alt="${products[i].title}">
+                    <img class="w-100 rounded" src="${products[i].image}" alt="${products[i].title}">
                     <h5 class="pt-2">${products[i].title}</h5>
                     <p>Por: <span class="fw-bold price fs-2">${products[i].price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span></p>
                     <a class="btn btn-primary w-100 text-center">COMPRAR</a>
@@ -39,7 +39,7 @@ const loadProducts = (products) => {
     products.forEach(product => {
         const html = `
             <article class="m-4 product">
-                <img src="${product.image}" alt="${product.title}">
+                <img class="rounded" src="${product.image}" alt="${product.title}">
                 <h5 class="pt-2">${product.title}</h5>
                 <p>Por: <span class="fw-bold price fs-2">${product.price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span></p>
                 <a class="btn btn-primary w-100 text-center">COMPRAR</a>

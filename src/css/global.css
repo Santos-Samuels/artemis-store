@@ -93,15 +93,6 @@ tbody tr:hover {
   background-color: rgba(166, 91, 153, 0.25);
 }
 
-.nav-link {
-  color: var(--text-secondary-2);
-  font-weight: 500;
-}
-
-.nav-link:hover {
-  color: var(--text-secondary);
-}
-
 .social-link {
   text-decoration: none;
   cursor: pointer;

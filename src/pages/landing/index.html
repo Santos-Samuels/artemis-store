@@ -17,7 +17,7 @@
 
 </head>
 <body onload="loadAccessoryOffer(products)">
-  <header>
+  <header class="shadow-sm mb-4">
     <section class="w-100 h-100 position-absolute hide account-modal-container" id="login-container">
       <div class="position-fixed center p-5 top-50 start-50 translate-middle account-modal-content" id="login-content">
         <i class="bi bi-x-lg position-absolute cursor-pointer" onclick="ToggleModal('#login-container')"></i>
@@ -61,21 +61,13 @@
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" href="/">Inicio</a>
+            <a class="nav-link active" href="/">Inicio</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/sobre">Sobre</a>
           </li>
           <li class="nav-item">
-            <div class="dropdown">
-              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-box-seam"></i>  Produtos</a>
-              
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <a class="list-group-item list-group-item-action list-group-item-light">Jóia</a>
-                <a class="list-group-item list-group-item-action list-group-item-light">Seminóia</a>
-                <a class="list-group-item list-group-item-action list-group-item-light">Bijuteria</a>
-              </ul>
-            </div>
+            <a class="nav-link" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-box-seam"></i>  Produtos</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/contato">Contato</a>
@@ -84,7 +76,6 @@
 
         <span class="input-group d-flex w-50 me-auto">
           <input class="form-control" type="search" name="search" id="search" placeholder="Pesquisar produtos ...">
-          <button class="btn btn-outline-secondary"><i class="bi bi-search"></i></button>
         </span>
         
         <div class="navbar-text d-flex align-items-center fs-4">
@@ -102,36 +93,36 @@
     </section>
 
     <section class="m-4">
-      <div class="row">
+      <div class="row g-2">
         <div class="col offer-container">
           <div class="position-absolute offer-label">
             <h3>Colar blue stone</h3>
             <p>a partir de <span class="fw-bold price">29,90</span></p>
           </div>
-          <img class="w-100" src="/assets/img/colar-blue-stone.jpeg" alt="Colar blue stone">
+          <img class="w-100 rounded" src="/assets/img/colar-blue-stone.jpeg" alt="Colar blue stone">
         </div>
 
-        <div class="col row">
+        <div class="col row g-2">
           <div class="offer-container">
             <div class="position-absolute offer-label">
               <h3>Alianças simple style</h3>
               <p>a partir de <span class="fw-bold price">69,90</span></p>
             </div>
-            <img class="w-100" src="/assets/img/aliancas-simple-style.jpeg" alt="Alianças simple style">
+            <img class="w-100 rounded" src="/assets/img/aliancas-simple-style.jpeg" alt="Alianças simple style">
           </div>
           <div class="col offer-container">
             <div class="position-absolute offer-label">
               <h3>Colar white stone</h3>
               <p>a partir de <span class="fw-bold price">29,90</span></p>
             </div>
-            <img class="w-100" src="/assets/img/colar-white-stone.jpeg" alt="Colar white stone">
+            <img class="w-100 rounded" src="/assets/img/colar-white-stone.jpeg" alt="Colar white stone">
           </div>
           <div class="col offer-container">
             <div class="position-absolute offer-label">
               <h3>Conjunto joia gold</h3>
               <p>a partir de <span class="fw-bold price">119.90</span></p>
             </div>
-            <img class="w-100" src="/assets/img/conjunto-joias-gold.jpeg" alt="Conjunto joia gold">
+            <img class="w-100 rounded" src="/assets/img/conjunto-joias-gold.jpeg" alt="Conjunto joia gold">
           </div>
         </div>
       </div>

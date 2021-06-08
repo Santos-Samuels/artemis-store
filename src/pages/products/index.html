@@ -16,7 +16,7 @@
     <title>Artemis - Produtos</title>
 </head>
 <body onload="loadProducts(products)">
-  <header>
+  <header class="shadow-sm mb-4">
     <section class="w-100 h-100 position-absolute hide account-modal-container" id="login-container">
       <div class="position-fixed center p-5 top-50 start-50 translate-middle account-modal-content" id="login-content">
         <i class="bi bi-x-lg position-absolute cursor-pointer" onclick="ToggleModal('#login-container')"></i>
@@ -66,15 +66,7 @@
             <a class="nav-link" href="/sobre">Sobre</a>
           </li>
           <li class="nav-item">
-            <div class="dropdown">
-              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-box-seam"></i>  Produtos</a>
-              
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <a class="list-group-item list-group-item-action list-group-item-light">Jóia</a>
-                <a class="list-group-item list-group-item-action list-group-item-light">Seminóia</a>
-                <a class="list-group-item list-group-item-action list-group-item-light">Bijuteria</a>
-              </ul>
-            </div>
+            <a class="nav-link" href="/produtos"><i class="bi bi-box-seam"></i>  Produtos</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/contato">Contato</a>
@@ -83,7 +75,6 @@
 
         <span class="input-group d-flex w-50 me-auto">
           <input class="form-control" type="search" name="search" id="search" placeholder="Pesquisar produtos ...">
-          <button class="btn btn-outline-secondary"><i class="bi bi-search"></i></button>
         </span>
         
         <div class="navbar-text d-flex align-items-center fs-4">
@@ -95,58 +86,44 @@
     </nav>
   </header>
   
-  <main class="d-flex">
-    <aside class="p-4">
-      <h3>Filtrar</h3>
-      <div class="category-container">
-        <h4>Categoria</h4>
-        <div class="category-content">
-          <input class="form-check-input" type="checkbox" name="ring-category" id="ring-category">
-          <label class="form-check-label" for="ring-category">Anel</label> <br>
-
-          <input class="form-check-input" type="checkbox" name="necklace-category" id="necklace-category">
-          <label class="form-check-label" for="necklace-category">Colar</label> <br>
-
-          <input class="form-check-input" type="checkbox" name="pendant-category" id="pendant-category">
-          <label class="form-check-label" for="pendant-category">Pingente</label> <br>
-
-          <input class="form-check-input" type="checkbox" name="offer-category" id="offer-category">
-          <label class="form-check-label" for="offer-category">Oferta</label> <br>
-        </div>
+  <main class="container">
+    <section class="row g-2 mb-2" id="filter-container">
+      <div class="col-3 col-lg-2">
+        <h3 class="primary-text"><i class="bi bi-funnel-fill"></i> FILTER</h3>
       </div>
 
-      <div class="category-container">
-        <h4>Tamanho</h4>
-        <div class="category-content">
-          <input class="form-check-input" type="checkbox" name="p-size" id="p-size">
-          <label class="form-check-label" for="p-size">P</label> <br>
-
-          <input class="form-check-input" type="checkbox" name="m-size" id="m-size">
-          <label class="form-check-label" for="m-size">M</label> <br>
-
-          <input class="form-check-input" type="checkbox" name="g-size" id="g-size">
-          <label class="form-check-label" for="g-size">G</label> <br>
-
-          <input class="form-check-input" type="checkbox" name="gg-size" id="gg-size">
-          <label class="form-check-label" for="gg-size">GG</label> <br>
-        </div>
+      <div class="col">
+        <select class="form-select" name="category-filter" id="category-filter">
+          <option value="categoria">Categoria</option>
+          <option value="joia">Jóia</option>
+          <option value="semijoia">Semijóias</option>
+          <option value="bijuteria">Bijuteria</option>
+          <option value="joia">Lingerie</option>
+          <option value="joia">Tudo</option>
+        </select>
       </div>
 
-      <div class="category-container">
-        <h4>Preço</h4>
-        <div class="category-content">
-          <label class="form-check-label" for="min-price">Valor mínimo:</label>
-          <input class="form-control" type="number" name="min-price" id="min-price">
-
-          <label class="form-check-label" for="max-price">Valor máximo:</label>
-          <input class="form-control" type="number" name="max-price" id="max-price">
-        </div>
+      <div class="col">
+        <select class="form-select" name="type-filter" id="type-filter">
+          <option value="tipo">Tipo</option>
+          <option value="anel">Anel</option>
+          <option value="colar">Colar</option>
+          <option value="pingente">Pingente</option>
+          <option value="tiara">Tiara</option>
+          <option value="joia">Lingerie</option>
+          <option value="joia">Tudo</option>
+        </select>
       </div>
 
-      <!-- <div class="category-content mt-4">
-        <button class="btn btn-dark">Filtrar</button>
-      </div> -->
-    </aside>
+      <div class="col">
+        <select class="form-select" name="price-filter" id="price-filter">
+          <option value="menor-preco">Preco</option>
+          <option value="menor-preco">Menor preço</option>
+          <option value="maior-preco">Maior preço</option>
+          <option value="maior-preco">Tudo</option>
+        </select>
+      </div>
+    </section>
 
     <section>
       <div class="d-flex flex-wrap justify-content-center" id="products-container">

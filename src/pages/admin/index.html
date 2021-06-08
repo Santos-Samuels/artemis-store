@@ -46,29 +46,32 @@
             <a class="text-decoration-none cursor-pointer text-secondary option-link dropdown-toggle" id="products-option" onclick="toggleDropDown()"><i class="bi bi-box-seam"></i>  Produtos</a>
             <div class="dropdown d-flex flex-column flex-nowrap">
                 <a class="text-decoration-none cursor-pointer text-secondary dropdown-link option-link hide" id="new-product-option"  onclick="setContainerOption('#new-product-container', '#new-product-option')"><i class="bi bi-plus-lg"></i> Adicionar</a>
-                <a class="text-decoration-none cursor-pointer text-secondary dropdown-link option-link hide" id="edit-product-option" onclick=""><i class="bi bi-pencil-fill"></i> Editar</a>
+                <a class="text-decoration-none cursor-pointer text-secondary dropdown-link option-link hide" id="edit-product-option" onclick="setContainerOption('#edit-product-container', '#edit-product-option')"><i class="bi bi-pencil-fill"></i> Editar</a>
             </div>
-            
-            <a class="text-decoration-none cursor-pointer text-secondary option-link" id="promotion-option" onclick=""><i class="bi bi-tag-fill"></i>  Promoções</a>
-            <a class="text-decoration-none cursor-pointer text-secondary option-link" id="banner-option" onclick=""><i class="bi bi-card-image"></i>  Banners</a>
+
+            <a class="text-decoration-none cursor-pointer text-secondary option-link" id="banners-option" onclick="setContainerOption('#banners-container', '#banners-option')"><i class="bi bi-card-image"></i>  Banners</a>
         </div>
       </sidebar>
 
       <div class="container">
         <section class="container option-container" id="init-container">
           <h5 class="border-b pb-1 mb-4 mt-3">PAINEL DE CONTROLE</h5>
-          <div class="d-flex flex-wrap justify-content-between text-center m-auto" id="circle-container">
-              <div class="circle mt-3">
+          <div class="d-flex flex-wrap justify-content-center text-center container" id="circle-container">
+              <div class="circle m-3">
                   <i class="bi bi-cart-fill fs-1"></i>
                   <p class="m-auto"><span>30</span> Novos Pedidos</p>
               </div>
-              <div class="circle mt-3">
-                  <i class="bi bi-check-lg fs-1"></i>
+              <div class="circle m-3">
+                  <i class="bi bi-cart-check-fill fs-1"></i>
                   <p class="m-auto"><span>240</span> Pedidos Concluídos</p>
               </div>
-              <div class="circle mt-3">
+              <div class="circle m-3">
                   <i class="bi bi-box-seam fs-1"></i>
                   <p class="m-auto"><span>335</span> Produtos Cadastrados</p>
+              </div>
+              <div class="circle m-3">
+                  <i class="bi bi-tag-fill fs-1"></i>
+                  <p class="m-auto"><span>03</span> Produtos em Promoção</p>
               </div>
           </div>
       </section>
@@ -102,7 +105,7 @@
                 <td>Pendente</td>
                 <td class="order-price">R$: 129,90</td>
                 <td>07/06/2021</td>
-                <td><i class="bi bi-eye-fill me-2 primary-text-hover cursor-pointer"></i> <i class="bi bi-cart-check-fill primary-text-hover cursor-pointer"></i></td>
+                <td><i class="bi bi-eye-fill me-2 primary-text-hover cursor-pointer" title="Ver mais"></i> <i class="bi bi-cart-check-fill primary-text-hover cursor-pointer" title="Concluir venda"></i></td>
               </tr>
               <tr>
                 <th scope="row">#0003</th>
@@ -110,7 +113,7 @@
                 <td>Pendente</td>
                 <td class="order-price">R$: 129,90</td>
                 <td>07/06/2021</td>
-                <td><i class="bi bi-eye-fill me-2 primary-text-hover cursor-pointer"></i> <i class="bi bi-cart-check-fill primary-text-hover cursor-pointer"></i></td>
+                <td><i class="bi bi-eye-fill me-2 primary-text-hover cursor-pointer" title="Ver mais"></i> <i class="bi bi-cart-check-fill primary-text-hover cursor-pointer" title="Concluir venda"></i></td>
               </tr>
             </tbody>
           </table>
@@ -121,57 +124,43 @@
           <h5 class="border-b pb-1 mb-4 mt-3">CADASTRAR PRODUTO</h5>
           <form class="m-3" action="">
               <div class="row g-2">
-                  <input class="form-control" type="file" id="product-image" src="" alt="">
+                  <input class="form-control" type="file" id="product-image" src="" alt="" required>
               </div>
   
               <div class="row mt-2 g-2">
                   <div class="col">
-                      <label class="form-label" for="product-name">Nome do produto</label>
-                      <input class="form-control" type="text" name="product-name" id="product-name">
+                      <label class="form-label" for="product-name">Nome do produto <span class="primary-text">*</span></label>
+                      <input class="form-control" type="text" name="product-name" id="product-name" placeholder="Ex: Pingente de Ouro Branco" required>
                   </div>
                   <div class="col-4 col-lg-3">
-                      <label class="form-label" for="product-color">Cor</label>
-                      <select class="form-select" name="product-color" id="product-color">
-                        <option value="preto">Preto</option>
-                        <option value="branco">Branco</option>
-                        <option value="ouro">Ouro</option>
-                        <option value="prata">Prata</option>
-                        <option value="bronze">Bronze</option>
-                        <option value="bronze">Outras</option>
-                      </select>
+                      <label class="form-label" for="product-color">Cor <span class="primary-text">*</span></label>
+                      <input class="form-control" type="text" name="product-color" id="product-color" placeholder="Ex: Azul, Branco" required>
                   </div>
               </div>
   
               <div class="row mt-2 g-2">
                   <div class="col">
-                      <label class="form-label" for="product-info">Descrição</label>
-                      <input class="form-control" type="text" name="product-info" id="product-info">
+                      <label class="form-label" for="product-info">Descrição <span class="primary-text">*</span></label>
+                      <input class="form-control" type="text" name="product-info" id="product-info" placeholder="Especificações, Detalhes do produto..." required>
                   </div>
                   <div class="col-4 col-lg-3">
-                      <label class="form-label" for="product-color">Tamanho</label>
-                      <select class="form-select" name="product-color" id="product-color">
-                      <option value="pp">PP</option>
-                      <option value="p">P</option>
-                      <option value="m">M</option>
-                      <option value="g">G</option>
-                      <option value="gg">GG</option>
-                      <option value="xg">XG</option>
-                      </select>
+                      <label class="form-label" for="product-size">Tamanho <span class="primary-text">*</span></label>
+                      <input  class="form-control" type="text" name="product-size" id="product-size" placeholder="Ex: 23cm, 32cm" required>
                   </div>
                   </div>
                   
                   <div class="row mt-2 g-2">
                   <div class="col-6 col-md-3 col-lg-3">
-                      <label class="form-label" for="product-price">Preço</label>
-                      <input class="form-control" type="number" name="product-price" id="product-price">
+                      <label class="form-label" for="product-price">Preço <span class="primary-text">*</span></label>
+                      <input class="form-control" type="number" name="product-price" id="product-price" min="0" placeholder="Ex: 29.90" required>
                   </div>
                   <div class="col-6 col-md-3 col-lg-3">
-                      <label class="form-label" for="product-quantity">Quantidade</label>
-                      <input class="form-control" type="number" name="product-quantity" id="product-quantity">
+                      <label class="form-label" for="product-quantity">Quantidade <span class="primary-text">*</span></label>
+                      <input class="form-control" type="number" name="product-quantity" id="product-quantity"  min="0" placeholder="Ex: 3" required>
                   </div>
                   <div class="col-6 col-md-3 col-lg-3">
-                      <label class="form-label" for="product-type">Tipo</label>
-                      <select class="form-select" name="product-type" id="product-type">
+                      <label class="form-label" for="product-type">Tipo <span class="primary-text">*</span></label>
+                      <select class="form-select" name="product-type" id="product-type" required>
                       <option value="anel">Anel</option>
                       <option value="colar">Colar</option>
                       <option value="brinco">Brinco</option>
@@ -180,8 +169,8 @@
                       </select>
                   </div>
                   <div class="col-6 col-md-3 col-lg-3">
-                      <label class="form-label" for="product-type">Categoria</label>
-                      <select class="form-select" name="product-type" id="product-type">
+                      <label class="form-label" for="product-type">Categoria <span class="primary-text">*</span></label>
+                      <select class="form-select" name="product-type" id="product-type" required>
                       <option value="">Jóia</option>
                       <option value="">Semijóias</option>
                       <option value="">Bijuterias</option>
@@ -195,8 +184,165 @@
               </div>
           </form>
       </section>
-      </div>
 
+      <section class="container hide option-container" id="edit-product-container">
+          <h5 class="border-b pb-1 mb-4 mt-3">EDITAR PRODUTO</h5>
+        <div class="d-flex justify-content-center flex-wrap">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Produto</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Valor</th>
+                <th scope="col">Promoção</th>
+                <th class="primary-text border-dark" scope="col">Ação</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">#0001</th>
+                <td>Colar blue stone</td>
+                <td>Colar</td>
+                <td class="order-price">R$: 29,90</td>
+                <td>R$: 24,90</td>
+                <td><i class="bi bi-pencil-fill me-2 primary-text-hover cursor-pointer" title="Editar"></i> <i class="bi bi-trash-fill primary-text-hover cursor-pointer" title="Excluir"></i></td>
+              </tr>
+              <tr>
+                <th scope="row">#0002</th>
+                <td>Colar white stone</td>
+                <td>Colar</td>
+                <td class="order-price">R$: 29,90</td>
+                <td>R$: 24,90</td>
+                <td><i class="bi bi-pencil-fill me-2 primary-text-hover cursor-pointer" title="Editar"></i> <i class="bi bi-trash-fill primary-text-hover cursor-pointer" title="Excluir"></i></td>
+              </tr>
+              <tr>
+                <th scope="row">#0003</th>
+                <td>Colar red stone</td>
+                <td>Colar</td>
+                <td class="order-price">R$: 29,90</td>
+                <td>Não</td>
+                <td><i class="bi bi-pencil-fill me-2 primary-text-hover cursor-pointer" title="Editar"></i> <i class="bi bi-trash-fill primary-text-hover cursor-pointer" title="Excluir"></i></td>
+              </tr>
+            </tbody>
+          </table>
+      </section>
+
+      <section class="container hide option-container" id="banners-container">
+        <h5 class="border-b pb-1 mb-4 mt-3">BANNERS</h5>
+        <div>
+          <artile class="m-4" id="current-banners">
+            <div class="row g-2">
+              <div class="col offer-container">
+                <div class="position-absolute pt-1">
+                  <span class="fw-bold banner-index">1</span>
+                </div>
+                <img class="w-100" src="/assets/img/colar-blue-stone.jpeg" alt="Colar blue stone">
+              </div>
+      
+              <div class="col row g-2">
+                <div class="offer-container">
+                  <div class="position-absolute pt-1">
+                    <span class="fw-bold banner-index">2</span>
+                  </div>
+                  <img class="w-100" src="/assets/img/aliancas-simple-style.jpeg" alt="Alianças simple style">
+                </div>
+                <div class="col offer-container">
+                  <div class="position-absolute pt-1">
+                    <span class="fw-bold banner-index">3</span>
+                  </div>
+                  <img class="w-100" src="/assets/img/colar-white-stone.jpeg" alt="Colar white stone">
+                </div>
+                <div class="col offer-container">
+                  <div class="position-absolute pt-1">
+                    <span class="fw-bold banner-index">4</span>
+                  </div>
+                  <img class="w-100" src="/assets/img/conjunto-joias-gold.jpeg" alt="Conjunto joia gold">
+                </div>
+              </div>
+            </div>
+          </artile>
+
+          <form class="mb-5" action="">
+            <h3 class="rounded shadow-sm border p-1 bg-light primary-text w-50"><i class="bi bi-pencil-fill fs-4 ms-3"></i> Banner 1</h3>
+            <div class="row g-2 banner-container" id="banner-1">
+              <div class="col">
+                <label class="form-label" for="banner-image-1">Imagem</label>
+                <input class="form-control" type="file" name="banner-image-1" id="banner-image-1" required>
+              </div>
+              <div class="row g-2">
+                <div class="col">
+                  <label class="form-label" for="banner-titulo-1">Título</label>
+                  <input class="form-control" type="text" name="banner-titulo-1" id="banner-titulo-1" required>
+                </div>
+                <div class="col-4">
+                  <label class="form-label" for="banner-price-1">Preço</label>
+                  <input class="form-control" type="number" name="banner-price-1" id="banner-price-1" required>
+                </div>
+              </div>
+            </div>
+
+            <h3 class="rounded shadow-sm border p-1 bg-dark primary-text w-50 mt-5"><i class="bi bi-pencil-fill fs-4 ms-3"></i> Banner 2</h3>
+            <div class="row g-2 banner-container" id="banner-2">
+              <div class="col">
+                <label class="form-label" for="banner-image-2">Imagem</label>
+                <input class="form-control" type="file" name="banner-image-2" id="banner-image-2" required>
+              </div>
+              <div class="row g-2">
+                <div class="col">
+                  <label class="form-label" for="banner-titulo-2">Título</label>
+                  <input class="form-control" type="text" name="banner-titulo-2" id="banner-titulo-2" required>
+                </div>
+                <div class="col-4">
+                  <label class="form-label" for="banner-price-2">Preço</label>
+                  <input class="form-control" type="number" name="banner-price-2" id="banner-price-2" required>
+                </div>
+              </div>
+            </div>
+
+            <h3 class="rounded shadow-sm border p-1 bg-light primary-text w-50 mt-5"><i class="bi bi-pencil-fill fs-4 ms-3"></i> Banner 3</h3>
+            <div class="row g-2 banner-container" id="banner-3">
+              <div class="col">
+                <label class="form-label" for="banner-image-3">Imagem</label>
+                <input class="form-control" type="file" name="banner-image-3" id="banner-image-3" required>
+              </div>
+              <div class="row g-2">
+                <div class="col">
+                  <label class="form-label" for="banner-titulo-3">Título</label>
+                  <input class="form-control" type="text" name="banner-titulo-3" id="banner-titulo-3" required>
+                </div>
+                <div class="col-4">
+                  <label class="form-label" for="banner-price-3">Preço</label>
+                  <input class="form-control" type="number" name="banner-price-3" id="banner-price-3" required>
+                </div>
+              </div>
+            </div>
+
+            <h3 class="rounded shadow-sm border p-1 bg-dark primary-text w-50 mt-5"><i class="bi bi-pencil-fill fs-4 ms-3"></i> Banner 4</h3>
+            <div class="row g-2 banner-container" id="banner-4">
+              <div class="col">
+                <label class="form-label" for="banner-image-4">Imagem</label>
+                <input class="form-control" type="file" name="banner-image-4" id="banner-image-4" required>
+              </div>
+              <div class="row g-2">
+                <div class="col">
+                  <label class="form-label" for="banner-titulo-4">Título</label>
+                  <input class="form-control" type="text" name="banner-titulo-4" id="banner-titulo-4" required>
+                </div>
+                <div class="col-4">
+                  <label class="form-label" for="banner-price-4">Preço</label>
+                  <input class="form-control" type="number" name="banner-price-4" id="banner-price-4" required>
+                </div>
+              </div>
+            </div>
+
+            <div class="row g-2 mt-3 justify-content-end">
+              <button class="btn btn-primary col-12 col-lg-4" type="button">Editar</button>
+            </div>
+          </form>
+        </div>
+      </section>
+      </div>
 
     </section>
   </main>
