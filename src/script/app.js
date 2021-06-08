@@ -50,7 +50,6 @@ const loadProducts = (products) => {
     });
 }
 
-
 // const loadSales = () => {
 
 // }

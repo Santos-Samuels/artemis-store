@@ -1,10 +1,18 @@
-ul li {
-    list-style: none;
+.pruduct-button {
+    width: 45px;
+    height: 45px;
+    padding-top: 11px;
 }
 
-#desc-header  a{
-    color: var(--primary);
+#product-color-container label i {
+    opacity: 0;
 }
-#desc-header  a:hover{
-    color: var(--primary-hover);
+
+#product-color-container input[type="radio"]:checked + label i {
+    opacity: 1;
+}
+
+#product-size-container input[type="radio"]:checked + label {
+    color: var(--text-secondary);
+    background-color: var(--primary);
 }
