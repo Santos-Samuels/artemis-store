@@ -38,7 +38,7 @@ var products = [
         title: "Calsinha cintura alta preto",
         category: "calsinha",
         price: 24.99,
-        image: "https://static3.tcdn.com.br/img/img_prod/468236/calcinha_modeladora_modelo_tanga_cintura_alta_trifil_2358_3_20190917150454.jpg"
+        image: "https://mash.vteximg.com.br/arquivos/ids/180722/CALCINHA-CINTURA-ALTA-SEMI-COMPRESSAO-MICROFIBRA-SEM-COSTURA-SHE_76101.jpg?v=637357050169270000"
     },
 
     {
@@ -52,6 +52,6 @@ var products = [
         title: "Calsinha cintura alta preto",
         category: "calsinha",
         price: 24.99,
-        image: "https://static3.tcdn.com.br/img/img_prod/468236/calcinha_modeladora_modelo_tanga_cintura_alta_trifil_2358_3_20190917150454.jpg"
+        image: "https://mash.vteximg.com.br/arquivos/ids/180722/CALCINHA-CINTURA-ALTA-SEMI-COMPRESSAO-MICROFIBRA-SEM-COSTURA-SHE_76101.jpg?v=637357050169270000"
     },
 ]

@@ -83,7 +83,8 @@
 }
 
 .form-control:focus,
-.form-select:focus {
+.form-select:focus,
+.btn-close:focus {
   border-color: var(--primary-low-opacity);
   box-shadow: 0 0 0 0.2rem rgba(166, 91, 153, 0.25);
 }
@@ -127,9 +128,13 @@ tbody tr:hover {
 
 .primary-text {
   color: var(--primary);
+  transition: all 0.3s;
 }
 
 .primary-text-hover:hover {
-  transition: all 0.3s;
   color: var(--primary-hover);
+}
+
+.logo {
+  width: 150px;
 }

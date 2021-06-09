@@ -20,46 +20,13 @@
 
 <body>
   <header class="shadow-sm mb-4">
-    <section class="w-100 h-100 position-absolute hide account-modal-container" id="login-container">
-      <div class="position-fixed center p-5 top-50 start-50 translate-middle account-modal-content" id="login-content">
-        <i class="bi bi-x-lg position-absolute cursor-pointer" onclick="ToggleModal('#login-container')"></i>
-        <img class="mb-4" src="/assets/img/logo-acme.png" id="login-logo">
-  
-        <form id="login-form">
-          <input class="form-control mt-3" type="email" name="login-email" id="login-email" placeholder="Email">  
-          <input class="form-control mt-3" type="password" name="login-password" id="login-password" placeholder="Senha">
-          <button class="btn btn-primary mt-3 w-100">ENTRAR</button>
-        </form>
-  
-        <p class="mt-4">Não tem uma conta? <span class="cursor-pointer text-primary link" onclick="ToggleModal('#login-container'), ToggleModal('#signup-container')">Cadastre-se</span></p>
-      </div>
-    </section>
-  
-    <section class="w-100 h-100 position-absolute hide account-modal-container" id="signup-container">
-      <div class="position-fixed center p-5 top-50 start-50 translate-middle account-modal-content" id="signup-content">
-        <i class="bi bi-x-lg position-absolute cursor-pointer" onclick="ToggleModal('#signup-container')"></i>
-        <img class="mb-4" src="/assets/img/logo-acme.png" id="signup-logo">
-  
-        <form id="signup-form">
-          <input class="form-control mt-3" type="text" name="signup-first-name" id="signup-first-name" placeholder="Primeiro nome">
-          <input class="form-control mt-3" type="text" name="signup-last-name" id="signup-last-name" placeholder="Último nome">
-          <input class="form-control mt-3" type="email" name="signup-email" id="signup-email" placeholder="Email">
-          <input class="form-control mt-3" type="password" name="signup-password" id="signup-password" placeholder="Senha">
-          <input class="form-control mt-3" type="password" name="signup-password-2" id="signup-password-2" placeholder="Confirmar senha">
-          <button class="btn btn-primary mt-3 w-100">EFETUAR CADASTRO</button>
-        </form>
-  
-        <p class="mt-4">Já tem uma conta? <span class="cursor-pointer link text-primary" onclick="ToggleModal('#signup-container'), ToggleModal('#login-container')">Entrar</span></p>
-      </div>
-    </section>
-
     <nav class="navbar navbar-expand-lg navbar-light p-4">
-      <a class="navbar-brand fw-bold" href=""><img class="zoom" id="logo" src="/assets/img/logo-acme.png" alt="logo"> ACME</a>
+      <a class="navbar-brand fw-bold" href=""><img class="zoom logo" src="/assets/img/artemis-logo-horizontal.png" alt="logo"></a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-
+      
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
@@ -69,25 +36,129 @@
             <a class="nav-link" href="/sobre">Sobre</a>
           </li>
           <li class="nav-item">
-              <a class="nav-link active" href="/produtos"><i class="bi bi-box-seam"></i>  Produtos</a>
+            <a class="nav-link"><i class="bi bi-box-seam"></i> Produtos</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/contato">Contato</a>
           </li>
         </ul>
-
+        
         <span class="input-group d-flex w-50 me-auto">
-          <input class="form-control" type="search" name="search" id="search" placeholder="Pesquisar produtos ...">
+          <input class="form-control me-3" name="search" id="search" placeholder="Pesquisar produtos ...">
         </span>
         
-        <div class="navbar-text d-flex align-items-center fs-4">
-          <i class="bi bi-bag pe-4 zoom"></i>
+        <div class="navbar-text d-flex align-items-center fs-4" id="user-options-container">
+          <i class="bi bi-bag pe-4 zoom" data-bs-toggle="offcanvas" data-bs-target="#userBag" aria-controls="userBag"></i>
           <i class="bi bi-heart pe-4 zoom"></i>
-          <i class="bi bi-person-fill rounded-circle zoom" id="user" onclick="ToggleModal('#login-container')"></i>
+          <i class="bi bi-person-fill rounded-circle zoom" id="user" data-bs-toggle="modal" data-bs-target="#userLogin"></i>
         </div>
       </div>
     </nav>
   </header>
+
+  <modal>
+    <section>
+      <div class="modal fade" id="userLogin" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="userLoginLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <img class="modal-title logo" src="/assets/img/artemis-logo-horizontal.png" id="userLoginLabel">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form id="login-form">
+                <input class="form-control mt-3" type="email" name="login-email" id="login-email" placeholder="Email">  
+                <input class="form-control mt-3" type="password" name="login-password" id="login-password" placeholder="Senha">
+                <button class="btn btn-primary mt-3 w-100">ENTRAR</button>
+              </form>
+            </div>
+            <div class="text-center">
+              <p class="mt-4">Não tem uma conta? <span class="cursor-pointer text-primary link" data-bs-toggle="modal" data-bs-target="#userSignup" data-bs-dismiss="modal">Cadastre-se</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="modal fade" id="userSignup" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="userSignupLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <img class="modal-title logo" src="/assets/img/artemis-logo-horizontal.png" id="userSignupLabel">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form id="signup-form">
+                <input class="form-control mt-3" type="text" name="signup-first-name" id="signup-first-name" placeholder="Primeiro nome">
+                <input class="form-control mt-3" type="text" name="signup-last-name" id="signup-last-name" placeholder="Último nome">
+                <input class="form-control mt-3" type="email" name="signup-email" id="signup-email" placeholder="Email">
+                <input class="form-control mt-3" type="password" name="signup-password" id="signup-password" placeholder="Senha">
+                <input class="form-control mt-3" type="password" name="signup-password-2" id="signup-password-2" placeholder="Confirmar senha">
+                <button class="btn btn-primary mt-3 w-100">EFETUAR CADASTRO</button>
+              </form>
+            </div>
+            <div class="text-center">
+              <p class="mt-4">Já tem uma conta? <span class="cursor-pointer link text-primary" data-bs-toggle="modal" data-bs-target="#userLogin" data-bs-dismiss="modal">Entrar</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="userBag" aria-labelledby="userBagLabel">
+        <div class="offcanvas-header border-bottom">
+          <h5 id="userBagLabel"><i class="bi bi-bag"></i> Meu Carrinho</h5>
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <div class="" id="bag-container-products">
+            <article class="row g-2 mb-3">
+              <div class="col-3 me-2">
+                <img class="bag-product-image rounded me-3" src="/assets/img/aliancas-white-stone.jpeg" alt="">
+              </div>
+              <div class="me-4 col">
+                <h6>Colar white stone</h6>
+                <input class="bag-product-quantity form-control" type="number" name="bag-product-quantity" id="" min="0" max="" value="1">
+              </div>
+              <div class="col-2 text-end">
+                <p class="mb-0 bag-product-price">R$ 29,90</p>
+                <span class="primary-text primary-text-hover cursor-pointer bag-button-trash" id=""><i class="bi bi-trash-fill fs-4"></i></span>
+              </div>
+            </article>
+            <article class="row g-2 mb-3">
+              <div class="col-3 me-2">
+                <img class="bag-product-image rounded me-3" src="/assets/img/aliancas-white-stone.jpeg" alt="">
+              </div>
+              <div class="me-4 col">
+                <h6>Colar white stone</h6>
+                <input class="bag-product-quantity form-control" type="number" name="bag-product-quantity" id="" min="0" max="" value="1">
+              </div>
+              <div class="col-2 text-end">
+                <p class="mb-0 bag-product-price">R$ 29,90</p>
+                <span class="primary-text primary-text-hover cursor-pointer bag-button-trash" id=""><i class="bi bi-trash-fill fs-4"></i></span>
+              </div>
+            </article>
+          </div>
+
+          <div class="text-center text-secondary mt-5 hide" id="bag-container-empty">
+            <i class="bi bi-info-circle fs-1"></i>
+            <h3 class="">Seu carrinho está vazio</h3>
+          </div>
+        </div>
+        <div class="offcanvas-footer border-top p-4 pt-0"  id="bag-container-footer">
+          <div class="row pt-3">
+            <h5 class="col text-secondary">Total</h5>
+            <h5 class="col text-end fw-bold">R$ 29,90</h5>
+          </div>
+          <div class="mt-4">
+            <button class="btn btn-primary w-100" id="bag-button-finalizar-compra">Finalizar Compra</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </modal>
 
   <main class="container">
     <div class="row g-5">
@@ -160,11 +231,11 @@
             <button class="mt-3 bottom-0 w-100 btn btn-primary">Comprar</button>
 
             <div class="row mt-2 g-1">
-              <div class="col d-flex align-items-center border border-2 rounded me-3 p-2 zoom cursor-pointer">
+              <div class="col d-flex align-items-center border border-2 rounded me-3 p-2 zoom cursor-pointer text-secondary">
                 <i class="bi bi-bag fs-2 me-2 ms-3"></i>
                 <p class="mb-0 h6">ADICIONAR AO CARRINHO</p>
               </div>
-              <div class="col d-flex align-items-center border border-2 rounded p-2 zoom cursor-pointer">
+              <div class="col d-flex align-items-center border border-2 rounded p-2 zoom cursor-pointer text-secondary">
                 <i class="bi bi-heart fs-2 me-2 ms-3"></i>
                 <p class="mb-0 h6">ADICIONAR AOS FAVORITOS</p>
               </div>
@@ -182,31 +253,29 @@
   <footer class="mt-5 bg-accents p-4">
     <div class="container p-4 d-flex align-items-center justify-content-between flex-wrap">
       <div class="align-self-lg-start footer-content">
-        <h2>LOGO</h2>
+        <h2>ARTEMIS</h2>
 
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" href="/">Inicio</a>
+            <a class="nav-link ps-2 pe-2" href="/">Inicio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/sobre">Sobre</a>
+            <a class="nav-link ps-2 pe-2" href="/sobre">Sobre</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/produtos">Produtos</a>
+            <a class="nav-link ps-2 pe-2" href="/produtos">Produtos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/contato">Contato</a>
+            <a class="nav-link ps-2 pe-2" href="/contato">Contato</a>
           </li>
         </ul>
       </div>
 
       <div class="align-self-lg-start footer-content">
         <h5 class="mb-3">Redes Sociais</h5>
-        <div class="d-flex flex-column pb-5">
-          <a href="https://www.instagram.com/artemis.joia/" target="_blank" class="social-link"><i
-              class="bi bi-instagram fs-4 pe-2"></i> Instagram</a>
-          <a href="http://api.whatsapp.com/send?l=pt_BR&phone=557599182279&text=Olá, Artemis Semijóias e Acessórios! Vir pelo site!"
-            target="_blank" class="mt-2 social-link"><i class="bi bi-whatsapp fs-4 pe-2"></i> WhatsApp</a>
+        <div class="d-flex flex-column">
+          <a href="https://www.instagram.com/artemis.joia/" target="_blank" class="social-link"><i class="bi bi-instagram fs-4 pe-2"></i> Instagram</a>
+          <a href="http://api.whatsapp.com/send?l=pt_BR&phone=557599182279&text=Olá, Artemis Semijóias e Acessórios! Vir pelo site!" target="_blank" class="mt-2 social-link"><i class="bi bi-whatsapp fs-4 pe-2"></i> WhatsApp</a>
         </div>
       </div>
 
@@ -218,7 +287,9 @@
           Bairro Bla Bla Bla - Centro <br>
           Feira de Santana - BA <br>
           CEP: 0000-000</a>
+
       </div>
+    </div>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>

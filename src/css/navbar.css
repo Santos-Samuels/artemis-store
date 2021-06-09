@@ -47,8 +47,36 @@ header #user-nav i:hover {
 .nav-link {
     color: var(--text-secondary-2);
     font-weight: 500;
-  }
+    white-space: nowrap;
+}
   
-  .nav-link:hover {
+.nav-link:hover {
     color: var(--text-secondary);
-  }
+}
+
+.bag-product-image {
+    width: 80px;
+}
+
+.bag-product-quantity {
+    width: 75px;
+}
+
+.bag-product-price {
+    white-space: nowrap;
+}
+
+@media (max-width: 770px) {
+    .navbar-nav {
+        margin-top: 15px;
+    }
+
+    .nav-link,
+    #user-options-container {
+        padding-left: 15px !important;
+    }
+
+    #search {
+        margin-left: 10px;
+    }
+}
