@@ -9,3 +9,7 @@ main .category-content {
 main .product img {
     width: 250px;
 }
+
+#filter-title {
+    white-space: nowrap;
+}
