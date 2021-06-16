@@ -13,6 +13,7 @@ ErrorDocument 404 /erros/404.php
     RewriteRule ^descricao/?$                      /src/pages/description/         
     RewriteRule ^admin-login/?$                      /src/pages/admin-login/  
     RewriteRule ^admin/?$                      /src/pages/admin/  
+    RewriteRule ^usuario/?$                      /src/pages/user/  
 
 
     #Redirecionamentos de api

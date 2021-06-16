@@ -1,0 +1,4 @@
+.user-menu-option-active,
+.user-menu-option:hover {
+    background-color: var(--primary-low-opacity);
+}

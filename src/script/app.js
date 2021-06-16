@@ -35,7 +35,6 @@ const loadProducts = (products) => {
     });
 }
 
-
 const loadBag = (bag) => {
     const bagContainer = document.querySelector('#bag-container-products')
     const bagFooterContainer = document.querySelector('#bag-container-footer')
