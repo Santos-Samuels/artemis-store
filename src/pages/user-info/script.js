@@ -60,3 +60,6 @@ const loadUserDataModal = (/*user*/) => {
 
     userDataContainer.insertAdjacentHTML('beforeend', html)
 }
+
+
+window.onload = loadUserData()

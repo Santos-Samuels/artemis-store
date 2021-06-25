@@ -18,7 +18,7 @@
   <title>Artemis - Usuário</title>
 </head>
 
-<body onload="loadUserData()">
+<body>
   <header class="shadow-sm mb-4">
     <nav class="navbar navbar-expand-lg navbar-light p-4">
       <a class="navbar-brand fw-bold" href=""><img class="zoom logo" src="/assets/img/artemis-logo-horizontal.png" alt="logo"></a>
@@ -189,17 +189,17 @@
   <main class="m-4">
     <section class="container">
         <div class="row bg-light shadow-sm">
-            <div class="col p-2 cursor-pointer text-center rounded border-end user-menu-option user-menu-option-active">
-                <a class="text-center text-decoration-none h4 text-dark"><i class="bi bi-person-fill"></i> Meus dados</a>
-            </div>
+          <a href="/src/pages/user-info/index.html" class="col p-2 cursor-pointer text-center rounded border-end user-menu-option text-decoration-none user-menu-option-active">
+            <span class="text-center h4 text-dark"><i class="bi bi-person-fill"></i> Meus dados</span>
+          </a>
 
-            <div class="col p-2 cursor-pointer text-center rounded border-end user-menu-option">
-                <a class="text-center text-decoration-none h4 text-dark"><i class="bi bi-cart-fill"></i> Meus pedidos</a>
-            </div>
+          <a href="/src/pages/user-order/index.html" class="col p-2 cursor-pointer text-center rounded border-end user-menu-option text-decoration-none">
+              <span class="text-center h4 text-dark"><i class="bi bi-cart-fill"></i> Meus pedidos</span>
+          </a>
 
-            <div class="col p-2 cursor-pointer text-center rounded user-menu-option">
-                <a class="text-center text-decoration-none h4 text-dark"><i class="bi bi-heart-fill"></i> Meus favoritos</a>
-            </div>
+          <a href="/src/pages/user-favorite/index.html" class="col p-2 cursor-pointer text-center rounded user-menu-option text-decoration-none">
+              <span class="text-center h4 text-dark"><i class="bi bi-heart-fill"></i> Meus favoritos</span>
+          </a>
         </div>
     </section>
 
@@ -251,7 +251,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
   <script src="/src/script/app.js"></script>
-  <script src="/src/pages/user/script.js"></script>
+  <script src="/src/pages/user-info/script.js"></script>
 </body>
 
 </html>

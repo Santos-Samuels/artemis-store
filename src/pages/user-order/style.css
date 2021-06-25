@@ -1,0 +1,7 @@
+main #order-container .order-image {
+    width: 100px;
+}
+
+.order-item-conteiner {
+    border-left: 4px solid var(--primary) !important;
+}

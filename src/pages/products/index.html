@@ -47,8 +47,18 @@
         <div class="navbar-text d-flex align-items-center fs-4" id="user-options-container">
           <i class="bi bi-bag pe-4 zoom" onclick="loadBag(bag)" data-bs-toggle="offcanvas" data-bs-target="#userBag" aria-controls="userBag"></i>
           <i class="bi bi-heart pe-4 zoom"></i>
-          <i class="bi bi-person-fill rounded-circle zoom" id="user" data-bs-toggle="modal" data-bs-target="#userLogin"></i>
-        </div>
+          <i class="bi bi-person-fill rounded-circle zoom hide" id="user" data-bs-toggle="modal" data-bs-target="#userLogin"></i>
+          
+
+          <div class="dropdown">
+            <i class="dropdown-toggle fs-5" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">UserName</i>
+          
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <li><a class="dropdown-item" href="#">Meus dados</a></li>
+              <li><a class="dropdown-item" href="#">Meus Pedidos</a></li>
+              <li><a class="dropdown-item" href="#">Sair</a></li>
+            </ul>
+          </div>
       </div>
     </nav>
   </header>
