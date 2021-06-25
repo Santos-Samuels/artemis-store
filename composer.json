@@ -1,5 +1,7 @@
 { 
-    "require": { 
-      "php": "^8.0.6" 
-    } 
+  "require": { 
+    "php": "^7.4.8|8.0.6",
+      "statickidz/php-google-translate-free": "^1.2",
+      "firebase/php-jwt": "^5.3" 
   } 
+}
