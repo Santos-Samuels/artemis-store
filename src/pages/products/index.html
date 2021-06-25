@@ -15,7 +15,7 @@
     
     <title>Artemis - Produtos</title>
 </head>
-<body onload="loadProducts(products)">
+<body>
   <header class="shadow-sm mb-4">
     <nav class="navbar navbar-expand-lg navbar-light p-4">
       <a class="navbar-brand fw-bold" href=""><img class="zoom logo" src="/assets/img/artemis-logo-horizontal.png" alt="logo"></a>
@@ -121,42 +121,43 @@
   </modal>
   
   <main class="container">
-    <section class="row g-2 mb-2" id="filter-container">
+    <form class="row g-2 mb-2" name="filter-form" id="filter-form">
       <div class="col-12 col-lg-2">
         <h3 class="primary-text" id="filter-title"><i class="bi bi-funnel-fill"></i> FILTRAR</h3>
       </div>
+        <div class="col">
+          <select onchange="filterProducts()" class="form-select" name="category-filter" id="category-filter">
+            <option value="">Categoria</option>
+            <option value="Joia">Jóia</option>
+            <option value="Semijoia">Semijóias</option>
+            <option value="Bijuteria">Bijuteria</option>
+            <option value="Lingerie">Lingerie</option>
+            <option value="">Tudo</option>
+          </select>
+        </div>
 
-      <div class="col">
-        <select class="form-select" name="category-filter" id="category-filter">
-          <option value="categoria">Categoria</option>
-          <option value="joia">Jóia</option>
-          <option value="semijoia">Semijóias</option>
-          <option value="bijuteria">Bijuteria</option>
-          <option value="joia">Lingerie</option>
-          <option value="joia">Tudo</option>
-        </select>
-      </div>
+        <div class="col">
+          <select onchange="filterProducts()" class="form-select" name="type-filter" id="type-filter">
+            <option value="">Tipo</option>
+            <option value="Anel">Anel</option>
+            <option value="Colar">Colar</option>
+            <option value="Pingente">Pingente</option>
+            <option value="Tiara">Tiara</option>
+            <option value="Lingerie">Lingerie</option>
+            <option value="">Tudo</option>
+          </select>
+        </div>
 
-      <div class="col">
-        <select class="form-select" name="type-filter" id="type-filter">
-          <option value="tipo">Tipo</option>
-          <option value="anel">Anel</option>
-          <option value="colar">Colar</option>
-          <option value="pingente">Pingente</option>
-          <option value="tiara">Tiara</option>
-          <option value="joia">Lingerie</option>
-          <option value="joia">Tudo</option>
-        </select>
-      </div>
-
-      <div class="col">
-        <select class="form-select" name="price-filter" id="price-filter">
-          <option value="menor-preco">Preco</option>
-          <option value="menor-preco">Menor preço</option>
-          <option value="maior-preco">Maior preço</option>
-          <option value="maior-preco">Tudo</option>
-        </select>
-      </div>
+        <div class="col">
+          <select onchange="filterProducts()" class="form-select" name="price-filter" id="price-filter">
+            <option value="">Preco</option>
+            <option value="promo">Promoção</option>
+            <option value="ASC">Menor preço</option>
+            <option value="DSC">Maior preço</option>
+            <option value="">Tudo</option>
+          </select>
+        </div>
+     
     </section>
 
     <section>
@@ -207,9 +208,12 @@
     </div>
   </footer>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-    <script src="/src/script/products-list.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="/src/pages/products/script.js"></script> 
+    <!--<script src="/src/script/products-list.js"></script>
     <script src="/src/script/bag-list.js"></script>
-    <script src="/src/script/app.js"></script>
+    <script src="/src/script/app.js"></script> -->
 </body>
 </html>

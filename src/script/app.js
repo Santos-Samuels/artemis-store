@@ -35,6 +35,7 @@ const loadProducts = (products) => {
     });
 }
 
+
 const loadBag = (bag) => {
     const bagContainer = document.querySelector('#bag-container-products')
     const bagFooterContainer = document.querySelector('#bag-container-footer')
@@ -124,3 +125,82 @@ const removeProductBag = (bag, productId) => {
 
 const searchProduct = (products, searchTerm) => products.filter(product => product.title.includes(`${searchTerm}`))
 
+
+document.getElementById("login-button").addEventListener("click", () =>{
+    login()
+});
+
+document.getElementById("register-button").addEventListener("click", () =>{
+    registrar()
+});
+
+const login = async () => {
+    const login = document.getElementById("login-email").value.toLowerCase();
+    const password = document.getElementById("login-password").value;
+
+    var data = new FormData();
+
+    data.append("login", login);
+    data.append("password", password);
+
+    await axios({
+        method: "post",
+        url: "api/login/",
+        data: data,
+        headers: { "Content-Type": "multipart/alternative" },
+    }).then(function (response) {
+        console.log(response.data);
+        if(response.data.msg == "Login concluido"){
+            alert("Login Concluido")
+            location.reload()
+        }
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+}
+
+const registrar = async () => {
+    const name = document.getElementById("signup-first-name").value + " " + document.getElementById("signup-last-name").value;
+    const login = document.getElementById("signup-email").value.toLowerCase();
+    const password = document.getElementById("signup-password").value;
+    const password2 = document.getElementById("signup-password-2").value;
+
+    if(password2 != password){
+        alert("Senhas não coincidem");
+        return;
+    }
+
+    if(!validateEmail(login)){
+        alert("Email Invalido");
+        return;
+    }
+
+    var data = new FormData();
+
+    data.append("name", name);
+    data.append("email", login);
+    data.append("password", password);
+
+    await axios({
+        method: "post",
+        url: "api/registro/",
+        data: data,
+        headers: { "Content-Type": "multipart/alternative" },
+    }).then(function (response) {
+        console.log(response.data);
+        if(response.data.msg == "Registro Concluido"){
+            alert("Registro Concluido")
+            location.reload()
+        }
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+
+}
+
+function validateEmail(email) {
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+}

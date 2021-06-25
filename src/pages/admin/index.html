@@ -40,11 +40,11 @@
             <h5 class="modal-title" id="editProductModalLabel">EDITAR PRODUTO</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="modal-body" id="edit-product-modal-container">
-          </div>
+          <form class="modal-body" id="edit-product-modal-container">
+          </form>
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-            <button type="button" class="btn btn-success">Editar</button>
+            <button type="button" class="btn btn-success" onclick="updateProduct()" data-bs-dismiss="modal">Editar</button>
           </div>
         </div>
       </div>
@@ -65,7 +65,7 @@
             <a class="text-decoration-none cursor-pointer text-secondary option-link dropdown-toggle" id="products-option" onclick="toggleDropDown()"><i class="bi bi-box-seam"></i>  Produtos</a>
             <div class="dropdown d-flex flex-column flex-nowrap">
                 <a class="text-decoration-none cursor-pointer text-secondary dropdown-link option-link hide" id="new-product-option"  onclick="setContainerOption('#new-product-container', '#new-product-option')"><i class="bi bi-plus-lg"></i> Adicionar</a>
-                <a class="text-decoration-none cursor-pointer text-secondary dropdown-link option-link hide" id="edit-product-option" onclick="setContainerOption('#edit-product-container', '#edit-product-option'), loadEditProducts(products)"><i class="bi bi-pencil-fill"></i> Editar</a>
+                <a class="text-decoration-none cursor-pointer text-secondary dropdown-link option-link hide" id="edit-product-option" onclick="setContainerOption('#edit-product-container', '#edit-product-option'), loadProducts()"><i class="bi bi-pencil-fill"></i> Editar</a>
             </div>
 
             <a class="text-decoration-none cursor-pointer text-secondary option-link" id="banners-option" onclick="setContainerOption('#banners-container', '#banners-option')"><i class="bi bi-card-image"></i>  Banners</a>
@@ -141,20 +141,11 @@
 
       <section class="container hide option-container" id="new-product-container">
           <h5 class="border-b pb-1 mb-4 mt-3">CADASTRAR PRODUTO</h5>
-          <form class="m-3" action="">
+          <form class="m-3" action="" id="new-product-form">
               <div class="row g-2">
-                  <div class="col-12 col-lg-4">
-                    <label class="form-label" for="product-image-1">Imagem 1 <span class="text-danger" title="Obrigatório">*</span></label>
-                    <input class="form-control" type="file" accept="image/*" id="product-image-1" src="" required>
-                  </div>
-                  <div class="col-12 col-lg-4">
-                    <label class="form-label" for="product-image-2">Imagem 2</label>
-                    <input class="form-control" type="file"  accept="image/*"id="product-image-2" src="">
-                  </div>
-                  <div class="col-12 col-lg-4">
-                    <label class="form-label" for="product-image-3">Imagem 3</label>
-                    <input class="form-control" type="file" accept="image/*" id="product-image-3" src="">
-                  </div>
+                  <div class="row g-2"><label class="form-label" for="product-image-1">Imagens ------------ <span class="text-danger" title="Obrigatório">*</span></label>
+                  <input class="form-control" type="file" name="product-images[]" id="product-images" src="" alt="" accept="image/*" multiple="multiple">
+              </div>
               </div>
   
               <div class="row mt-2 g-2">
@@ -196,27 +187,27 @@
                       <label class="form-label" for="product-type">Tipo <span class="text-danger" title="Obrigatório">*</span></label>
                       <select class="form-select" name="product-type" id="product-type" required>
                         <option value="" data-default disabled selected></option>
-                        <option value="anel">Anel</option>
-                        <option value="colar">Colar</option>
-                        <option value="brinco">Brinco</option>
-                        <option value="pulseira">Pulseira</option>
-                        <option value="calcinha">Lingerie</option>
+                        <option value="Anel">Anel</option>
+                        <option value="Colar">Colar</option>
+                        <option value="Brinco">Brinco</option>
+                        <option value="Pulseira">Pulseira</option>
+                        <option value="Calcinha">Lingerie</option>
                       </select>
                   </div>
                   <div class="col-6 col-md-3 col-lg-3">
                       <label class="form-label" for="product-type">Categoria <span class="text-danger" title="Obrigatório">*</span></label>
-                      <select class="form-select" name="product-type" id="product-type" required>
+                      <select class="form-select" name="product-category" id="product-category" required>
                         <option value="" data-default disabled selected></option>
-                        <option value="">Jóia</option>
-                        <option value="">Semijóias</option>
-                        <option value="">Bijuterias</option>
-                        <option value="">Lingerie</option>
+                        <option value="Joia">Jóia</option>
+                        <option value="Semijoia">Semijóias</option>
+                        <option value="Bijuteria">Bijuterias</option>
+                        <option value="Lingerie">Lingerie</option>
                       </select>
                   </div>
               </div>
   
               <div class="row g-2 mt-3 justify-content-end">
-                  <button class="btn btn-primary col-12 col-lg-3" type="button">Cadastrar</button>
+                  <button class="btn btn-primary col-12 col-lg-3" type="button" onclick="createProduct()">Cadastrar</button>
               </div>
           </form>
       </section>
@@ -321,10 +312,11 @@
     </section>
   </main>
 
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="/src/pages/admin/script.js"></script>
   <script src="/src/script/adminApp.js"></script>
-  <script src="/src/script/products-list.js"></script>
+  <script src="/src/script/products-list.js"></script> 
 </body>
 </html>

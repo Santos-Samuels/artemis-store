@@ -13,10 +13,15 @@ ErrorDocument 404 /erros/404.php
     RewriteRule ^descricao/?$                      /src/pages/description/         
     RewriteRule ^admin-login/?$                      /src/pages/admin-login/  
     RewriteRule ^admin/?$                      /src/pages/admin/  
-    RewriteRule ^usuario/?$                      /src/pages/user/  
+
+    RewriteRule ^public/?$                      /public/
 
 
     #Redirecionamentos de api
-    RewriteRule ^api/?$                        /src/api/                    
+    RewriteRule ^api/?$                        /src/api/utils/                    
+    RewriteRule ^api/produtos/?$                        /src/api/ProductsController.php                    
+    RewriteRule ^api/tslt/?$                        /src/api/utils/Translator.php         
+    RewriteRule ^api/login/?$                       /src/api/Login.php
+    RewriteRule ^api/registro/?$                       /src/api/Registrar.php
 
 </IfModule>

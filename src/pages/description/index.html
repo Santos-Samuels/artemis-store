@@ -164,21 +164,11 @@
     <div class="row g-5">
       <section class="col-12 col-lg-6">
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-indicators">
+          <div class="carousel-indicators" id="indicators">
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
           </div>
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="/assets/img/colar-white-stone.jpeg" class="d-block w-100 rounded" alt="...">
-            </div>
-            <div class="carousel-item">
-              <img src="/assets/img/aliancas-white-stone.jpeg" class="d-block w-100 rounded" alt="...">
-            </div>
-            <div class="carousel-item">
-              <img src="/assets/img/conjunto-joias-gold.jpeg" class="d-block w-100 rounded" alt="...">
-            </div>
+          <div class="carousel-inner" id="images">
+
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -193,10 +183,13 @@
   
       <section class="col-12 col-lg-6">
         <div id="product-info" class=" mae">
-          <h2>Colar blue stone</h2> 
+          <div class="d-flex flex-nowrap align-items-center">
+              <h2 id="product-name">Colar blue stone</h2> 
+              <i class="cursor-pointer bi bi-heart ms-3"></i>
+          </div>
 
           <div class="mb-4">
-            <span class="price">R$ 29,90</span>
+            <span class="price" id="price">R$ 29,90</span>
             <p class="fs-6">Em até 2x R$ 14,95 sem juros</p>
           </div>
 
@@ -243,7 +236,7 @@
     </div>
     <section id="desc">
       <h5 class="border-b pb-1 mt-5">DESCRIÇÃO</h5>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores illo alias incidunt quis neque vel, similique quos quaerat delectus nisi. Id, labore. Tempore similique laborum error vero nulla beatae neque iste dolorem veniam officiis iure eveniet ad, numquam odio aspernatur alias dicta consectetur quo animi dolore eos sed iusto sit distinctio. Aut quis totam hic labore iure facilis illo possimus ad architecto laudantium modi laborum alias tempore provident deserunt quod, molestias cupiditate veniam amet reprehenderit nulla repellendus. Cum ad dicta, illum voluptatem, vero iste in dignissimos debitis quaerat nisi adipisci aspernatur ex? Deserunt odio pariatur perspiciatis facere. Corrupti, non consequuntur!</p>
+      <p id="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores illo alias incidunt quis neque vel, similique quos quaerat delectus nisi. Id, labore. Tempore similique laborum error vero nulla beatae neque iste dolorem veniam officiis iure eveniet ad, numquam odio aspernatur alias dicta consectetur quo animi dolore eos sed iusto sit distinctio. Aut quis totam hic labore iure facilis illo possimus ad architecto laudantium modi laborum alias tempore provident deserunt quod, molestias cupiditate veniam amet reprehenderit nulla repellendus. Cum ad dicta, illum voluptatem, vero iste in dignissimos debitis quaerat nisi adipisci aspernatur ex? Deserunt odio pariatur perspiciatis facere. Corrupti, non consequuntur!</p>
     </section>
   </main>
 
@@ -291,6 +284,9 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
   <script src="/src/script/app.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="/src/pages/description/script.js"></script>
+  <script src="http://www.google.com/jsapi"></script>
 
 </body>
 
