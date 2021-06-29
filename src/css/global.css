@@ -135,3 +135,11 @@ tbody tr:hover {
 .logo {
   width: 150px;
 }
+
+.text-secondary {
+  color: var(--text-primary-2) !important;
+}
+
+.text-light {
+  color: var(--accents-6) !important;
+}

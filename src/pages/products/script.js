@@ -55,10 +55,21 @@ const filterProducts = async () => {
     });
 }
 
+function logout() {
+    conectedDiv = document.querySelector('#userDropdownConectedOptions')
+    desconectedDiv =  document.querySelector('#user')
 
+    conectedDiv.classList.add('hide')
+    desconectedDiv.classList.remove('hide')
+}
 
+// function login() {
+//     conectedDiv = querySelector('#userDropdownConectedOptions')
+//     desconectedDiv =  querySelector('#user')
 
-
+//     conectedDiv.classList.remove('hide')
+//     desconectedDiv.classList.add('hide')
+// }
 
 
 window.onload = loadProducts();

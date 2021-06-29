@@ -15,6 +15,7 @@ ErrorDocument 404 /erros/404.php
     RewriteRule ^admin/?$                      /src/pages/admin/  
     RewriteRule ^usuario/?$                      /src/pages/user-info/  
     RewriteRule ^favoritos/?$                      /src/pages/user-favoritos/  
+    RewriteRule ^pedidos/?$                      /src/pages/user-order/  
 
     RewriteRule ^public/?$                      /public/
 

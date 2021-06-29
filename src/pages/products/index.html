@@ -50,13 +50,14 @@
           <i class="bi bi-person-fill rounded-circle zoom hide" id="user" data-bs-toggle="modal" data-bs-target="#userLogin"></i>
           
 
-          <div class="dropdown">
-            <i class="dropdown-toggle fs-5" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">UserName</i>
           
+          <div class="dropdown" id="userDropdownConectedOptions">
+            <i class="dropdown-toggle fs-5" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">UserName</i>
+            
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <li><a class="dropdown-item" href="#">Meus dados</a></li>
-              <li><a class="dropdown-item" href="#">Meus Pedidos</a></li>
-              <li><a class="dropdown-item" href="#">Sair</a></li>
+              <a class="dropdown-item" href="/usuario">Meus dados</a>
+              <a class="dropdown-item" href="/pedidos">Meus Pedidos</a>
+              <a class="dropdown-item" id="liveToastBtn" onclick="logout()">Sair</a>
             </ul>
           </div>
       </div>
@@ -167,7 +168,6 @@
             <option value="">Tudo</option>
           </select>
         </div>
-     
     </section>
 
     <section>

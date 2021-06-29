@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="/assets/img/artemis-logo-page.jpg" type="image/x-icon">
-    <title>Artemis</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
-    <link rel="stylesheet" href="/src/css/global.css">
-    <link rel="stylesheet" href="/src/css/navbar.css">
-    <link rel="stylesheet" href="/src/css/footer.css">
-    <link rel="stylesheet" href="/src/css/accountModal.css">
-    <link rel="stylesheet" href="/src/pages/landing/style.css">
+  <link rel="stylesheet" href="/src/css/user.css">
+  <link rel="stylesheet" href="/src/css/navbar.css">
+  <link rel="stylesheet" href="/src/css/accountModal.css">
+  <link rel="stylesheet" href="/src/css/global.css">
+  <link rel="stylesheet" href="/src/pages/checkout/style.css">
 
+  <title>Artemis - Usuário</title>
 </head>
-<body onload="loadAccessoryOffer(products)">
+
+<body>
   <header class="shadow-sm mb-4">
     <nav class="navbar navbar-expand-lg navbar-light p-4">
       <a class="navbar-brand fw-bold" href=""><img class="zoom logo" src="/assets/img/artemis-logo-horizontal.png" alt="logo"></a>
@@ -29,7 +31,7 @@
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" href="/">Inicio</a>
+            <a class="nav-link" href="/">Inicio</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/sobre">Sobre</a>
@@ -68,7 +70,7 @@
               <form id="login-form">
                 <input class="form-control mt-3" type="email" name="login-email" id="login-email" placeholder="Email">  
                 <input class="form-control mt-3" type="password" name="login-password" id="login-password" placeholder="Senha">
-                <button type="button" class="btn btn-primary mt-3 w-100" id="login-button">ENTRAR</button>
+                <button class="btn btn-primary mt-3 w-100">ENTRAR</button>
               </form>
             </div>
             <div class="text-center">
@@ -89,12 +91,17 @@
             </div>
             <div class="modal-body">
               <form id="signup-form">
-                <input class="form-control mt-3" type="text" name="signup-first-name" id="signup-first-name" placeholder="Primeiro nome">
-                <input class="form-control mt-3" type="text" name="signup-last-name" id="signup-last-name" placeholder="Último nome">
-                <input class="form-control mt-3" type="email" name="signup-email" id="signup-email" placeholder="Email">
-                <input class="form-control mt-3" type="password" name="signup-password" id="signup-password" placeholder="Senha">
-                <input class="form-control mt-3" type="password" name="signup-password-2" id="signup-password-2" placeholder="Confirmar senha">
-                <button type="button" class="btn btn-primary mt-3 w-100 " id="register-button">EFETUAR CADASTRO</button>
+                <input class="form-control mt-3" type="text" name="signup-first-name" id="signup-first-name" placeholder="Primeiro nome" required>
+                <input class="form-control mt-3" type="text" name="signup-last-name" id="signup-last-name" placeholder="Último nome" required>
+                <input class="form-control mt-3" type="email" name="signup-email" id="signup-email" placeholder="Email" required>
+                <input class="form-control mt-3" type="password" name="signup-password" id="signup-password" placeholder="Senha" required>
+                <input class="form-control mt-3" type="password" name="signup-password-2" id="signup-password-2" placeholder="Confirmar senha" required>
+                <input class="form-control mt-3" type="tel" name="signup-phone" id="signup-phone" placeholder="Celular" required>
+                <input class="form-control mt-3" type="text" name="signup-address" id="signup-address" placeholder="Endereço">
+                <input class="form-control mt-3" type="text" name="signup-district" id="signup-district" placeholder="Bairro">
+                <input class="form-control mt-3" type="text" name="signup-city" id="signup-city" placeholder="Cidade">
+                <input class="form-control mt-3" type="text" name="signup-reference-point" id="signup-reference-point" placeholder="Ponto de referência">
+                <button class="btn btn-primary mt-3 w-100">EFETUAR CADASTRO</button>
               </form>
             </div>
             <div class="text-center">
@@ -157,86 +164,94 @@
         </div>
       </div>
     </section>
+
+    <section>
+        <div class="modal fade" id="userSignupEditInfo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="userSignupEditInfoLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title logo" id="userSignupEditInfoLabel">MEUS DADOS</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form id="signup-form-edit">
+                </form>
+              </div>
+              <div class="modal-footer">
+                  <button class="btn btn-danger" class="btn-close" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>
+                  <button onclick="editarInformacoesDeUsuario()" type="button" class="btn btn-success">Editar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
   </modal>
 
-  <main>
-    <section >
-      <img class="w-100" src="/assets/img/landing-image.jpg" alt="landing-image">
-    </section>
+  <main class="m-4">
+    <h3 class="border-bottom mb-4 pb-1">Meu carrinho</h3>
 
-    <!-- <section class="m-4">
-      <div class="row g-2">
-        <div class="col offer-container">
-          <div class="position-absolute offer-label">
-            <h3>Colar blue stone</h3>
-            <p>a partir de <span class="fw-bold price">29,90</span></p>
-          </div>
-          <img class="w-100 rounded" src="/assets/img/colar-blue-stone.jpeg" alt="Colar blue stone">
+    <div class="row">
+      <section class="mt-2 col-12 col-lg-8" id="checkout-bag-container">
+        <div class="row border-bottom pb-1 mb-3">
+          <div class="col-8"><span class="fw-bold">Produto</span></div>
+          <div class="col-2"><span class="fw-bold">Quantidade</span></div>
+          <div class="col-2"><span class="fw-bold">Preço</span></div>
         </div>
-
-        <div class="col row g-2">
-          <div class="offer-container">
-            <div class="position-absolute offer-label">
-              <h3>Alianças simple style</h3>
-              <p>a partir de <span class="fw-bold price">69,90</span></p>
+  
+        <div class="row mt-8">
+            <div class="col-8 product d-flex flex-row flex-nowrap align-items-center mb-3">
+                <div class="me-4">
+                    <img class="rounded" src="/assets/img/aliancas-white-stone.jpeg" alt="">
+                </div>
+  
+                <div>
+                    <h5 class="text-secondary">Alianças simple style</h5>
+                    <div class="text-light">
+                      <i class="bi bi-info-circle me-1"></i>
+                      <span class="me-1 pe-2 border-end">Azul</span>
+                      <span>45 cm</span>
+                  </div>
+                </div>
             </div>
-            <img class="w-100 rounded" src="/assets/img/aliancas-simple-style.jpeg" alt="Alianças simple style">
-          </div>
-          <div class="col offer-container">
-            <div class="position-absolute offer-label">
-              <h3>Colar white stone</h3>
-              <p>a partir de <span class="fw-bold price">29,90</span></p>
+  
+            <div class="col-2 product mb-3">
+              <input class="bag-product-quantity form-control" type="number" name="bag-product-quantity" id="" min="1" max="4" value="1">
             </div>
-            <img class="w-100 rounded" src="/assets/img/colar-white-stone.jpeg" alt="Colar white stone">
-          </div>
-          <div class="col offer-container">
-            <div class="position-absolute offer-label">
-              <h3>Conjunto joia gold</h3>
-              <p>a partir de <span class="fw-bold price">119.90</span></p>
+  
+            <div class="col-2 product mb-3">
+              <h5 class="text-secondary">R$ 69,90</h5>
             </div>
-            <img class="w-100 rounded" src="/assets/img/conjunto-joias-gold.jpeg" alt="Conjunto joia gold">
-          </div>
         </div>
-      </div>
-    </section> -->
+      </section>
+  
+  
+      <section class="bg-light ms-0 ms-lg-4 rounded p-3 border col">
+        <h4 class="mb-4">Meu carrinho</h4>
 
-    <section class="m-4">
-      <div class="row g-2">
-        <div class="col-6 col-lg-3 offer-container">
-          <div class="position-absolute offer-label">
-            <h3>Colar blue stone</h3>
-            <p>a partir de <span class="fw-bold price">29,90</span></p>
+        <div id="checkout-summary-items-container">
+          <div class="row">
+            <span class="col text-start">1 produto</span>
+            <span class="col text-end">R$ 69,90</span>
           </div>
-          <img class="w-100 rounded" src="/assets/img/colar-blue-stone.jpeg" alt="Colar blue stone">
-        </div>
-        <div class="col-6 col-lg-3 offer-container">
-          <div class="position-absolute offer-label">
-            <h3>Colar blue stone</h3>
-            <p>a partir de <span class="fw-bold price">29,90</span></p>
+  
+          <div class="row">
+            <span class="col text-start">1 produto</span>
+            <span class="col text-end">R$ 69,90</span>
           </div>
-          <img class="w-100 rounded" src="/assets/img/colar-blue-stone.jpeg" alt="Colar blue stone">
         </div>
-        <div class="col-6 col-lg-3 offer-container">
-          <div class="position-absolute offer-label">
-            <h3>Colar blue stone</h3>
-            <p>a partir de <span class="fw-bold price">29,90</span></p>
-          </div>
-          <img class="w-100 rounded" src="/assets/img/colar-blue-stone.jpeg" alt="Colar blue stone">
-        </div>
-        <div class="col-6 col-lg-3 offer-container">
-          <div class="position-absolute offer-label">
-            <h3>Colar blue stone</h3>
-            <p>a partir de <span class="fw-bold price">29,90</span></p>
-          </div>
-          <img class="w-100 rounded" src="/assets/img/colar-blue-stone.jpeg" alt="Colar blue stone">
-        </div>
-      </div>
-    </section>
 
-    <section class="container">
-      <h1 class="pb-4 text-center">Veja também</h1>
-      <div class="row" id="accessory-offer-container"></div>
-    </section>
+        <div class="border-top row fw-bold mt-2 pt-2 mb-3">
+          <span class="col text-start">Total</span>
+          <span class="col text-end">R$ 69,90</span>
+        </div>
+
+        <i class="bi bi-info-circle"><span class="ps-2">Ao finalizar a sua compra, entraremos em contato com você para discutir a entrega e a forma de pagamento!</span></i>
+        
+        <div class="row g-2 mt-3">
+          <button class="btn btn-primary">Concluir</button>
+        </div>
+      </section>
+    </div>
   </main>
 
   <footer class="mt-5 bg-accents p-4">
@@ -283,7 +298,8 @@
 
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-  <script src="/src/script/products-list.js"></script>
   <script src="/src/script/app.js"></script>
+  <script src="/src/pages/user-info/script.js"></script>
 </body>
+
 </html>

@@ -13,3 +13,13 @@ main .product img {
 #filter-title {
     white-space: nowrap;
 }
+
+.dropdown {
+    right: 40px;
+    
+}
+
+.dropdown i {
+    padding-left: 35px;
+    margin-right: -35px;
+}

@@ -29,7 +29,13 @@ const loadFavorite = (orders) => {
                         </div>
                         <div>
                             <h5>${order.title}</h5>
-                            <span>1 unidade</span>
+                            <span>1 unidade</span> <br>
+
+                            <div>
+                                <i class="bi bi-info-circle me-1"></i>
+                                <span class="me-1 pe-2 border-end">Azul</span>
+                                <span>45 cm</span>
+                            </div>
                         </div>
                     </article>
 

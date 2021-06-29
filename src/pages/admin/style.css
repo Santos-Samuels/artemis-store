@@ -152,9 +152,14 @@ header #user-nav i:hover {
         display: initial;
     }
 
-    #logo-contianer h1,
+    #logo-contianer img,
     #sidebar-header h5 {
         display: none;
+    }
+
+    #sidebar-header {
+        background-color: white;
+        border-top: 1px solid lightgrey;
     }
 
     .toggle-sidebar {
