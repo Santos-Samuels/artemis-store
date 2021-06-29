@@ -1,3 +1,20 @@
+const updateFavorites = async () => {
+    await axios({
+        method: "get",
+        url: `/api/favoritos`,
+        headers: { "Content-Type": "multipart/form-data" },
+    }).then(function (response) {
+        console.log(response.data)
+        loadFavorite(response.data.item)
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+    
+    
+}
+
+
 const loadFavorite = (favorites) => {
     const productsContainer = document.querySelector('#favorite-container')
     
@@ -5,10 +22,10 @@ const loadFavorite = (favorites) => {
     favorites.forEach(product => {
         const html = `
             <article class="m-4 product">
-                <img class="rounded" src="${product.image}" alt="${product.name}">
-                <h5 class="pt-2">${product.title}</h5>
+                <img class="rounded" src="${product.product_images[0]}" alt="${product.product_name}">
+                <h5 class="pt-2">${product.product_name}</h5>
                 <p>Por: <span class="fw-bold price fs-2">${product.price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span></p>
-                <a class="btn btn-primary w-100 text-center" onclick="addProductBag(bag, ${product.id}, '${product.title}', ${product.price}, '${product.image}', ${product.stock}, ${1})" data-bs-toggle="offcanvas" data-bs-target="#userBag" aria-controls="userBag">COMPRAR</a>
+                <a class="btn btn-primary w-100 text-center" onclick="addProductBag(bag)" data-bs-toggle="offcanvas" data-bs-target="#userBag" aria-controls="userBag">COMPRAR</a>
             </article>
         `
 
@@ -16,4 +33,4 @@ const loadFavorite = (favorites) => {
     });
 }
 
-window.onload = loadFavorite(favorites)
+window.onload = updateFavorites();

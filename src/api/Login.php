@@ -16,7 +16,7 @@ switch ($method) {
 
         break;
     case 'GET':
-        echo $_COOKIE["userToken"];
+        getUserData();
 
         break;
 }
@@ -51,4 +51,41 @@ function loginIn(){
     $json = json_encode($retorno, JSON_UNESCAPED_UNICODE);
     exit($json);
 
+}
+
+function getUserData(){
+    include "./database/conexao.php";
+    include "./utils/JWT.php";
+
+    $userId = JWT_decode($_COOKIE["userToken"])["userId"];
+
+    $sql = "SELECT 
+                    name, 
+                    surname,
+                    email, 
+                    whatsapp, 
+                    adress,
+                    number, 
+                    district, 
+                    city, 
+                    uf,
+                    reference_point 
+            FROM users 
+            WHERE id = '$userId'";
+
+    $resultado = $conexao->query($sql);
+
+    if($resultado->num_rows == 0) {
+        $retorno["msg"] = "Não foi achado um usuario com esse id";
+
+        $json = json_encode($retorno, JSON_UNESCAPED_UNICODE);
+        exit($json);
+    }
+    
+    $user_data = $resultado->fetch_assoc();
+
+    $retorno["user_data"] = $user_data;
+
+    $json = json_encode($retorno, JSON_UNESCAPED_UNICODE);
+    exit($json);
 }

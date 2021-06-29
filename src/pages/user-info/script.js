@@ -1,4 +1,19 @@
-const loadUserData = (/*user*/) => {
+const updateUserData = async () => {
+    await axios({
+        method: "get",
+        url: `/api/login`,
+        headers: { "Content-Type": "multipart/form-data" },
+    }).then(function (response) {
+        console.log(response.data)
+        Dados = response.data.user_data;
+        loadUserData(response.data.user_data)
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+}
+
+const loadUserData = (user) => {
     const userDataContainer = document.querySelector('#user-data')
     
     const html = `
@@ -14,20 +29,20 @@ const loadUserData = (/*user*/) => {
 
             <div class="col-12 col-lg-4">
                 <label class="text-secondary">Primeiro Nome</label>
-                <h5 class="text-secondary pt-2">Nome</h5>
+                <h5 class="text-secondary pt-2">${user.name}</h5>
                 
                 <label class="mt-3 text-secondary">Último Nome</label>
-                <h5 class="text-secondary pt-2">Sobrenome</h5>
+                <h5 class="text-secondary pt-2">${user.surname}</h5>
             </div>
             <div class="col-12 col-lg-4">
                 <label class="text-secondary">Email</label>
-                <h5 class="text-secondary pt-2">email@email.com</h5>
-                <label class="mt-3 text-secondary">Celular</label>
-                <h5 class="text-secondary pt-2">XX X XXXX-XXXX</h5>
+                <h5 class="text-secondary pt-2">${user.email}</h5>
+                <label class="mt-3 text-secondary">Whatsapp</label>
+                <h5 class="text-secondary pt-2">${(user.whatsapp == null) ? "" : user.whatsapp}</h5>
             </div>
             <div class="col-12 col-lg-4">
                 <label class="text-secondary">Endereço</label>
-                <h5 class="pb-1 text-secondary pt-2">Rua Tal, nº XXX <br> Bairro Tal <br> Cidade Tal - UF <br> Próximo à preça</h5>
+                <h5 class="pb-1 text-secondary pt-2">${(user.adress == null) ? "-----------" : user.adress} - n° ${(user.number == null) ? "--" : user.number} <br> Bairro: ${(user.district == null) ? "---------" : user.district} <br> Cidade: ${(user.city == null) ? "---------" : user.city} - ${(user.uf == null) ? "--" : user.uf} <br>${(user.reference_point == null) ? "--------------" : user.reference_point}</h5>
             </div>
         </div>
 
@@ -44,22 +59,54 @@ const loadUserData = (/*user*/) => {
     userDataContainer.insertAdjacentHTML('beforeend', html)
 }
 
-const loadUserDataModal = (/*user*/) => {
-    const userDataContainer = document.querySelector('#signup-form-edit')
+const editarInformacoesDeUsuario = async () => {
+    var data = new FormData(document.getElementById("signup-form-edit"));
     
-    const html = `
-        <input class="form-control mt-3" type="text" name="signup-first-name" id="signup-first-name" placeholder="Primeiro nome" value="${'Nome'}" required>
-        <input class="form-control mt-3" type="text" name="signup-last-name" id="signup-last-name" placeholder="Último nome" value="${'Sobrenome'}" required>
-        <input class="form-control mt-3" type="email" name="signup-email" id="signup-email" placeholder="Email" value="${'email@email.com'}" required>
-        <input class="form-control mt-3" type="tel" name="signup-phone" id="signup-phone" placeholder="Celular" value="${'XX X XXXX-XXXX'}" required>
-        <input class="form-control mt-3" type="text" name="signup-address" id="signup-address" placeholder="Endereço" value="${'Rua Tal, nº XXX'}">
-        <input class="form-control mt-3" type="text" name="signup-district" id="signup-district" placeholder="Bairro" value="${'Bairro Tal'}">
-        <input class="form-control mt-3" type="text" name="signup-city" id="signup-city" placeholder="Cidade" value="${'Cidade Tal - UF'}">
-        <input class="form-control mt-3" type="text" name="signup-reference-point" id="signup-reference-point" placeholder="Ponto de referência" value="${'Próximo à preça'}">
-    `
+    await axios({
+        method: "post",
+        data,
+        url: `/api/registro`,
+        headers: { "Content-Type": "multipart/form-data" },
+    }).then(function (response) {
+        console.log(response.data)
+        if(response.data.msg == "Informações atualizadas"){
+            alert("Informações Atualizadas");
+            window.location.reload();
+        }
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+}
 
-    userDataContainer.insertAdjacentHTML('beforeend', html)
+var Dados;
+
+const loadUserDataModal = () => {
+    const userDataContainer = document.getElementById('signup-form-edit')
+    
+    userDataContainer.innerHTML = `
+        <input class="form-control mt-3" type="tel" name="whatsapp" id="whatsapp" placeholder="Whatsapp" value="${(Dados.whatsapp == null) ? "" : Dados.whatsapp}" required>
+        
+        <div class="row">
+            <div class="col">
+                <input class="form-control mt-3" type="text" name="address" id="address" placeholder="Endereço" value="${(Dados.adress == null) ? "" : Dados.adress}">
+            </div>
+            <div class="col-3">
+                <input class="form-control mt-3" type="text" name="number" id="number" placeholder="Numero" value="${(Dados.number == null) ? "" : Dados.number}">
+            </div>
+        </div>
+        <input class="form-control mt-3" type="text" name="district" id="district" placeholder="Bairro" value="${(Dados.district == null) ? "" : Dados.district}">
+        <div class="row">
+            <div class="col">
+                <input class="form-control mt-3" type="text" name="city" id="city" placeholder="Cidade" value="${(Dados.city == null) ? "" : Dados.city}">
+            </div>
+            <div class="col-3">
+                <input class=" form-control mt-3" type="text" name="uf" id="uf" placeholder="Estado" value="${(Dados.uf == null) ? "" : Dados.uf}">
+            </div>
+        </div>
+        <input class="form-control mt-3" type="text" name="reference-point" id="reference-point" placeholder="Ponto de referência" value="${(Dados.reference_point == null) ? "" : Dados.reference_point}">
+    `;
 }
 
 
-window.onload = loadUserData()
+window.onload = updateUserData()

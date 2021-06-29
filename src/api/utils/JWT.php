@@ -14,7 +14,7 @@ function JWT_encode($id, $name){
 
     $data = [
         //'iat'  => $issuedAt->getTimestamp(),         // Issued at: time when the token was generated
-        'iss'  => $serverName,                       // Issuer
+        //'iss'  => $serverName,                       // Issuer
         //'nbf'  => $issuedAt->getTimestamp(),         // Not before
         //'exp'  => $expire,                           // Expire
         'userName' => $name,                     // User name

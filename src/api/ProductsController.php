@@ -147,6 +147,28 @@ function getProductById($id){
         $list["product_images"] = $img_temp;
         array_push($tmp_array, $list);
     }
+
+    if(isset($_COOKIE["userToken"])){
+        include "./utils/JWT.php";
+
+        $userId = JWT_decode($_COOKIE["userToken"])["userId"];
+        $sql = "SELECT * FROM wishlist
+            INNER JOIN products
+            ON wishlist.product_id = products.id
+            WHERE wishlist.user_id = '$userId'
+            AND wishlist.product_id = '$id'
+        ";
+
+        $resultado = $conexao->query($sql);
+
+        if($resultado->num_rows != 0){
+            $retorno["wishListed"] = true;
+        }else {
+            $retorno["wishListed"] = false;
+        }
+
+    }
+
     $retorno["item"] = $tmp_array;
 
     $json = json_encode($retorno, JSON_UNESCAPED_UNICODE);

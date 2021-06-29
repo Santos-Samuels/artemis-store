@@ -161,7 +161,8 @@ const login = async () => {
 }
 
 const registrar = async () => {
-    const name = document.getElementById("signup-first-name").value + " " + document.getElementById("signup-last-name").value;
+    const name = document.getElementById("signup-first-name").value;
+    const surname = document.getElementById("signup-last-name").value;
     const login = document.getElementById("signup-email").value.toLowerCase();
     const password = document.getElementById("signup-password").value;
     const password2 = document.getElementById("signup-password-2").value;
@@ -179,6 +180,7 @@ const registrar = async () => {
     var data = new FormData();
 
     data.append("name", name);
+    data.append("surname", surname);
     data.append("email", login);
     data.append("password", password);
 

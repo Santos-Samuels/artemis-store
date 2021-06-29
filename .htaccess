@@ -25,5 +25,7 @@ ErrorDocument 404 /erros/404.php
     RewriteRule ^api/tslt/?$                        /src/api/utils/Translator.php         
     RewriteRule ^api/login/?$                       /src/api/Login.php
     RewriteRule ^api/registro/?$                       /src/api/Registrar.php
+    RewriteRule ^api/favoritos/?$                       /src/api/Wishlist.php
 
 </IfModule>
+
