@@ -229,6 +229,7 @@
             <div class="col-6 col-lg-2 product mb-3">
               <div class="checkout-header-type-info mb-2"><span class="fw-bold">Quantidade</span></div>
               <input class="bag-product-quantity form-control" type="number" name="bag-product-quantity" id="" min="1" max="4" value="1">
+              <span class="link ps-2">remover</span>
             </div>
   
             <div class="col-6 col-lg-2 product mb-3">
@@ -243,21 +244,22 @@
         <h4 class="mb-4">Meu carrinho</h4>
 
         <div id="checkout-summary-items-container">
-          <div class="row">
+          <article class="row">
             <span class="col text-start">1 produto</span>
             <span class="col text-end">R$ 69,90</span>
-          </div>
-  
-          <div class="row">
-            <span class="col text-start">1 produto</span>
-            <span class="col text-end">R$ 69,90</span>
-          </div>
+          </article>
         </div>
 
         <div class="border-top row fw-bold mt-2 pt-2 mb-3">
           <span class="col text-start">Total</span>
           <span class="col text-end">R$ 69,90</span>
         </div>
+
+        <select class="form-select mb-3" name="" id="">
+          <option value="" data-default disabled selected>Forma de pagamento</option>
+          <option value="dinheiro">Dinheiro</option>
+          <option value="cartao">Cartão</option>
+        </select>
 
         <i class="bi bi-info-circle"><span class="ps-2">Ao finalizar a sua compra, entraremos em contato com você para discutir a entrega e a forma de pagamento!</code>!</span></i>
         
