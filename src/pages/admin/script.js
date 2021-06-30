@@ -345,7 +345,7 @@ const loadViewOrderModal = (orders, orderID) => {
         if(order.id == orderID) {
             const html = `
                 <div id="${order.type}-${order.id}">
-                    <div class="card card-body mb-4">
+                    <div class="card card-body">
                         <div class="row">
                             <div class="col text-start">
                                 <p class="fw-bold text-secondary ps-3">Número do pedido: ${order.id}</p>
@@ -355,28 +355,13 @@ const loadViewOrderModal = (orders, orderID) => {
                             </div>
                         </div>
                         
-                        <article class="d-flex ps-3 border-bottom pb-4">
+                        <article class="d-flex ps-3 border-bottom pb-3 pt-3">
                             <div>
                                 <img src="${order.image}" class="sale-image rounded me-3">
                             </div>
                             <div>
                                 <h5>${order.title}</h5>
-                                <span>1 unidade</span> <br>
-
-                                <div>
-                                    <i class="bi bi-info-circle me-1"></i>
-                                    <span class="me-1 pe-2 border-end">Azul</span>
-                                    <span>45 cm</span>
-                                </div>
-                            </div>
-                        </article>
-                        <article class="d-flex ps-3 border-bottom pb-4">
-                            <div>
-                                <img src="${order.image}" class="sale-image rounded me-3">
-                            </div>
-                            <div>
-                                <h5>${order.title}</h5>
-                                <span>1 unidade</span> <br>
+                                <span>1 unidade | </span> <span class="fw-bold text-secondary">${order.price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span><br>
 
                                 <div>
                                     <i class="bi bi-info-circle me-1"></i>
