@@ -340,6 +340,7 @@ const loadSale = (orders) => {
 const loadViewOrderModal = (orders, orderID) => {
     const viewSaleContainer = document.querySelector('#view-order-container')
     
+    viewSaleContainer.innerHTML = ""
     orders.forEach(order => {
         if(order.id == orderID) {
             const html = `
@@ -354,6 +355,21 @@ const loadViewOrderModal = (orders, orderID) => {
                             </div>
                         </div>
                         
+                        <article class="d-flex ps-3 border-bottom pb-4">
+                            <div>
+                                <img src="${order.image}" class="sale-image rounded me-3">
+                            </div>
+                            <div>
+                                <h5>${order.title}</h5>
+                                <span>1 unidade</span> <br>
+
+                                <div>
+                                    <i class="bi bi-info-circle me-1"></i>
+                                    <span class="me-1 pe-2 border-end">Azul</span>
+                                    <span>45 cm</span>
+                                </div>
+                            </div>
+                        </article>
                         <article class="d-flex ps-3 border-bottom pb-4">
                             <div>
                                 <img src="${order.image}" class="sale-image rounded me-3">
