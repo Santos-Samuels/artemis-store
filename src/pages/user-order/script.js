@@ -15,7 +15,7 @@ const loadFavorite = (orders) => {
                     </div>
                     
                     <div class="ms-2 me-2">
-                        <span>comprado dia 25/jun</span>
+                        <span>${order.date}</span>
                     </div>
                 </div>
             </div>
@@ -45,11 +45,11 @@ const loadFavorite = (orders) => {
                             <p class="fs-5 fw-bold">Pedido recebido</p>
                         </div>
                         <div class="col">
-                            <i class="bi bi-clock fs-4 text-secondary"></i>
+                            <i ${order.status == "preparando" || order.status == "entregue" ? 'class="bi bi-check-lg fs-4 primary-text"' : 'class="bi bi-clock fs-4 text-secondary"'}></i>
                             <p class="fs-5 fw-bold">Preparando pedido</p>
                         </div>
                         <div class="col">
-                            <i class="bi bi-clock fs-4 text-secondary"></i>
+                            <i ${order.status == "entregue" ? 'class="bi bi-check-lg fs-4 primary-text"' : 'class="bi bi-clock fs-4 text-secondary"'}></i>
                             <p class="fs-5 fw-bold">Pedido entregue</p>
                         </div>
                     </div>
@@ -57,7 +57,7 @@ const loadFavorite = (orders) => {
                     <div class="row mt-5 ps-3">
                         <div class="col-12 col-lg-4">
                             <p class="fs-6 fw-bold">Pagamento:</p>
-                            <p class="fs-5"><i class="bi bi-cash-coin fs-4"></i> Dinheiro</p>
+                            <p class="fs-5">${order.paymentType == "Dinheiro" ? '<i class="bi bi-cash-coin fs-4"></i>' : '<i class="bi bi-credit-card fs-4"></i>'} ${order.paymentType}</p>
                         </div>
 
                         <div class="col-12 col-lg-4">
@@ -72,6 +72,7 @@ const loadFavorite = (orders) => {
                             <p>Nome Sobrenome do Comprador</p>
                             <p>Rua Tal, nº XXX - Bairro Tal <br>
                             Cidade Tal - UF / Próximo à preça</p>
+                            <p><i class="bi bi-whatsapp"></i> 75 9 0000-0000</p>
                         </div>
                     </div>
                 </div>

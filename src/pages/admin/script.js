@@ -287,3 +287,154 @@ function isColor(strColor){
     s.color = strColor;
     return s.color == strColor;
 }
+
+const loadSale = (orders) => {
+    const salseContainer = document.querySelector('#sale-header-body')
+    const saleContainerHeaderScope = document.querySelector('#sale-header-scope-table')
+    
+    salseContainer.querySelectorAll('tr').forEach(element => {
+        element.remove()
+    })
+
+    saleContainerHeaderScope.querySelectorAll('th').forEach(element => {
+        element.remove()
+    })
+
+    if(orders.length == 0) {
+        const html = `
+            <th class="text-center mt-5 text-secondary border-0">
+                <i class="bi bi-info-circle fs-1"></i>
+                <h3 class="">Nenhuma venda</h3>
+            </th>
+        `
+        saleContainerHeaderScope.insertAdjacentHTML('beforeend', html)
+    }
+    else {
+        saleContainerHeaderScope.innerHTML = `
+            <th scope="col">Nº do Pedido</th>
+            <th scope="col">Cliente</th>
+            <th scope="col">Status</th>
+            <th scope="col">Total</th>
+            <th scope="col">Data da Compra</th>
+            <th class="primary-text border-dark" scope="col">Ação</th>
+        `
+        orders.forEach(order => {
+            const html = `
+                <tr>
+                    <th scope="row">${order.id}</th>
+                    <td>${order.title}</td>
+                    <td>${order.status}</td>
+                    <td class="order-price">${order.price}</td>
+                    <td>${order.date}</td>
+                    <td><i class="bi bi-eye-fill me-2 primary-text-hover cursor-pointer" title="Ver mais" data-bs-toggle="modal" data-bs-target="#viewOrderModal" onclick="loadViewOrderModal(orders, ${order.id})"></i> <i class="bi bi-cart-check-fill primary-text-hover cursor-pointer" onclick="removeSale(orders, ${order.id})" title="Concluir venda"></i></td>
+                </tr>
+            `
+    
+            salseContainer.insertAdjacentHTML('beforeend', html)
+        })
+
+    }
+    
+}
+
+const loadViewOrderModal = (orders, orderID) => {
+    const viewSaleContainer = document.querySelector('#view-order-container')
+    
+    orders.forEach(order => {
+        if(order.id == orderID) {
+            const html = `
+                <div id="${order.type}-${order.id}">
+                    <div class="card card-body mb-4">
+                        <div class="row">
+                            <div class="col text-start">
+                                <p class="fw-bold text-secondary ps-3">Número do pedido: ${order.id}</p>
+                            </div>
+                            <div class="col text-end">
+                                <p class="fw-bold text-secondary ps-3">${order.date}</p>
+                            </div>
+                        </div>
+                        
+                        <article class="d-flex ps-3 border-bottom pb-4">
+                            <div>
+                                <img src="${order.image}" class="sale-image rounded me-3">
+                            </div>
+                            <div>
+                                <h5>${order.title}</h5>
+                                <span>1 unidade</span> <br>
+
+                                <div>
+                                    <i class="bi bi-info-circle me-1"></i>
+                                    <span class="me-1 pe-2 border-end">Azul</span>
+                                    <span>45 cm</span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <div class="row text-center mt-4 border-bottom pb-4">
+                            <div class="col">
+                                <i class="bi bi-check-lg fs-4 primary-text"></i>
+                                <p class="fs-5 fw-bold">Pedido recebido</p>
+                            </div>
+                            
+                            <div class="col">
+                                <i ${order.status == "preparando" || order.status == "entregue" ? 'class="bi bi-check-lg fs-4 primary-text"' : 'class="bi bi-clock fs-4 text-secondary"'}></i>
+                                <p class="fs-5 fw-bold">Preparando pedido</p>
+                            </div>
+                            <div class="col">
+                            <i ${order.status == "entregue" ? 'class="bi bi-check-lg fs-4 primary-text"' : 'class="bi bi-clock fs-4 text-secondary"'}></i>
+                                <p class="fs-5 fw-bold">Pedido entregue</p>
+                            </div>
+
+                            <div class="border-top pt-3">
+                                <label for="sale-status" class="form-label fw-bold">Alterar o status: </label>
+                                <select class="form-select" name="banner-select-3" id="banner-select-3">
+                                    <option value="" data-default disabled selected>Pedido Recebido</option>
+                                    <option value="">Preparando pedido</option>
+                                    <option value="">Pedido entregue</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mt-5 ps-3">
+                            <div class="col-12 col-lg-4">
+                                <p class="fs-6 fw-bold">Pagamento:</p>
+                                <p class="fs-5">${order.paymentType == "Dinheiro" ? '<i class="bi bi-cash-coin fs-4"></i>' : '<i class="bi bi-credit-card fs-4"></i>'} ${order.paymentType}</p>
+                            </div>
+
+                            <div class="col-12 col-lg-4">
+                                <p class="fs-6 fw-bold">Valor total:</p>
+                                <p class="mb-0 pb-2">subtotal: <span class="fw-bold ms-3 primary-text">${order.price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span> <br>
+                                desconto: <span class="fw-bold ms-3 primary-text">${(order.price - order.promo).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span></p>
+                                <p class="fs-6 fw-bold mb-0 pb-3 primary-text">total: <span class="fw-bold ms-3">${(order.promo).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span></p>
+                            </div>
+
+                            <div class="col-12 col-lg-4">
+                                <p class="fs-6 fw-bold">Endereço:</p>
+                                <p>Nome Sobrenome do Comprador</p>
+                                <p>Rua Tal, nº XXX - Bairro Tal <br>
+                                Cidade Tal - UF / Próximo à preça</p>
+                                <p><i class="bi bi-whatsapp"></i> 75 9 0000-0000</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `
+
+            viewSaleContainer.insertAdjacentHTML('beforeend', html)
+        }
+    })
+}
+
+
+const removeSale = (orders, orderID) => {
+    if(orders.length != 0) {
+        orders.forEach((order, index) => {
+            if(order.id == orderID) {
+                orders.splice(index, 1)
+            }
+         })
+    }
+
+    loadSale(orders)
+}

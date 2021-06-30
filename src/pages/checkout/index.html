@@ -192,33 +192,47 @@
 
     <div class="row">
       <section class="mt-2 col-12 col-lg-8" id="checkout-bag-container">
-        <div class="row border-bottom pb-1 mb-3">
+        <div class="row border-bottom pb-1 mb-3" id="checkout-header">
           <div class="col-8"><span class="fw-bold">Produto</span></div>
           <div class="col-2"><span class="fw-bold">Quantidade</span></div>
           <div class="col-2"><span class="fw-bold">Preço</span></div>
         </div>
   
         <div class="row mt-8">
-            <div class="col-8 product d-flex flex-row flex-nowrap align-items-center mb-3">
+          <div class="checkout-header-type-info mb-2"><span class="fw-bold">Produto</span></div>
+            <div class="col-12 col-lg-8 product d-flex flex-row flex-nowrap align-items-center mb-3">
                 <div class="me-4">
                     <img class="rounded" src="/assets/img/aliancas-white-stone.jpeg" alt="">
                 </div>
   
                 <div>
                     <h5 class="text-secondary">Alianças simple style</h5>
-                    <div class="text-light">
-                      <i class="bi bi-info-circle me-1"></i>
-                      <span class="me-1 pe-2 border-end">Azul</span>
-                      <span>45 cm</span>
+                    <div class="text-secondary">
+                      <div class="d-flex flex-row flex-nowrap">
+                        <div class="me-2">
+                          <label for="">Cor</label>
+                          <select class="form-select" name="checkout-item-color" id="">
+                            <option value="">Azul</option>
+                          </select>
+                        </div>
+                        <div>
+                          <label for="">Tamanho</label>
+                          <select class="form-select" name="checkout-item-size" id="">
+                            <option value="">45cm</option>
+                          </select>
+                        </div>
+                      </div>
                   </div>
                 </div>
             </div>
   
-            <div class="col-2 product mb-3">
+            <div class="col-6 col-lg-2 product mb-3">
+              <div class="checkout-header-type-info mb-2"><span class="fw-bold">Quantidade</span></div>
               <input class="bag-product-quantity form-control" type="number" name="bag-product-quantity" id="" min="1" max="4" value="1">
             </div>
   
-            <div class="col-2 product mb-3">
+            <div class="col-6 col-lg-2 product mb-3">
+              <div class="checkout-header-type-info mb-2"><span class="fw-bold">Preço</span></div>
               <h5 class="text-secondary">R$ 69,90</h5>
             </div>
         </div>
@@ -245,7 +259,7 @@
           <span class="col text-end">R$ 69,90</span>
         </div>
 
-        <i class="bi bi-info-circle"><span class="ps-2">Ao finalizar a sua compra, entraremos em contato com você para discutir a entrega e a forma de pagamento!</span></i>
+        <i class="bi bi-info-circle"><span class="ps-2">Ao finalizar a sua compra, entraremos em contato com você para discutir a entrega e a forma de pagamento!</code>!</span></i>
         
         <div class="row g-2 mt-3">
           <button class="btn btn-primary">Concluir</button>

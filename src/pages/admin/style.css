@@ -145,6 +145,10 @@ header #user-nav i:hover {
     padding: 8px 18px;
 }
 
+.sale-image {
+    width: 100px;
+}
+
 
 @media (max-width: 770px) {
     #toggle-sidebar-button,

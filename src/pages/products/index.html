@@ -41,7 +41,8 @@
         </ul>
         
         <span class="input-group d-flex w-50 me-auto">
-          <input class="form-control me-3" name="search" id="search" placeholder="Pesquisar produtos ...">
+          <input class="form-control" name="search" id="search" placeholder="Pesquisar produtos ...">
+          <button class="btn btn-outline-secondary me-3"><i class="bi bi-search"></i></button>
         </span>
         
         <div class="navbar-text d-flex align-items-center fs-4" id="user-options-container">
@@ -138,7 +139,7 @@
       </div>
         <div class="col">
           <select onchange="filterProducts()" class="form-select" name="category-filter" id="category-filter">
-            <option value="">Categoria</option>
+            <option value="" data-default disabled selected>Categoria</option>
             <option value="Joia">Jóia</option>
             <option value="Semijoia">Semijóias</option>
             <option value="Bijuteria">Bijuteria</option>
@@ -149,7 +150,7 @@
 
         <div class="col">
           <select onchange="filterProducts()" class="form-select" name="type-filter" id="type-filter">
-            <option value="">Tipo</option>
+            <option value="" data-default disabled selected>Tipo</option>
             <option value="Anel">Anel</option>
             <option value="Colar">Colar</option>
             <option value="Pingente">Pingente</option>
@@ -161,7 +162,7 @@
 
         <div class="col">
           <select onchange="filterProducts()" class="form-select" name="price-filter" id="price-filter">
-            <option value="">Preco</option>
+            <option value="" data-default disabled selected>Preco</option>
             <option value="promo">Promoção</option>
             <option value="ASC">Menor preço</option>
             <option value="DSC">Maior preço</option>

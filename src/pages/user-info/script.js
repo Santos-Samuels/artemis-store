@@ -51,7 +51,7 @@ const loadUserData = (user) => {
                 <h5 class="pt-1">ALTERAR SENHA</h5>  
             </div>  
             <div class="col text-end">
-                <button class="btn btn-primary">Editar</button> 
+                <button class="btn btn-primary"onclick="loadUserPasswordModal()" data-bs-toggle="modal" data-bs-target="#userSignupEditPassword" data-bs-dismiss="modal">Editar</button> 
             </div>  
         </div>
     `
@@ -106,6 +106,20 @@ const loadUserDataModal = () => {
         </div>
         <input class="form-control mt-3" type="text" name="reference-point" id="reference-point" placeholder="Ponto de referência" value="${(Dados.reference_point == null) ? "" : Dados.reference_point}">
     `;
+}
+
+
+const loadUserPasswordModal = () => {
+    const userPasswordContainer = document.getElementById('signup-form-edit-password')
+    
+    userPasswordContainer.innerHTML = `
+        <label class="form-label" for="user-old-password">Senha atual <span class="primary-text">*</span></label>
+        <input class="form-control mb-5" type="password" name="user-old-password" id="user-old-password">
+        <label class="form-label" for="user-old-password">Nova senha <span class="primary-text">*</span></label>
+        <input class="form-control mb-2" type="password" name="user-new-password" id="user-new-password">
+        <label class="form-label" for="user-old-password">Confirmar nova senha <span class="primary-text">*</span></label>
+        <input class="form-control" type="password" name="user-new-password-2" id="user-new-password-2">
+    `
 }
 
 

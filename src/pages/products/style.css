@@ -10,6 +10,10 @@ main .product img {
     width: 250px;
 }
 
+.product-title {
+    max-width: 250px;
+}
+
 #filter-title {
     white-space: nowrap;
 }
