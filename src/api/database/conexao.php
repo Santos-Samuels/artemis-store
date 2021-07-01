@@ -1,7 +1,7 @@
 <?php
 $servidor = "localhost";
-$userName = "root";
-$password = "";
+$userName = "happet";
+$password = "secretz";
 
 $dbName = "loja_artemis";
 $conexao = new mysqli($servidor, $userName, $password, $dbName);

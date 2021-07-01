@@ -1,3 +1,5 @@
+var _product;
+
 document.getElementById("cartButton").addEventListener("click", () =>{
     toggleCart()
 });
@@ -131,7 +133,6 @@ const updateData = async () => {
         url: `/api/produtos?id=${id}`,
         headers: { "Content-Type": "multipart/form-data" },
     }).then(function (response) {
-        console.log(response.data)
         if(response.data.qtd == 0){
             window.location.href = "/404";
             return
@@ -142,6 +143,8 @@ const updateData = async () => {
             cartIcon.classList.remove("bi-heart");
             cartIcon.classList.add("bi-heart-fill");
         }
+
+    _product = response.data.item[0];
 
         updatingData(response.data.item[0])
     })
@@ -175,49 +178,71 @@ const updatingData = async (product) => {
             i++;
         })
     }
-    return;
-    var cores = product.color.split(",");
-    await validateColor(cores)
-    
+    var contador = 0;
     product.size.replace(" ", "").split(",").map((tamanho) => {
         const container = document.getElementById("size-container");
 
-        container.innerHTML += `<input class="hide" type="radio" name="size-button" id="${tamanho}" required>
+
+        container.innerHTML += `<input class="hide" type="radio" value="${tamanho}" name="size-button" id="${tamanho}" ${(contador == 0) ? "checked" : ""} required>
         <label class="pruduct-button rounded-circle text-center border border-2 border-dark primary-text me-1 h6 zoom cursor-pointer" for="${tamanho}">${tamanho}</label>`;
+        
+        contador += 1;
     })
 
+    
+    var cores = product.color_en.split(", ").join(",");
+    cores = product.color_en.split(" ,").join(",");
+    cores = product.color_en.split(",");
+    
+    var cores_pt = product.color_pt.split(", ").join(",");
+    cores_pt = product.color_pt.split(" ,").join(",");
+    cores_pt = product.color_pt.split(",");
+    
+    contador = 0;
+
+    for(i = 0; i < cores.length; i++){
+        cor = cores[i];
+        cor_pt = cores_pt[i];
+
+        const container = document.getElementById("color-container");
+                
+        container.innerHTML += `<input class="hide" type="radio" value="${cor_pt}" name="color-button" id="${cor_pt}" ${(contador == 0) ? "checked" : ""}>
+        <label class="pruduct-button rounded-circle text-center border border-2 border-dark primary-text me-1 zoom cursor-pointer" style="background-color: ${cor};" for="${cor_pt}"><i class="bi bi-check-lg"></i></label>`
+        contador += 1;
+    }
 }
 
-const validateColor = async (colors) => {
-    colors.map( async (cor) =>{
-        await axios({
-            method: "get",
-            url: `/api/tslt?text=${cor}`,
-            headers: { "Content-Type": "multipart/alternative" },
-        }).then(function (response) {
-            t_color = response.data.texto_traduzido.replace(" ", "").toLocaleLowerCase()
-            if(!isColor(t_color)){
-                return false
-            }
-            const container = document.getElementById("color-container");
-            
-            container.innerHTML += `<input class="hide" type="radio" name="color-button" id="${t_color}">
-            <label class="pruduct-button rounded-circle text-center border border-2 border-dark primary-text me-1 zoom cursor-pointer" style="background-color: ${t_color};" for="${t_color}"><i class="bi bi-check-lg"></i></label>`
-        
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+const BuyItem = () => {
+    var colorRadio = document.getElementsByName("color-button");
+    var sizeRadio = document.getElementsByName("size-button");
+    var selectedColor;
+    var selectedSize;
+
+    for(i = 0; i < colorRadio.length; i++){
+        if(colorRadio[i].checked){
+            selectedColor = colorRadio[i].id;
+        }
     }
-    )
-    return true;
+    for(i = 0; i < sizeRadio.length; i++){
+        if(sizeRadio[i].checked){
+            selectedSize = sizeRadio[i].id;
+        }
+    }
+
+    console.log(selectedColor, selectedSize);
+
+    addOnCart(_product, 1, selectedColor, selectedSize);
+
+    loadCart()
 }
+
 
 function isColor(strColor){
     var s = new Option().style;
     s.color = strColor;
     return s.color == strColor;
 }
+
 
 
 

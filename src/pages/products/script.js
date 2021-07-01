@@ -27,7 +27,7 @@ const _loadProducts = (products) => {
                 <h5 class="pt-2 product-title">${product.product_name}</h5>
                 <p class="mb-0">De: <span class="fs-6 text-decoration-line-through">${product.price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span></p>
                 <p>Por: <span class="fw-bold price fs-2">${product.price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span></p>
-                <a class="btn btn-primary w-100 text-center" onclick="addProductBag(bag, ${product.id}, '${product.title}', ${product.price}, '${product.image}', ${product.stock}, ${1})" data-bs-toggle="offcanvas" data-bs-target="#userBag" aria-controls="userBag">COMPRAR</a>
+                <a class="btn btn-primary w-100 text-center" href="/descricao/?${product.id}">COMPRAR</a>
             </article>
         `
 

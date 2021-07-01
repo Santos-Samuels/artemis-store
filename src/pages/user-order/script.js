@@ -1,3 +1,22 @@
+const loadOrders = async () => {
+    var data = new FormData(document.getElementById("filter-form"));
+    console.log("Algo")
+    teste = data;
+    
+    await axios({
+        method: "get",
+        url: "api/produtos/",
+        headers: { "Content-Type": "multipart/alternative" },
+    }).then(function (response) {
+        console.log(response.data);
+        _loadProducts(response.data.item);
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+
+}
+
 const loadFavorite = (orders) => {
     const productsContainer = document.querySelector('#order-container')
     

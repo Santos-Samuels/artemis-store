@@ -17,6 +17,11 @@ const loadAccessoryOffer = (products) => {
     }
 }
 
+const GoToCheckout = () =>{
+    console.log("Funfando")
+    window.location.assign('/checkout');
+}
+
 const loadProducts = (products) => {
     const productsContainer = document.querySelector('#products-container')
     
@@ -35,8 +40,120 @@ const loadProducts = (products) => {
     });
 }
 
+const loadCart = () => {
+    const bagContainer = document.querySelector('#bag-container-products')
+    const bagFooterContainer = document.querySelector('#bag-container-footer')
+
+    bagContainer.querySelectorAll('article').forEach(item => {
+        item.remove()
+    })
+
+    bagFooterContainer.querySelectorAll('payment').forEach(content => {
+        content.remove()
+    })
+
+    var cart = JSON.parse(localStorage.getItem("cart"));
+    
+
+    if(cart.length == 0 || cart == "") {
+        const html = `
+            <article class="text-center mt-5 text-secondary">
+                <i class="bi bi-info-circle fs-1"></i>
+                <h3 class="">Seu carrinho está vazio</h3>
+            </article>
+        `
+        bagContainer.insertAdjacentHTML('beforeend', html)
+    }
+    else {
+        let bagTotalPrice = 0
+
+        cart.forEach(item => {
+            const html = `
+                <article class="row g-2 mb-3 me-1">
+                    <div class="col-3 me-2">
+                        <img class="bag-product-image rounded me-3" src="${item.product.product_images[0]}" alt="">
+                    </div>
+                    <div class="me-4 col">
+                        <h6>${item.product.product_name}</h6>
+                        <input onchange="ChangeQuantity(${item.product.id}, 'cart-${item.itemId}' ,${item.itemId})" id="cart-${item.itemId}" class="bag-product-quantity form-control" type="number" name="bag-product-quantity" id="${item.product.id}" min="0" max="${item.stock}" value="${item.quantity}">
+                    </div>
+                    <div class="col-2">
+                        <p class="mb-0 bag-product-price">${item.product.price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</p>
+                        <span class="primary-text primary-text-hover cursor-pointer bag-trash-button" id="${item.product.id}" onclick="removeFromCart(${item.product.id}, '${item.selectedColor}', '${item.selectedSize}')"><i class="bi bi-trash-fill fs-4"></i></span>
+                    </div>
+                </article>
+            `
+            bagTotalPrice += parseInt(item.product.price);
+            bagContainer.insertAdjacentHTML('beforeend', html)
+        });
+        
+        bagFooterContainer.innerHTML = `
+            <payment class="row pt-3">
+                <h5 class="col text-secondary">Total</h5>
+                <h5 class="col text-end fw-bold">${bagTotalPrice.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</h5>
+            </payment>
+            <payment class="mt-4">
+                <button type="button" onclick="GoToCheckout()" class="btn btn-primary w-100" id="bag-button-finalizar-compra">Finalizar Compra</button>
+            </payment>
+        `
+    }
+}
+
+const addOnCart = (product, quantity, selectedColor, selectedSize) => {
+    var cart = localStorage.getItem("cart");
+
+    if(cart == null){
+        var temp = [];
+        localStorage.setItem("cart", JSON.stringify(temp));
+        addOnCart(product, quantity, selectedColor, selectedSize);
+    }
+    
+    cart = JSON.parse(cart);
+
+    var newOrder = {product, quantity, selectedColor, selectedSize, itemId : cart.length + 1}; 
+
+    for(i=0;i<cart.length; i++){
+        item = cart[i];
+        if( 
+            item.product.id == newOrder.product.id
+            && item.selectedColor == newOrder.selectedColor
+            && item.selectedSize == newOrder.selectedSize
+        ){
+            console.log("Ja existe um item no carrinho igual a esse !")
+            return;
+        }
+    }
+
+    cart.push(newOrder);
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    loadCart();
+}
+
+const removeFromCart = (productId, selectedColor, selectedSize) =>{
+    var cart = localStorage.getItem("cart");
+
+    cart = JSON.parse(cart);
+
+    for(i=0;i<cart.length; i++){
+        item = cart[i];
+        if( 
+            item.product.id == productId
+            && item.selectedColor == selectedColor
+            && item.selectedSize == selectedSize
+        ){
+            cart.splice(i, 1);
+        }
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    loadCart();
+}
 
 const loadBag = (bag) => {
+    loadCart();
+    return
     const bagContainer = document.querySelector('#bag-container-products')
     const bagFooterContainer = document.querySelector('#bag-container-footer')
 
@@ -94,7 +211,6 @@ const loadBag = (bag) => {
     }
 }
 
-
 const addProductBag = (bag, productId, productTitle, productPrice, productImage, productStock, productQuantity) => {
     let valid = bag.find(item => { return item.id === productId })
 
@@ -122,6 +238,24 @@ const removeProductBag = (bag, productId) => {
     loadBag(bag)
 }
 
+const ChangeQuantity = (id, input_id, itemId) =>{
+    const input = document.getElementById(input_id);
+    console.log(id)
+    console.log(input.value);
+    var cart = localStorage.getItem("cart");
+    cart = JSON.parse(cart);
+
+    for(i = 0; i < cart.length; i++){
+        item = cart[i];
+        if(item.itemId == itemId) {
+            item.quantity = input.value;
+        }
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    loadCart();
+}
 
 const searchProduct = (products, searchTerm) => products.filter(product => product.title.includes(`${searchTerm}`))
 
@@ -206,3 +340,5 @@ function validateEmail(email) {
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
 }
+
+window.onload = loadCart;

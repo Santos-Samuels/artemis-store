@@ -51,6 +51,7 @@ function createNewProduct(){
     $price = floatval($_POST["product-price"]);
     $promo = floatval($_POST["product-promo"]);
     $color = $_POST["product-color"];
+    $color_en = $_POST["color_en"];
     $size = $_POST["product-size"];
 
     $sql = "INSERT INTO products values (NULL, 
@@ -58,6 +59,7 @@ function createNewProduct(){
                                         '$p_images', 
                                         '$description',
                                         '$color',
+                                        '$color_en',
                                         '$size',
                                         '$type',
                                         '$category', 

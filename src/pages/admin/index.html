@@ -64,7 +64,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-              <button type="button" class="btn btn-success" onclick="updateProduct()" data-bs-dismiss="modal">Editar</button>
+              <button type="button" class="btn btn-success" onclick="updateOrder()" data-bs-dismiss="modal">Editar</button>
             </div>
           </div>
         </div>
@@ -81,7 +81,7 @@
         </div>
         <div class="list-group list-group-flush" id="sidebar-options">
             <a class="text-decoration-none cursor-pointer text-secondary option-link active" id="painel-option" onclick="setContainerOption('#init-container', '#painel-option')"><i class="bi bi-speedometer"></i>  Painel</a>
-            <a class="text-decoration-none cursor-pointer text-secondary option-link" id="sale-option" onclick="setContainerOption('#sale-container', '#sale-option'), loadSale(orders)"><i class="bi bi-cart-fill"></i>  Vendas</a>
+            <a class="text-decoration-none cursor-pointer text-secondary option-link" id="sale-option" onclick="setContainerOption('#sale-container', '#sale-option'), loadSales()"><i class="bi bi-cart-fill"></i>  Vendas</a>
         
             <a class="text-decoration-none cursor-pointer text-secondary option-link dropdown-toggle" id="products-option" onclick="toggleDropDown()"><i class="bi bi-box-seam"></i>  Produtos</a>
             <div class="dropdown d-flex flex-column flex-nowrap">
@@ -198,7 +198,7 @@
               </div>
   
               <div class="row g-2 mt-3 justify-content-end">
-                  <button class="btn btn-primary col-12 col-lg-3" type="button" onclick="createProduct()">Cadastrar</button>
+                  <button class="btn btn-primary col-12 col-lg-3" type="button" onclick="ValidateColors()">Cadastrar</button>
               </div>
           </form>
       </section>
@@ -304,7 +304,6 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="/src/pages/admin/script.js"></script>
-  <script src="/src/pages/admin/order-list.js"></script>
   <script src="/src/script/adminApp.js"></script>
 </body>
 </html>

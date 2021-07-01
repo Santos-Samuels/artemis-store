@@ -1,3 +1,4 @@
+/*
 const loadEditProducts = (products) => {
     const editContainer = document.querySelector('#edit-body-table')
     const editContainerHeaderScope = document.querySelector('#edit-header-scope-table')
@@ -46,3 +47,4 @@ const loadEditProducts = (products) => {
     }
 }
 
+*/

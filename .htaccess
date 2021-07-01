@@ -16,6 +16,7 @@ ErrorDocument 404 /erros/404.php
     RewriteRule ^usuario/?$                      /src/pages/user-info/  
     RewriteRule ^favoritos/?$                      /src/pages/user-favoritos/  
     RewriteRule ^pedidos/?$                      /src/pages/user-order/  
+        RewriteRule ^checkout/?$                      /src/pages/checkout/  
 
     RewriteRule ^public/?$                      /public/
 
@@ -27,6 +28,7 @@ ErrorDocument 404 /erros/404.php
     RewriteRule ^api/login/?$                       /src/api/Login.php
     RewriteRule ^api/registro/?$                       /src/api/Registrar.php
     RewriteRule ^api/favoritos/?$                       /src/api/Wishlist.php
+    RewriteRule ^api/request/?$                       /src/api/Requests.php
 
 </IfModule>
 
