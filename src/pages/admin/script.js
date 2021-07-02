@@ -21,7 +21,7 @@ const ValidateColors = async () => {
         for(i = 0; i < cores.length; i++){
             var color = cores[i];
             if(!isColor(color.toLowerCase())){
-                alert(color + " não é uma cor !");
+                actionFeedback('#error-new-product-color')
                 return;
             }
         }
@@ -50,7 +50,7 @@ const createProduct = async (_colors) => {
     }).then(function (response) {
         console.log(response.data);
         if(response.data.msg == "Funfou"){
-            alert("Produto cadastrado com sucesso !");
+            actionFeedback('#success-new-product')
 
             document.getElementById("new-product-form").reset();
         }

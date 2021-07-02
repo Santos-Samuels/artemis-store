@@ -206,6 +206,16 @@
                   <button class="btn btn-primary col-12 col-lg-3" type="button" onclick="ValidateColors()">Cadastrar</button>
               </div>
           </form>
+
+          <div class="bg-success p-2 ps-3 pe-3 rounded text-white d-flex align-items-center position-absolute bottom-0 mb-4" id="success-new-product" style="display: none !important;">
+            <i class="bi bi-check-circle fs-5 me-2"></i>
+            <span class="bolder">Produto cadastrado!</span>
+          </div>
+
+          <div class="bg-warning p-2 ps-3 pe-3 rounded text-white d-flex align-items-center position-absolute bottom-0 mb-4" id="error-new-product-color" style="display: none !important;">
+            <i class="bi bi-exclamation-circle fs-5 me-2"></i>
+            <span class="bolder">Cor inválida!</span>
+          </div>
       </section>
 
       <section class="container hide option-container" id="edit-product-container">
