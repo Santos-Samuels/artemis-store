@@ -110,7 +110,7 @@ tbody tr:hover {
 }
 
 .hide {
-  display: none;
+  display: none !important;
 }
 
 .border-b {

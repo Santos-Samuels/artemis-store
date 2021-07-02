@@ -123,10 +123,13 @@ const createRequest = async () => {
     var cart = JSON.parse(localStorage.getItem("cart"));
 
     var payment_type = document.getElementById("payment_type").value;
+    var errorPaymentType = document.querySelector('#error-payment-type')
     if(payment_type == ""){
-        alert("Forma de Pagamento está vazio !");
+        errorPaymentType.innerHTML = "Selecione uma forma de pagamento!"
         return
-    }
+    } 
+    else
+        errorPaymentType.innerHTML = ""
 
     var quantity_s = "", color_s = "", size_s = "", productId_s = "";
     var cartTotalPrice = 0;

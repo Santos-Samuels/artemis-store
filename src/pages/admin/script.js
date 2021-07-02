@@ -113,7 +113,7 @@ const _loadEditProducts = (products) => {
                     <td>${product.type}</td>
                     <td class="order-price">${product.price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</td>
                     <td>${product.promotion.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</td>
-                    <td><i class="bi bi-pencil-fill me-2 primary-text-hover cursor-pointer" onclick="editProductModal(${product.id})" title="Editar" data-bs-toggle="modal" data-bs-target="#editProductModal"></i> <i class="bi bi-trash-fill primary-text-hover cursor-pointer" onclick="removeProduct(${product.id})" title="Excluir"></i></td>
+                    <td><i class="bi bi-pencil-fill me-2 primary-text-hover cursor-pointer" onclick="editProductModal(${product.id})" title="Editar" data-bs-toggle="modal" data-bs-target="#editProductModal"></i> <i class="bi bi-trash-fill primary-text-hover cursor-pointer" onclick="removeProduct(${product.id}), actionFeedback('#success-remove')" title="Excluir"></i></td>
                 </tr>
             `
     
@@ -253,6 +253,12 @@ const removeProduct = async (productId) => {
     });//
 
     loadProducts(products)
+
+    $("#success-edit-remove").fadeIn(700, function(){
+        setTimeout(function(){
+            $('#success-edit-remove').fadeOut();
+        }, 2000);
+    });
 }
 
 const toggleDropDown = () => {
@@ -356,7 +362,7 @@ const loadSale = (orders) => {
                     <td>${order.status}</td>
                     <td class="order-price">${order.total_price}</td>
                     <td>${dateNow}</td>
-                    <td><i class="bi bi-eye-fill me-2 primary-text-hover cursor-pointer" title="Ver mais" data-bs-toggle="modal" data-bs-target="#viewOrderModal" onclick="loadViewOrderModal(${order.id})"></i> <i class="bi bi-cart-check-fill primary-text-hover cursor-pointer" onclick="removeSale(${order.id})" title="Concluir venda"></i></td>
+                    <td><i class="bi bi-eye-fill me-2 primary-text-hover cursor-pointer" title="Ver mais" data-bs-toggle="modal" data-bs-target="#viewOrderModal" onclick="loadViewOrderModal(${order.id})"></i> <i class="bi bi-cart-check-fill primary-text-hover cursor-pointer" onclick="removeSale(${order.id}), actionFeedback('success-sale')" title="Concluir venda"></i></td>
                 </tr>
             `
     
@@ -517,4 +523,12 @@ const removeSale = (orders, orderID) => {
     }
 
     loadSale(orders)
+}
+
+function actionFeedback(div) {
+    $(div).fadeIn(700, function(){
+        setTimeout(function(){
+            $(div).fadeOut();
+        }, 2000);
+    });
 }
