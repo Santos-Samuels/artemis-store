@@ -1,6 +1,21 @@
 var _orders;
 var current_id;
 
+const add_new_product_form = document.getElementById('new-product-form')
+add_new_product_form.addEventListener('submit', function(e) {
+    e.preventDefault()
+    
+    ValidateColors()
+});
+
+const edit_product_form = document.getElementById("edit-product-modal-container");
+edit_product_form.addEventListener('submit', function(e) {
+    e.preventDefault()
+    
+    console.log("Funcionou");
+    //updateProduct()
+});
+
 const ValidateColors = async () => {
     var data = new FormData(document.getElementById("new-product-form"));
 
@@ -86,6 +101,8 @@ const _loadEditProducts = (products) => {
         element.remove()
     })
 
+    console.log(products);
+
     if(products.length == 0) {
         const html = `
             <th class="text-center mt-5 text-secondary border-0">
@@ -148,11 +165,11 @@ const createModal = (product) => {
                     </div>
                     <div class="col-6 col-lg-3">
                     <label class="form-label" for="product-price">Preço <span class="text-danger" title="Obrigatório">*</span></label>
-                    <input class="form-control" type="number" name="product-price" id="product-price" min="0" placeholder="Ex: 29.90" value="${product.price}" required> 
+                    <input class="form-control" type="number" step="0.01" name="product-price" id="product-price" min="0" placeholder="Ex: 29.90" value="${product.price}" required> 
                     </div>
                     <div class="col-6 col-lg-3">
                     <label class="form-label" for="product-promo">Promoção <span class="primary-text"></span></label>
-                    <input class="form-control" type="number" name="product-promo" id="product-promo" min="0" placeholder="Ex: 24.90" value="${product.promotion}" required> 
+                    <input class="form-control" type="number" step="0.01" name="product-promo" id="product-promo" min="0" placeholder="Ex: 24.90" value="${product.promotion}" required> 
                     </div>
                 </div>
     
@@ -246,13 +263,12 @@ const removeProduct = async (productId) => {
         url: `api/produtos?productId=${productId}`,
         headers: { "Content-Type": "multipart/alternative" },
     }).then(function (response) {
-        _loadEditProducts(response.data.item);
+        console.log(response)
+        loadProducts();
     })
     .catch(function (error) {
         console.log(error);
     });//
-
-    loadProducts(products)
 }
 
 const toggleDropDown = () => {

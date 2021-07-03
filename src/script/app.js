@@ -63,6 +63,16 @@ const loadCart = () => {
             </article>
         `
         bagContainer.insertAdjacentHTML('beforeend', html)
+        
+        bagFooterContainer.innerHTML = `
+        <payment class="row pt-3">
+            <h5 class="col text-secondary">Total</h5>
+            <h5 class="col text-end fw-bold">${"0".toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</h5>
+        </payment>
+        <payment class="mt-4">
+            <button type="button" onclick="GoToCheckout()" class="btn btn-primary w-100" id="bag-button-finalizar-compra">Finalizar Compra</button>
+        </payment>
+    `
     }
     else {
         let bagTotalPrice = 0

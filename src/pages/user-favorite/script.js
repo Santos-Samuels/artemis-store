@@ -10,8 +10,6 @@ const updateFavorites = async () => {
     .catch(function (error) {
         console.log(error);
     });
-    
-    
 }
 
 

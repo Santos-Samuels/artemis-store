@@ -45,7 +45,7 @@
             </form>
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-              <button type="button" class="btn btn-success" onclick="updateProduct()" data-bs-dismiss="modal">Editar</button>
+              <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Editar</button>
             </div>
           </div>
         </div>
@@ -162,7 +162,7 @@
           <h5 class="border-b pb-1 mb-4 mt-3">CADASTRAR PRODUTO</h5>
           <form class="m-3" action="" id="new-product-form">
               <div class="row g-2">
-                  <div class="row g-2"><label class="form-label" for="product-image-1">Imagens ------------ <span class="text-danger" title="Obrigatório">*</span></label>
+                  <div class="row g-2"><label class="form-label" for="product-image-1">Imagens<span class="text-danger" title="Obrigatório">*</span></label>
                   <input class="form-control" type="file" name="product-images[]" id="product-images" src="" alt="" accept="image/*" multiple="multiple">
               </div>
               </div>
@@ -174,11 +174,11 @@
                   </div>
                   <div class="col-6 col-lg-3">
                     <label class="form-label" for="product-price">Preço <span class="text-danger" title="Obrigatório">*</span></label>
-                    <input class="form-control" type="number" name="product-price" id="product-price" min="0" placeholder="Ex: 29.90" required> 
+                    <input class="form-control" type="number" step="0.01" name="product-price" id="product-price" min="0" placeholder="Ex: 29.90" required> 
                   </div>
                   <div class="col-6 col-lg-3">
                     <label class="form-label" for="product-promo">Promoção <span class="primary-text"></span></label>
-                    <input class="form-control" type="number" name="product-promo" id="product-promo" min="0" placeholder="Ex: 24.90" required> 
+                    <input class="form-control" type="number" step="0.01" name="product-promo" id="product-promo" min="0" placeholder="Ex: 24.90" required> 
                   </div>
               </div>
   
@@ -226,7 +226,7 @@
               </div>
   
               <div class="row g-2 mt-3 justify-content-end">
-                  <button class="btn btn-primary col-12 col-lg-3" type="button" onclick="ValidateColors()">Cadastrar</button>
+                  <button class="btn btn-primary col-12 col-lg-3" type="submit">Cadastrar</button>
               </div>
           </form>
       </section>

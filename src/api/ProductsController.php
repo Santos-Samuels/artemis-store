@@ -238,6 +238,8 @@ function getProductWithFilters($type, $category, $orderby){
 function deleteProductWithId(){
     include './database/conexao.php';
 
+    echo "algo";
+
     $id = $_GET["productId"];
 
     $sql = "SELECT * FROM products where id = '$id'";

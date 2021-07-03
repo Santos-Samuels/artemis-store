@@ -1,6 +1,7 @@
 <?php
 
+header("HTTP/1.1 404 OK");
 var_dump($_SERVER);
-exit($json);
+var_dump($_POST);
 
 ?>

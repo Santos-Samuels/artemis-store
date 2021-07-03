@@ -18,7 +18,7 @@ function UploadFiles(){
 
 
                 $name = $count . "." . $_name[count($_name) - 1];
-                @img_resize( $tmp_name , 600 , $newfoldername , $name);
+                @img_resize( $tmp_name , 250 , $newfoldername , $name);
             
                 
                 //move_uploaded_file($tmp_name, $newfoldername . "/" . $name);
@@ -50,8 +50,8 @@ function img_resize( $tmpname, $size, $save_dir, $save_name, $maxisheight = 0 )
         $y = imagesy($imorig);
        
         $woh = (!$maxisheight)? $gis[0] : $gis[1] ;   
-        $aw = 1000;
-        $ah = 1000;
+        $aw = 250;
+        $ah = 250;
        /*
         if($woh <= $size)
         {

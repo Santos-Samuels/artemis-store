@@ -20,6 +20,11 @@ switch ($method) {
     case 'GET':
         if(isset($_COOKIE["userToken"])){
             getAllProductsByUser();
+        }else{
+            $retorno["msg"] = "Você não está logado";
+
+            $json = json_encode($retorno, JSON_UNESCAPED_UNICODE);
+            exit($json);
         }
         break;
 }
