@@ -213,11 +213,11 @@ const updateProduct = async () => {
     var cores = data.get("product-color");
 
     if(data.get("product-type") == null){
-        alert("Tipo está vazio");
+        actionFeedback('#error-void-field')
         return
     }
     if(data.get("product-category") == null){
-        alert("Categoria está vazio");
+        actionFeedback('#error-void-field')
     }
 
     cores = cores.toLocaleLowerCase().replace(" ", "").split(",");
@@ -253,12 +253,6 @@ const removeProduct = async (productId) => {
     });//
 
     loadProducts(products)
-
-    $("#success-edit-remove").fadeIn(700, function(){
-        setTimeout(function(){
-            $('#success-edit-remove').fadeOut();
-        }, 2000);
-    });
 }
 
 const toggleDropDown = () => {
