@@ -23,7 +23,7 @@ header #user-nav i:hover {
     color: var(--text-secondary);
 }
 
-.option-link{
+.option-link {
     background-color: #fafafa;
     border-bottom: 1px solid var(--accents-3);
     padding: 1rem 4rem;
@@ -40,12 +40,14 @@ header #user-nav i:hover {
     white-space: nowrap;
 }
 
-.dropdown-link {
+.dropdown-link-sale,
+.dropdown-link-product {
     background-color: var(--accents-2);
     transition: all 0.8s;
 }
 
-.dropdown-link:hover {
+.dropdown-link-sale:hover,
+.dropdown-link-product:hover {
     padding-left: 2rem;
 }
 
@@ -149,6 +151,20 @@ header #user-nav i:hover {
     width: 100px;
 }
 
+.new-button {
+    color: var(--primary);
+    font-size: 18px;
+}
+  
+.new-button:hover {
+    color: var(--primary);
+}
+  
+.product-color-input {
+    width: 70px;
+    height: 38px;
+}
+
 
 @media (max-width: 770px) {
     #toggle-sidebar-button,
@@ -169,10 +185,6 @@ header #user-nav i:hover {
     .toggle-sidebar {
         position: absolute;
         transform: translateX(-500px);
-    }
-
-    #admin-container {
-        width: 200px;
     }
 
     .circle {

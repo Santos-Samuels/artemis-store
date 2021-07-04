@@ -109,12 +109,18 @@
         </div>
         <div class="list-group list-group-flush" id="sidebar-options">
             <a class="text-decoration-none cursor-pointer text-secondary option-link active" id="painel-option" onclick="setContainerOption('#init-container', '#painel-option')"><i class="bi bi-speedometer"></i>  Painel</a>
-            <a class="text-decoration-none cursor-pointer text-secondary option-link" id="sale-option" onclick="setContainerOption('#sale-container', '#sale-option'), loadSales()"><i class="bi bi-cart-fill"></i>  Vendas</a>
-        
-            <a class="text-decoration-none cursor-pointer text-secondary option-link dropdown-toggle" id="products-option" onclick="toggleDropDown()"><i class="bi bi-box-seam"></i>  Produtos</a>
+
+            <a class="text-decoration-none cursor-pointer text-secondary option-link dropdown-toggle" id="products-option" onclick="toggleDropDown('.dropdown-link-sale')"><i class="bi bi-cart-fill"></i>  Vendas</a>
             <div class="dropdown d-flex flex-column flex-nowrap">
-                <a class="text-decoration-none cursor-pointer text-secondary dropdown-link option-link hide" id="new-product-option"  onclick="setContainerOption('#new-product-container', '#new-product-option')"><i class="bi bi-plus-lg"></i> Adicionar</a>
-                <a class="text-decoration-none cursor-pointer text-secondary dropdown-link option-link hide" id="edit-product-option" onclick="setContainerOption('#edit-product-container', '#edit-product-option'), loadProducts()"><i class="bi bi-pencil-fill"></i> Editar</a>
+              <a class="text-decoration-none cursor-pointer text-secondary dropdown-link-sale option-link hide" id="new-sale-option" onclick="setContainerOption('#new-sale-container', '#new-sale-option'), loadNewSales()"><i class="bi bi-cart-plus-fill"></i> Nova</a>
+              <a class="text-decoration-none cursor-pointer text-secondary dropdown-link-sale option-link hide" id="done-sale-option" onclick="setContainerOption('#done-sale-container', '#done-sale-option'), loadDoneSale(disabledList)"><i class="bi bi-cart-check-fill"></i> Concluída</a>
+            </div>
+        
+            <a class="text-decoration-none cursor-pointer text-secondary option-link dropdown-toggle" id="products-option" onclick="toggleDropDown('.dropdown-link-product')"><i class="bi bi-box-seam"></i>  Produtos</a>
+            <div class="dropdown d-flex flex-column flex-nowrap">
+              <a class="text-decoration-none cursor-pointer text-secondary dropdown-link-product option-link hide" id="new-product-option"  onclick="setContainerOption('#new-product-container', '#new-product-option')"><i class="bi bi-plus-lg"></i> Adicionar</a>
+              <a class="text-decoration-none cursor-pointer text-secondary dropdown-link-product option-link hide" id="edit-product-option" onclick="setContainerOption('#edit-product-container', '#edit-product-option'), loadProducts()"><i class="bi bi-pencil-fill"></i> Editar</a>
+              <a class="text-decoration-none cursor-pointer text-secondary dropdown-link-product option-link hide" id="disabled-product-option" onclick="setContainerOption('#disabled-product-container', '#disabled-product-option'), loadDisabledProducts(disabledList)"><i class="bi bi-eye-slash-fill"></i> Desativado</a>
             </div>
 
             <a class="text-decoration-none cursor-pointer text-secondary option-link" id="banners-option" onclick="setContainerOption('#banners-container', '#banners-option')"><i class="bi bi-card-image"></i>  Banners</a>
@@ -127,11 +133,11 @@
           <div class="d-flex flex-wrap justify-content-center text-center container" id="circle-container">
               <div class="circle m-3">
                   <i class="bi bi-cart-fill fs-1"></i>
-                  <p class="m-auto"><span>30</span> Novos Pedidos</p>
+                  <p class="m-auto"><span>30</span> Novas Vendas</p>
               </div>
               <div class="circle m-3">
                   <i class="bi bi-cart-check-fill fs-1"></i>
-                  <p class="m-auto"><span>240</span> Pedidos Concluídos</p>
+                  <p class="m-auto"><span>240</span> Vendas Concluídas</p>
               </div>
               <div class="circle m-3">
                   <i class="bi bi-box-seam fs-1"></i>
@@ -141,11 +147,15 @@
                   <i class="bi bi-tag-fill fs-1"></i>
                   <p class="m-auto"><span>03</span> Produtos em Promoção</p>
               </div>
+              <div class="circle m-3">
+                  <i class="bi bi-eye-slash-fill fs-1"></i>
+                  <p class="m-auto"><span>05</span> Produtos Desativados</p>
+              </div>
           </div>
       </section>
 
-      <section class="container hide option-container" id="sale-container">
-        <h5 class="border-b pb-1 mb-4 mt-3">CONTROLE DE VENDAS</h5>
+      <section class="container hide option-container" id="new-sale-container">
+        <h5 class="border-b pb-1 mb-4 mt-3">NOVAS VENDAS</h5>
         <div class="d-flex justify-content-center flex-wrap">
           <table class="table">
             <thead>
@@ -153,6 +163,19 @@
               </tr>
             </thead>
             <tbody id="sale-header-body">
+            </tbody>
+          </table>
+      </section>
+
+      <section class="container hide option-container" id="done-sale-container">
+        <h5 class="border-b pb-1 mb-4 mt-3">VENDAS CONCLUÍDAS</h5>
+        <div class="d-flex justify-content-center flex-wrap">
+          <table class="table">
+            <thead>
+              <tr id="done-sale-header-scope-table">
+              </tr>
+            </thead>
+            <tbody id="done-sale-header-body">
             </tbody>
           </table>
       </section>
@@ -194,36 +217,57 @@
                   </div>
                   
                   <div class="row mt-2 g-2">
-                  <div class="col-6 col-md-3 col-lg-3">
-                    <label class="form-label" for="product-color">Cor <span class="text-danger" title="Obrigatório">*</span></label>
-                    <input class="form-control" type="text" name="product-color" id="product-color" placeholder="Ex: Azul, Branco" required>
+                    <div class="col-6">
+                      <label class="form-label" for="product-color">Cor <span class="text-danger" title="Campo obrigatório">*</span></label>
+                      <div class="row g-0">
+                        <div class="col-12 d-flex align-items-center flex-nowrap">
+                          <input class="form-control col" type="text" name="product-color" id="product-color-name" placeholder="Ex: Amarelo" required>
+                          <input class="form-control product-color-input ms-2" type="color" id="product-color" value="#FFD700" required>
+                          <i class="bi bi-plus-circle new-button ms-2 me-1" onclick="newColorField()" title="Adicionar campo"></i>
+                        </div>
+                      </div>
+  
+                      <div class="row" id="color-input-form-container">
+                      </div>
+                    </div>
+  
+                    <div class="col-6">
+                      <label class="form-label" for="product-size">Tamanho (cm) <span class="text-danger" title="Campo obrigatório">*</span></label>
+                      <div class="row g-0">
+                        <div class="col-12 d-flex align-items-center flex-nowrap">
+                          <input class="form-control col" type="text" name="product-size" id="product-size-name" min="0" placeholder="Ex: 23" required>
+                          <i class="bi bi-plus-circle new-button ms-2 me-1" onclick="newSizeField()" title="Adicionar campo"></i>
+                        </div>
+                      </div>
+                      
+                      <div class="row" id="size-input-form-container">
+                      </div>
+                    </div>
+                </div>
+  
+                <div class="row mt-2 g-2">
+                  <div class="col-6">
+                    <label class="form-label" for="product-type">Tipo <span class="text-danger" title="Campo obrigatório">*</span></label>
+                    <select class="form-select" name="product-type" id="product-type" required>
+                      <option value="" data-default disabled selected></option>
+                      <option value="Anel">Anel</option>
+                      <option value="Colar">Colar</option>
+                      <option value="Brinco">Brinco</option>
+                      <option value="Pulseira">Pulseira</option>
+                      <option value="Calcinha">Lingerie</option>
+                    </select>
                   </div>
-                  <div class="col-6 col-md-3 col-lg-3">
-                    <label class="form-label" for="product-size">Tamanho <span class="text-danger" title="Obrigatório">*</span></label>
-                    <input  class="form-control" type="text" name="product-size" id="product-size" placeholder="Ex: 23cm, 32cm" required>
+                  <div class="col-6">
+                    <label class="form-label" for="product-type">Categoria <span class="text-danger" title="Campo obrigatório">*</span></label>
+                    <select class="form-select" name="product-category" id="product-category" required>
+                      <option value="" data-default disabled selected></option>
+                      <option value="Joia">Jóia</option>
+                      <option value="Semijoia">Semijóias</option>
+                      <option value="Bijuteria">Bijuterias</option>
+                      <option value="Lingerie">Lingerie</option>
+                    </select>
                   </div>
-                  <div class="col-6 col-md-3 col-lg-3">
-                      <label class="form-label" for="product-type">Tipo <span class="text-danger" title="Obrigatório">*</span></label>
-                      <select class="form-select" name="product-type" id="product-type" required>
-                        <option value="" data-default disabled selected></option>
-                        <option value="Anel">Anel</option>
-                        <option value="Colar">Colar</option>
-                        <option value="Brinco">Brinco</option>
-                        <option value="Pulseira">Pulseira</option>
-                        <option value="Calcinha">Lingerie</option>
-                      </select>
-                  </div>
-                  <div class="col-6 col-md-3 col-lg-3">
-                      <label class="form-label" for="product-type">Categoria <span class="text-danger" title="Obrigatório">*</span></label>
-                      <select class="form-select" name="product-category" id="product-category" required>
-                        <option value="" data-default disabled selected></option>
-                        <option value="Joia">Jóia</option>
-                        <option value="Semijoia">Semijóias</option>
-                        <option value="Bijuteria">Bijuterias</option>
-                        <option value="Lingerie">Lingerie</option>
-                      </select>
-                  </div>
-              </div>
+                </div>
   
               <div class="row g-2 mt-3 justify-content-end">
                   <button class="btn btn-primary col-12 col-lg-3" type="submit">Cadastrar</button>
@@ -237,18 +281,25 @@
           <table class="table">
             <thead>
               <tr id="edit-header-scope-table">
-                <th scope="col">ID</th>
-                <th scope="col">Produto</th>
-                <th scope="col">Tipo</th>
-                <th scope="col">Valor</th>
-                <th scope="col">Promoção</th>
-                <th class="primary-text border-dark" scope="col">Ação</th>
               </tr>
             </thead>
             <tbody id="edit-body-table">
             </tbody>
           </table>
       </section>
+
+      <section class="container hide option-container" id="disabled-product-container">
+        <h5 class="border-b pb-1 mb-4 mt-3">PRODUTOS DESATIVADOS</h5>
+      <div class="d-flex justify-content-center flex-wrap">
+        <table class="table">
+          <thead>
+            <tr id="disabled-header-scope-table">
+            </tr>
+          </thead>
+          <tbody id="disabled-body-table">
+          </tbody>
+        </table>
+    </section>
 
       <section class="container hide option-container" id="banners-container">
         <h5 class="border-b pb-1 mb-4 mt-3">BANNERS</h5>
@@ -332,6 +383,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="/src/pages/admin/script.js"></script>
+  <script src="/src/pages/admin/disabled-list.js"></script>
   <script src="/src/script/adminApp.js"></script>
 </body>
 </html>

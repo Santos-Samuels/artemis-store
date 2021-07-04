@@ -185,35 +185,60 @@ const createModal = (product) => {
                     </div>
                     
                     <div class="row mt-2 g-2">
-                    <div class="col-6 col-md-3 col-lg-3">
-                    <label class="form-label" for="product-color">Cor <span class="text-danger" title="Obrigatório">*</span></label>
-                    <input class="form-control" type="text" name="product-color" id="product-color" placeholder="Ex: Azul, Branco" value="${product.color}" required>
+                        <div class="col-6">
+                        <label class="form-label" for="product-color">Cor <span class="text-danger" title="Campo obrigatório">*</span></label>
+                        <div class="row g-0">
+                            <div class="col-12 d-flex align-items-center flex-nowrap">
+                            <input class="form-control col" type="text" name="product-color" id="product-color-name" placeholder="Ex: Amarelo" required>
+                            <input class="form-control product-color-input ms-2" type="color" id="product-color" value="#FFD700" required>
+                            <i class="bi bi-plus-circle new-button ms-2 me-1" onclick="newColorField()" title="Adicionar campo"></i>
+                            </div>
+                        </div>
+    
+                        <div class="row" id="color-input-form-container">
+                        </div>
+                        </div>
+    
+                        <div class="col-6">
+                        <label class="form-label" for="product-size">Tamanho (cm) <span class="text-danger" title="Campo obrigatório">*</span></label>
+                        <div class="row g-0">
+                            <div class="col-12 d-flex align-items-center flex-nowrap">
+                            <input class="form-control col" type="text" name="product-size" id="product-size-name" min="0" placeholder="Ex: 23" required>
+                            <i class="bi bi-plus-circle new-button ms-2 me-1" onclick="newSizeField()" title="Adicionar campo"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="row" id="size-input-form-container">
+                        </div>
+                        </div>
                     </div>
-                    <div class="col-6 col-md-3 col-lg-3">
-                    <label class="form-label" for="product-size">Tamanho <span class="text-danger" title="Obrigatório">*</span></label>
-                    <input  class="form-control" type="text" name="product-size" id="product-size" placeholder="Ex: 23cm, 32cm" value="${product.size}" required>
-                    </div>
-                    <div class="col-6 col-md-3 col-lg-3">
-                        <label class="form-label" for="product-type">Tipo <span class="text-danger" title="Obrigatório">*</span></label>
-                        <select class="form-select" name="product-type" id="product-type" value=${product.type} required>
+    
+                    <div class="row mt-2 g-2">
+                    <div class="col-6">
+                        <label class="form-label" for="product-type">Tipo <span class="text-danger" title="Campo obrigatório">*</span></label>
+                        <select class="form-select" name="product-type" id="product-type" required>
                         <option value="" data-default disabled selected></option>
                         <option value="Anel">Anel</option>
                         <option value="Colar">Colar</option>
                         <option value="Brinco">Brinco</option>
                         <option value="Pulseira">Pulseira</option>
-                        <option value="Lingerie">Lingerie</option>
+                        <option value="Calcinha">Lingerie</option>
                         </select>
                     </div>
-                    <div class="col-6 col-md-3 col-lg-3">
-                        <label class="form-label" for="product-type">Categoria <span class="text-danger" title="Obrigatório">*</span></label>
-                        <select class="form-select" name="product-category" id="product-category" value=${product.category}required>
+                    <div class="col-6">
+                        <label class="form-label" for="product-type">Categoria <span class="text-danger" title="Campo obrigatório">*</span></label>
+                        <select class="form-select" name="product-category" id="product-category" required>
                         <option value="" data-default disabled selected></option>
                         <option value="Joia">Jóia</option>
-                        <option value="Semijoias">Semijóias</option>
-                        <option value="Bijuterias">Bijuterias</option>
+                        <option value="Semijoia">Semijóias</option>
+                        <option value="Bijuteria">Bijuterias</option>
                         <option value="Lingerie">Lingerie</option>
                         </select>
                     </div>
+                    </div>
+    
+                <div class="row g-2 mt-3 justify-content-end">
+                    <button class="btn btn-primary col-12 col-lg-3" type="submit">Cadastrar</button>
                 </div>
             </form>
         `;
@@ -271,8 +296,8 @@ const removeProduct = async (productId) => {
     });//
 }
 
-const toggleDropDown = () => {
-    const links = document.querySelectorAll('.dropdown-link')
+const toggleDropDown = (linksClass) => {
+    const links = document.querySelectorAll(linksClass)
 
     links.forEach(link => {
         link.classList.contains('hide') ? link.classList.remove('hide') : link.classList.add('hide')
@@ -313,14 +338,14 @@ function isColor(strColor){
     return s.color == strColor;
 }
 
-const loadSales = async () => {
+const loadNewSales = async () => {
     await axios({
         method: "get",
         url: "api/request/",
         headers: { "Content-Type": "multipart/alternative" },
     }).then(function (response) {
         console.log(response.data);
-        loadSale(response.data.item);
+        loadNewSale(response.data.item);
     })
     .catch(function (error) {
         console.log(error);
@@ -329,7 +354,7 @@ const loadSales = async () => {
 
 
 
-const loadSale = (orders) => {
+const loadNewSale = (orders) => {
     const salseContainer = document.querySelector('#sale-header-body')
     const saleContainerHeaderScope = document.querySelector('#sale-header-scope-table')
     
@@ -345,7 +370,7 @@ const loadSale = (orders) => {
         const html = `
             <th class="text-center mt-5 text-secondary border-0">
                 <i class="bi bi-info-circle fs-1"></i>
-                <h3 class="">Nenhuma venda</h3>
+                <h3 class="">Nenhum venda nova</h3>
             </th>
         `
         saleContainerHeaderScope.insertAdjacentHTML('beforeend', html)
@@ -377,6 +402,56 @@ const loadSale = (orders) => {
             `
     
             salseContainer.insertAdjacentHTML('beforeend', html)
+        })
+        _orders = orders;
+    }
+    
+}
+
+const loadDoneSale = (disabledList) => {
+    const doneSaleContainer = document.querySelector('#done-sale-header-body')
+    const doneSaleContainerHeaderScope = document.querySelector('#done-sale-header-scope-table')
+    
+    doneSaleContainer.querySelectorAll('tr').forEach(element => {
+        element.remove()
+    })
+
+    doneSaleContainerHeaderScope.querySelectorAll('th').forEach(element => {
+        element.remove()
+    })
+
+    if(disabledList.length == 0) {
+        const html = `
+            <th class="text-center mt-5 text-secondary border-0">
+                <i class="bi bi-info-circle fs-1"></i>
+                <h3 class="">Nenhuma venda concluída</h3>
+            </th>
+        `
+        doneSaleContainerHeaderScope.insertAdjacentHTML('beforeend', html)
+    }
+    else {
+
+        doneSaleContainerHeaderScope.innerHTML = `
+            <th scope="col">Nº do Pedido</th>
+            <th scope="col">Cliente</th>
+            <th scope="col">Status</th>
+            <th scope="col">Total</th>
+            <th scope="col">Data da Compra</th>
+            <th class="primary-text border-dark" scope="col">Ação</th>
+        `
+        disabledList.forEach(order => {
+            const html = `
+                <tr>
+                    <th scope="row">${order.id}</th>
+                    <td>${titleize(order.title)}</td>
+                    <td>${order.status}</td>
+                    <td class="order-price">Null</td>
+                    <td>${order.date}</td>
+                    <td><i class="bi bi-eye-fill me-2 primary-text-hover cursor-pointer" title="Ver mais" data-bs-toggle="modal" data-bs-target="#viewOrderModal" onclick="loadViewOrderModal(${order.id})"></i></td>
+                </tr>
+            `
+    
+            doneSaleContainer.insertAdjacentHTML('beforeend', html)
         })
         _orders = orders;
     }
@@ -503,7 +578,7 @@ const updateOrder = async () => {
         console.log(response.data);
         if(response.data.msg == "Funfou"){
             alert("Produto atualizado com sucesso !");
-            loadSales();
+            loadNewSales();
         }
     })
     .catch(function (error) {
@@ -532,7 +607,7 @@ const removeSale = (orders, orderID) => {
          })
     }
 
-    loadSale(orders)
+    loadNewSale(orders)
 }
 
 function actionFeedback(div) {
@@ -541,4 +616,89 @@ function actionFeedback(div) {
             $(div).fadeOut();
         }, 2000);
     });
+}
+
+var colorFieldIndex = 0;
+var sizeFieldIndex = 0;
+
+function newColorField() {
+    colorFieldIndex++
+    let colorDiv = document.querySelector('#color-input-form-container')
+
+    const html  = `
+        <article class="col-12 d-flex align-items-center flex-nowrap" id="color-field${colorFieldIndex}">
+            <input class="form-control mt-2" type="text" name="product-color" id="product-color-name${colorFieldIndex}" placeholder="Ex: Amarelo" required>
+            <input class="form-control product-color-input ms-2" type="color" id="product-color" value="#FFD700" required>
+            <i class="bi bi-trash new-button ms-2 me-1 mt-1 pointer" onclick="removeField('#color-field${colorFieldIndex}')" title="Remover campo"></i>
+        </article>
+    `
+
+    colorDiv.insertAdjacentHTML('beforeend', html)
+}
+
+function newSizeField() {
+    sizeFieldIndex++
+    let sizeDiv = document.querySelector('#size-input-form-container')
+
+    const html  = `
+        <article class="col-12 d-flex align-items-center flex-nowrap" id="size-field${sizeFieldIndex}">
+            <input class="form-control mt-2" type="text" name="product-size" id="product-size-name${sizeFieldIndex}" placeholder="Ex: 23">
+            <i class="bi bi-trash new-button ms-2 me-1 mt-1 pointer" onclick="removeField('#size-field${sizeFieldIndex}')" title="Remover campo"></i>
+        </article>
+    `
+
+    sizeDiv.insertAdjacentHTML('beforeend', html)
+}
+
+function removeField(id) {
+    document.querySelector(id).remove()
+}
+
+const loadDisabledProducts = (disabledList) => {
+    const disabledContainer = document.querySelector('#disabled-body-table')
+    const disabledContainerHeaderScope = document.querySelector('#disabled-header-scope-table')
+    
+    disabledContainer.querySelectorAll('tr').forEach(element => {
+        element.remove()
+    })
+
+    disabledContainerHeaderScope.querySelectorAll('th').forEach(element => {
+        element.remove()
+    })
+
+
+    if(disabledList.length == 0) {
+        const html = `
+            <th class="text-center mt-5 text-secondary border-0">
+                <i class="bi bi-info-circle fs-1"></i>
+                <h3 class="">Nenhum produto desativado</h3>
+            </th>
+        `
+        disabledContainerHeaderScope.insertAdjacentHTML('beforeend', html)
+    }
+    else {
+        disabledContainerHeaderScope.innerHTML = `
+            <th scope="col">ID</th>
+            <th scope="col">Produto</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Valor</th>
+            <th scope="col">Promoção</th>
+            <th class="primary-text border-dark" scope="col">Ação</th>
+        `
+
+        disabledList.forEach(product => {
+            const html = `
+                <tr>
+                    <th scope="row">${product.id}</th>
+                    <td>${product.title}</td>
+                    <td>${product.type}</td>
+                    <td class="order-price">${product.price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</td>
+                    <td>${product.promo.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</td>
+                    <td><i class="bi bi-eye-fill me-2 primary-text-hover cursor-pointer" title="Ver mais"> </i><i class="bi bi-eye me-2 primary-text-hover cursor-pointer" title="Ativar"></i></i></td>
+                </tr>
+            `
+    
+            disabledContainer.insertAdjacentHTML('beforeend', html)
+        });
+    }
 }

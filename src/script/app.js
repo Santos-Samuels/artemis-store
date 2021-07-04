@@ -85,12 +85,12 @@ const loadCart = () => {
                     </div>
                     <div class="me-4 col">
                         <h6>${item.product.product_name}</h6>
-                        <input onchange="ChangeQuantity(${item.product.id}, 'cart-${item.itemId}' ,${item.itemId})" id="cart-${item.itemId}" class="bag-product-quantity form-control" type="number" name="bag-product-quantity" id="${item.product.id}" min="0" max="${item.stock}" value="${item.quantity}">
-                        <div>
+                        <div class="mb-1">
                             <i class="bi bi-info-circle me-1"></i>
                             <span class="me-1 pe-2 border-end">Azul</span>
                             <span>45 cm</span>
                         </div>
+                        <input onchange="ChangeQuantity(${item.product.id}, 'cart-${item.itemId}' ,${item.itemId})" id="cart-${item.itemId}" class="bag-product-quantity form-control" type="number" name="bag-product-quantity" id="${item.product.id}" min="0" max="${item.stock}" value="${item.quantity}">
                     </div>
                     <div class="col-2">
                         <p class="mb-0 bag-product-price">${item.product.price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</p>

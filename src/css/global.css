@@ -143,3 +143,8 @@ tbody tr:hover {
 .text-light {
   color: var(--accents-6) !important;
 }
+
+.heartButton:hover {
+  transition: all 0.4s;
+  border-color: var(--accents-6) !important;
+}

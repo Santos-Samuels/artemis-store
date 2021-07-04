@@ -1,4 +1,4 @@
-const orders = [
+const disabledList = [
     {
         id: 1,
         title: "Colar blue stone",

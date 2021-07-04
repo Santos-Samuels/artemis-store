@@ -45,12 +45,13 @@
         </ul>
         
         <span class="input-group d-flex w-50 me-auto">
-          <input class="form-control me-3" name="search" id="search" placeholder="Pesquisar produtos ...">
+          <input class="form-control" name="search" id="search" placeholder="Pesquisar produtos ...">
+          <button class="btn btn-outline-secondary me-3"><i class="bi bi-search"></i></button>
         </span>
         
         <div class="navbar-text d-flex align-items-center fs-4" id="user-options-container">
-          <i class="bi bi-bag pe-4 zoom" data-bs-toggle="offcanvas" data-bs-target="#userBag" aria-controls="userBag"></i>
-          <i class="bi bi-heart pe-4 zoom"></i>
+          <i class="bi bi-cart mb-1 pe-4 zoom text-secondary" data-bs-toggle="offcanvas" data-bs-target="#userBag" aria-controls="userBag"></i>
+          <a class="pe-4 zoom text-secondary" href="/favoritos"><i class="bi bi-heart"></i></a>
           <i class="bi bi-person-fill rounded-circle zoom" id="user" data-bs-toggle="modal" data-bs-target="#userLogin"></i>
         </div>
       </div>
@@ -101,6 +102,7 @@
                 <input class="form-control mt-3" type="text" name="signup-district" id="signup-district" placeholder="Bairro">
                 <input class="form-control mt-3" type="text" name="signup-city" id="signup-city" placeholder="Cidade">
                 <input class="form-control mt-3" type="text" name="signup-reference-point" id="signup-reference-point" placeholder="Ponto de referência">
+                <input class="form-control mt-3" type="text" name="cep" id="cep" placeholder="CEP">
                 <button class="btn btn-primary mt-3 w-100">EFETUAR CADASTRO</button>
               </form>
             </div>

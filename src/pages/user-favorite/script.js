@@ -16,19 +16,40 @@ const updateFavorites = async () => {
 const loadFavorite = (favorites) => {
     const productsContainer = document.querySelector('#favorite-container')
     
-
-    favorites.forEach(product => {
+    productsContainer.innerHTML = ""
+    if(favorites.length == 0) {
         const html = `
-            <article class="m-4 product">
-                <img class="rounded" src="${product.product_images[0]}" alt="${product.product_name}">
-                <h5 class="pt-2">${product.product_name}</h5>
-                <p>Por: <span class="fw-bold price fs-2">${product.price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span></p>
-                <a class="btn btn-primary w-100 text-center" onclick="addProductBag(bag)" data-bs-toggle="offcanvas" data-bs-target="#userBag" aria-controls="userBag">COMPRAR</a>
-            </article>
+            <div class="text-center mt-5 text-secondary border-0">
+                <i class="bi bi-info-circle fs-1"></i>
+                <h3 class="">Você ainda não tem favoritos</h3>
+            </div>
         `
 
         productsContainer.insertAdjacentHTML('beforeend', html)
-    });
+    }
+    else {
+        favorites.forEach(product => {
+            const html = `
+                <article class="m-4 product">
+                    <img class="rounded" src="${product.product_images[0]}" alt="${product.product_name}">
+                    <h5 class="pt-2">${product.product_name}</h5>
+                    <p class="mb-0">De: <span class="fs-6 text-decoration-line-through">${product.price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span></p>
+                    <p>Por: <span class="fw-bold price fs-2">${product.price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span></p>
+                    <a class="btn btn-primary w-100 text-center" onclick="addProductBag(bag)" data-bs-toggle="offcanvas" data-bs-target="#userBag" aria-controls="userBag">COMPRAR</a>
+                    <div class="mt-2">
+                        <div class="d-flex align-items-center border border-2 rounded p-0 cursor-pointer text-secondary justify-content-center heartButton" style="background-color: white;">
+                            <i class="bi fs-4 me-2 ms-3 bi-trash-fill" id="heartIcon"></i>
+                            <p class="mb-0 h6">REMOVER</p>
+                        </div>
+                    </div>
+                </article>
+            `
+    
+            productsContainer.insertAdjacentHTML('beforeend', html)
+        });
+    }
+
+    
 }
 
 window.onload = updateFavorites();
