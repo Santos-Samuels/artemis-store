@@ -397,7 +397,7 @@ const loadNewSale = (orders) => {
                     <td>${order.status}</td>
                     <td class="order-price">${order.total_price}</td>
                     <td>${dateNow}</td>
-                    <td><i class="bi bi-eye-fill me-2 primary-text-hover cursor-pointer" title="Ver mais" data-bs-toggle="modal" data-bs-target="#viewOrderModal" onclick="loadViewOrderModal(${order.id})"></i> <i class="bi bi-cart-check-fill primary-text-hover cursor-pointer" onclick="removeSale(${order.id}), actionFeedback('success-sale')" title="Concluir venda"></i></td>
+                    <td><i class="bi bi-eye-fill me-2 primary-text-hover cursor-pointer" title="Ver mais" data-bs-toggle="modal" data-bs-target="#viewOrderModal" onclick="loadViewOrderModal(${order.id})"></i> <i class="bi bi-cart-check-fill primary-text-hover cursor-pointer" onclick="removeSale(${order.id}), actionFeedback('#success-sale')" title="Concluir venda"></i></td>
                 </tr>
             `
     
@@ -694,11 +694,77 @@ const loadDisabledProducts = (disabledList) => {
                     <td>${product.type}</td>
                     <td class="order-price">${product.price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</td>
                     <td>${product.promo.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</td>
-                    <td><i class="bi bi-eye-fill me-2 primary-text-hover cursor-pointer" title="Ver mais"> </i><i class="bi bi-eye me-2 primary-text-hover cursor-pointer" title="Ativar"></i></i></td>
+                    <td><i class="bi bi-eye-fill me-2 primary-text-hover cursor-pointer" data-bs-toggle="modal" data-bs-target="#viewDisabledProductModal" onclick="loadViewDisabledProductModal(${product.id}, disabledList)" title="Ver mais"></i> <i class="bi bi-eye me-2 primary-text-hover cursor-pointer" onclick="actionFeedback('#success-actived')" title="Ativar"></i></i></td>
                 </tr>
             `
     
             disabledContainer.insertAdjacentHTML('beforeend', html)
         });
     }
+}
+
+
+const loadViewDisabledProductModal = (productID, disabledList) => {
+    const viewDisabledProductContainer = document.querySelector('#view-disabled-product-container')
+    
+    viewDisabledProductContainer.innerHTML = ""
+    disabledList.forEach(item => {
+        if(item.id == productID) {
+            const html = `
+                <div id="${item.type}-${item.id}">
+                    <article class="d-flex ps-3 border-bottom pb-3 pt-3">
+                        <div>
+                            <img src="${item.image}" class="sale-image rounded me-3">
+                        </div>
+                        <div>
+                            <h5 class="mb-0">${item.title}</h5>
+                            <div>
+                                <i class="bi bi-info-circle"></i>
+                                <span class="me-1">${item.type.toUpperCase()} | </span>
+                                <span>${item.category.toUpperCase()}</span>
+                            </div>
+                            <span>Estoque: ${item.stock}</span><br>
+                            <span class="text-secondary text-decoration-line-through">${item.price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span>
+                            <span class="fw-bold text-secondary h4">${item.promo.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span>
+                        </div>
+                    </article>
+
+
+                    <div class="row ms-2 mt-2">
+                        <div class="col">
+                            <h5>Cores</h5>
+                            ${item.colorNameList.map((colorName, index) => {
+                                return `
+                                    <div class="mb-2">
+                                        <span class="me-2 pe-2">${colorName.toUpperCase()}</span>
+                                        <span class="rounded border" style="background-color: ${item.colorHexList[index]}; padding: 3px 12px;"></span> <br>
+                                    </div>
+                                `
+                            })}
+                        </div>
+
+                        <div class="col">
+                            <h5>Tamanhos</h5>
+                            ${item.sizeList.map((size) => {
+                                return `
+                                    <div class="mb-2">
+                                        <span class="me-1">${size}</span>
+                                        <span> cm</span>
+                                    </div>
+                                `
+                            })}
+                        </div>
+                    </div>
+
+                    <div class="m-3 border-top pt-2">
+                        <h5>Descrição</h5>
+                        <p class="">${item.description}</p>
+                    </div>
+                </div>
+            </div>
+            `
+
+            viewDisabledProductContainer.insertAdjacentHTML('beforeend', html)
+        }
+    })
 }

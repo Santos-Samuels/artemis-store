@@ -7,19 +7,11 @@ const disabledList = [
         price: 29.90,
         promo: 24.90,
         image: "/assets/img/colar-blue-stone.jpeg",
-        description: `É que eu era pequeninin' tipo Plutão
-        Você veio do nada, yaya, me deu a mão
-        Depois me fez voar por onde eu jamais voei
-        E com o passar dos anos olha o que a gente fez, yeah
-        Gata, eu fiz meu corre, né?
-        Em silêncio é sério, eu nem sequer postei story, né?
-        Hoje eu boto qualquer Jordan que eu quiser no meu pé
-        Deixo eles na bota só falando
-        Abaixo do rastreador ninguém sabe onde eu tô
-        Eu sigo no meu plano`,
+        description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`,
         stock: 5,
-        colorList: "branco, preto, prata, ouro",
-        sizeList: "25, 30, 35, 45",
+        colorNameList: ['branco', 'preto', 'prata', 'ouro'],
+        colorHexList: ['#FFFFFF', '#000000', '#C0C0C0', '#ffd700'],
+        sizeList: ['25', '30', '35', '45'],
         date: "22/10/2021",
         status: "entregue",
         paymentType: "Cartão"
@@ -33,19 +25,11 @@ const disabledList = [
         price: 69.90,
         promo: 64.90,
         image: "/assets/img/aliancas-white-stone.jpeg",
-        description: `É que eu era pequeninin' tipo Plutão
-        Você veio do nada, yaya, me deu a mão
-        Depois me fez voar por onde eu jamais voei
-        E com o passar dos anos olha o que a gente fez, yeah
-        Gata, eu fiz meu corre, né?
-        Em silêncio é sério, eu nem sequer postei story, né?
-        Hoje eu boto qualquer Jordan que eu quiser no meu pé
-        Deixo eles na bota só falando
-        Abaixo do rastreador ninguém sabe onde eu tô
-        Eu sigo no meu plano`,
+        description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`,
         stock: 12,
-        colorList: "branco, preto, prata, ouro",
-        sizeList: "25, 30, 35, 45",
+        colorNameList: ['branco', 'preto', 'prata', 'ouro'],
+        colorHexList: ['#FFFFFF', '#000000', '#C0C0C0', '#ffd700'],
+        sizeList: ['25', '30', '35', '45'],
         date: "23/10/2021",
         status: "preparando",
         paymentType: "Dinheiro"
@@ -59,19 +43,11 @@ const disabledList = [
         price: 29.90,
         promo: 24.90,
         image: "/assets/img/colar-white-stone.jpeg",
-        description: `É que eu era pequeninin' tipo Plutão
-        Você veio do nada, yaya, me deu a mão
-        Depois me fez voar por onde eu jamais voei
-        E com o passar dos anos olha o que a gente fez, yeah
-        Gata, eu fiz meu corre, né?
-        Em silêncio é sério, eu nem sequer postei story, né?
-        Hoje eu boto qualquer Jordan que eu quiser no meu pé
-        Deixo eles na bota só falando
-        Abaixo do rastreador ninguém sabe onde eu tô
-        Eu sigo no meu plano`,
+        description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`,
         stock: 9,
-        colorList: "branco, preto, prata, ouro",
-        sizeList: "25, 30, 35, 45",
+        colorNameList: ['branco', 'preto', 'prata', 'ouro'],
+        colorHexList: ['#FFFFFF', '#000000', '#C0C0C0', '#ffd700'],
+        sizeList: ['25', '30', '35', '45'],
         date: "25/10/2021",
         status: "pendente",
         paymentType: "Cartão"

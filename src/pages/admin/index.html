@@ -51,6 +51,7 @@
         </div>
       </div>
     </section>
+    
     <section>
       <div class="modal fade" id="viewOrderModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="viewOrderModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
@@ -70,30 +71,73 @@
         </div>
       </div>
     </section>
+
+    <section>
+      <div class="modal fade" id="viewOrderModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="viewOrderModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="viewOrderModalLabel">VER PEDIDO</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div id="view-order-container">
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+              <button type="button" class="btn btn-success" onclick="updateOrder()" data-bs-dismiss="modal">Editar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="modal fade" id="viewDisabledProductModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="viewDisabledProductModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="viewDisabledProductModalLabel">VER MAIS</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div id="view-disabled-product-container">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success" data-bs-dismiss="modal">Ok</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </modal>
 
   <feedback>
-    <div class="bg-success p-2 ps-3 pe-3 rounded text-white position-absolute bottom-0 start-50 translate-middle mb-4 me-4 hide" id="success-sale">
+    <div class="bg-success p-2 ps-3 pe-3 rounded text-white position-absolute bottom-0 start-50 translate-middle mb-4 me-4" style="display: none;" id="success-sale">
       <i class="bi bi-check-circle fs-5 me-2"></i>
       <span style="font-weight: 600;">Venda concluída!</span>
     </div>
   
-    <div class="bg-success p-2 ps-3 pe-3 rounded text-white position-absolute bottom-0 start-50 translate-middle mb-4 me-4 hide" id="success-new-product">
+    <div class="bg-success p-2 ps-3 pe-3 rounded text-white position-absolute bottom-0 start-50 translate-middle mb-4 me-4" style="display: none;" id="success-new-product">
       <i class="bi bi-check-circle fs-5 me-2"></i>
       <span style="font-weight: 600;">Produto cadastrado!</span>
     </div>
   
-    <div class="bg-danger p-2 ps-3 pe-3 rounded text-white position-absolute bottom-0 start-50 translate-middle mb-4 me-4 hide" id="error-new-product-color">
+    <div class="bg-danger p-2 ps-3 pe-3 rounded text-white position-absolute bottom-0 start-50 translate-middle mb-4 me-4" style="display: none;" id="error-new-product-color">
       <i class="bi bi-exclamation-circle fs-5 me-2"></i>
       <span style="font-weight: 600;">Cor inválida!</span>
     </div>
     
-    <div class="bg-success p-2 ps-3 pe-3 rounded text-white position-absolute bottom-0 start-50 translate-middle mb-4 me-4 hide" id="success-remove">
+    <div class="bg-success p-2 ps-3 pe-3 rounded text-white position-absolute bottom-0 start-50 translate-middle mb-4 me-4" style="display: none;" id="success-remove">
       <i class="bi bi-check-circle fs-5 me-2"></i>
       <span style="font-weight: 600;">Produto removido!</span>
     </div>
     
-    <div class="bg-danger p-2 ps-3 pe-3 rounded text-white position-absolute bottom-0 start-50 translate-middle mb-4 me-4 hide" id="error-void-field">
+    <div class="bg-success p-2 ps-3 pe-3 rounded text-white position-absolute bottom-0 start-50 translate-middle mb-4 me-4" style="display: none;" id="success-actived">
+      <i class="bi bi-check-circle fs-5 me-2"></i>
+      <span style="font-weight: 600;">Produto ativado!</span>
+    </div>
+    
+    <div class="bg-danger p-2 ps-3 pe-3 rounded text-white position-absolute bottom-0 start-50 translate-middle mb-4 me-4" style="display: none;" id="error-void-field">
       <i class="bi bi-exclamation-circle fs-5 me-2"></i>
       <span style="font-weight: 600;">Campo vazio!</span>
     </div>
@@ -132,7 +176,7 @@
           <h5 class="border-b pb-1 mb-4 mt-3">PAINEL DE CONTROLE</h5>
           <div class="d-flex flex-wrap justify-content-center text-center container" id="circle-container">
               <div class="circle m-3">
-                  <i class="bi bi-cart-fill fs-1"></i>
+                  <i class="bi bi-cart-plus-fill fs-1"></i>
                   <p class="m-auto"><span>30</span> Novas Vendas</p>
               </div>
               <div class="circle m-3">
