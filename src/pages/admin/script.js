@@ -188,7 +188,7 @@ const _loadEditProducts = (products) => {
                     <td>${product.type}</td>
                     <td class="order-price">${product.price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</td>
                     <td>${product.promotion.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</td>
-                    <td><i class="bi bi-pencil-fill me-2 primary-text-hover cursor-pointer" onclick="editProductModal(${product.id})" title="Editar" data-bs-toggle="modal" data-bs-target="#editProductModal"></i> <i class="bi bi-eye-slash-fill primary-text-hover cursor-pointer" onclick="disableProduct(${product.id}), actionFeedback('#success-disabled-product')" title="Desativar"></i> <i class="bi bi-trash-fill primary-text-hover cursor-pointer" onclick="removeProduct(${product.id}), actionFeedback('#success-remove')" title="Excluir"></i></td>
+                    <td><i class="bi bi-pencil-fill me-1 primary-text-hover cursor-pointer" onclick="editProductModal(${product.id})" title="Editar" data-bs-toggle="modal" data-bs-target="#editProductModal"></i> <i class="bi bi-eye-slash-fill me-1 primary-text-hover cursor-pointer" onclick="disableProduct(${product.id}), actionFeedback('#success-disabled-product')" title="Desativar"></i></td>
                 </tr>
             `
     
@@ -247,13 +247,9 @@ const createModal = (product) => {
                     
                     <div class="row mt-2 g-2">
                         <div class="col-6">
-                        <label class="form-label" for="product-color">Cor <span class="text-danger" title="Campo obrigatório">*</span></label>
-                        <div class="row g-0">
-                            <div class="col-12 d-flex align-items-center flex-nowrap">
-                            <input class="form-control col" type="text" name="product-color" id="product-color-name" placeholder="Ex: Amarelo" readonly>
-                            <input class="form-control product-color-input ms-2" type="color" id="product-color" value="#FFD700" readonly>
-                            <i class="bi bi-plus-circle new-button ms-2 me-1" onclick="newColorField()" title="Adicionar campo"></i>
-                            </div>
+                        <div class="d-flex  justify-content-between flex-nowrap">
+                            <label class="form-label" for="product-color">Cor <span class="text-danger" title="Campo obrigatório">*</span></label>
+                            <i class="bi bi-plus-circle new-button me-2" onclick="newColorField()" title="Adicionar campo" style="cursor: pointer;"> Novo</i>
                         </div>
     
                         <div class="row" id="color-input-form-container">
@@ -261,18 +257,15 @@ const createModal = (product) => {
                                 <article class="col-12 d-flex align-items-center flex-nowrap" id="color-field${++count}">
                                     <input class="form-control mt-2" type="text" name="product-color" id="product-color-name${count}" placeholder="Ex: Amarelo" value="${color_pt[count2++]}" required>
                                     <input class="form-control product-color-input ms-2" type="color" id="product-color-${count}" value="${color}" required>
-                                    <i class="bi bi-trash new-button ms-2 me-1 mt-1 pointer" onclick="removeField('#color-field${count}')" title="Remover campo"></i>
-                                </article>`})}
+                                    <i class="bi bi-trash new-button ms-2 me-1 mt-1" onclick="removeField('#color-field${count}')" title="Remover campo" style="cursor: pointer;"></i>
+                                </article>`}).join('')}
                         </div>
                         </div>
     
                         <div class="col-6">
-                        <label class="form-label" for="product-size">Tamanho (cm) <span class="text-danger" title="Campo obrigatório">*</span></label>
-                        <div class="row g-0">
-                            <div class="col-12 d-flex align-items-center flex-nowrap">
-                            <input class="form-control col" type="text" name="product-size" id="product-size-name" min="0" placeholder="Ex: 23" readonly>
-                            <i class="bi bi-plus-circle new-button ms-2 me-1" onclick="newSizeField()" title="Adicionar campo"></i>
-                            </div>
+                        <div class="d-flex  justify-content-between flex-nowrap">
+                            <label class="form-label" for="product-size">Tamanho (cm) <span class="text-danger" title="Campo obrigatório">*</span></label>
+                            <i class="bi bi-plus-circle new-button me-2" onclick="newSizeField()" title="Adicionar campo" style="cursor: pointer;"> Novo</i>
                         </div>
                         
                         <div class="row" id="size-input-form-container">
@@ -280,10 +273,9 @@ const createModal = (product) => {
                                 return `                        
                                     <article class="col-12 d-flex align-items-center flex-nowrap" id="size-field${sizeCount}">
                                         <input class="form-control mt-2" type="text" name="product-size" id="product-size-name${sizeCount}" placeholder="Ex: 23" value="${size}">
-                                        <i class="bi bi-trash new-button ms-2 me-1 mt-1 pointer" onclick="removeField('#size-field${sizeCount++}')" title="Remover campo"></i>
+                                        <i class="bi bi-trash new-button ms-2 me-1 mt-1 pointer" onclick="removeField('#size-field${sizeCount++}')" title="Remover campo" style="cursor: pointer;"></i>
                                     </article>
-                                `})
-                            }
+                                `}).join('')}
                         </div>
                         </div>
                     </div>
@@ -544,7 +536,7 @@ const _loadCompletedSales = (orders) => {
                     <td>${order.status}</td>
                     <td class="order-price">${order.total_price}</td>
                     <td>${order.purchase_date}</td>
-                    <td><i class="bi bi-eye-fill me-2 primary-text-hover cursor-pointer" title="Ver mais" data-bs-toggle="modal" data-bs-target="#viewOrderModal" onclick="loadViewOrderModal(${order.id})"></i></td>
+                    <td><i class="bi bi-eye-fill me-2 primary-text-hover cursor-pointer" title="Ver mais" data-bs-toggle="modal" data-bs-target="#viewOrderModal" onclick="loadViewDoneOrderModal(${order.id})"></i></td>
                 </tr>
             `
     
@@ -653,6 +645,95 @@ const loadViewOrderModal = (orderID) => {
     current_id = orderID;
 }
 
+const loadViewDoneOrderModal = (orderID) => {
+    const orders = _orders;
+    const viewSaleContainer = document.querySelector('#view-order-container')
+    
+    viewSaleContainer.innerHTML = ""
+    orders.forEach(order => {
+        if(order.id == orderID) {
+            const html = `
+                <div id="${order.type}-${order.id}">
+                    <div class="card card-body">
+                        <div class="row">
+                            <div class="col text-start">
+                                <p class="fw-bold text-secondary ps-3">Número do pedido: ${order.id}</p>
+                            </div>
+                            <div class="col text-end">
+                                <p class="fw-bold text-secondary ps-3">${order.purchase_date}</p>
+                            </div>
+                        </div>
+                        
+                        ${order.products.map((product) => {
+                            return `
+                            <article class="d-flex ps-3 border-bottom pb-3 pt-3">
+                                <div>
+                                    <img src="${product.product_images[0]}" class="sale-image rounded me-3">
+                                </div>
+                                <div>
+                                    <h5>${product.product_name}</h5>
+                                    <span>${product.quantity} unidade | </span> <span class="fw-bold text-secondary">${product.price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span><br>
+
+                                    <div>
+                                        <i class="bi bi-info-circle me-1"></i>
+                                        <span class="me-1 pe-2 border-end">${titleize(product.selected_color_pt)}</span>
+                                        <span>${titleize(product.selected_size)}</span>
+                                    </div>
+                                </div>
+                            </article>
+
+                            `;
+                        }).join('')}
+
+                        <div class="row text-center mt-4 border-bottom pb-4">
+                            <div class="col">
+                                <i class="bi bi-check-lg fs-4 primary-text"></i>
+                                <p class="fs-5 fw-bold">Pedido recebido</p>
+                            </div>
+                            
+                            <div class="col">
+                                <i ${order.status == "Preparando o pedido" || order.status == "Pedido Entregue" ? 'class="bi bi-check-lg fs-4 primary-text"' : 'class="bi bi-clock fs-4 text-secondary"'}></i>
+                                <p class="fs-5 fw-bold">Preparando pedido</p>
+                            </div>
+                            <div class="col">
+                            <i ${order.status == "Pedido Entregue" ? 'class="bi bi-check-lg fs-4 primary-text"' : 'class="bi bi-clock fs-4 text-secondary"'}></i>
+                                <p class="fs-5 fw-bold">Pedido entregue</p>
+                            </div>
+                        </div>
+
+                        <div class="row mt-5 ps-3">
+                            <div class="col-12 col-lg-4">
+                                <p class="fs-6 fw-bold">Pagamento:</p>
+                                <p class="fs-5">${order.payment_type == "1" ? '<i class="bi bi-cash-coin fs-4"></i>' : '<i class="bi bi-credit-card fs-4"></i>'} ${(order.payment_type == 1) ? "Dinheiro" : "Cartão"}</p>
+                            </div>
+
+                            <div class="col-12 col-lg-4">
+                                <p class="fs-6 fw-bold">Valor total:</p>
+                                <p class="mb-0 pb-2">subtotal: <span class="fw-bold ms-3 primary-text">${order.total_price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span> <br>
+                                desconto: <span class="fw-bold ms-3 primary-text">${(order.discounted_price).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span></p>
+                                <p class="fs-6 fw-bold mb-0 pb-3 primary-text">total: <span class="fw-bold ms-3">${(order.total_price - order.discounted_price).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span></p>
+                            </div>
+
+                            <div class="col-12 col-lg-4">
+                                <p>Comprador: ${titleize(order.name) + " " + titleize(order.surname)}</p>
+                                <p class="fs-6 fw-bold">Endereço:</p>
+                                <p>${order.adress} - ${order.number} - ${order.district} <br>
+                                ${order.reference_point} <br> ${order.city} - ${order.uf}</p>
+                                <p><i class="bi bi-whatsapp"></i> ${order.whatsapp}</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `
+
+            viewSaleContainer.insertAdjacentHTML('beforeend', html)
+        }
+    })
+
+    current_id = orderID;
+}
+
 const updateOrder = async () => {
     const status = document.getElementById("banner-select-3").value;
     console.log(current_id);
@@ -724,10 +805,10 @@ function newColorField() {
     let colorDiv = document.querySelector('#color-input-form-container')
 
     const html  = `
-        <article class="col-12 d-flex align-items-center flex-nowrap" id="color-field${colorFieldIndex}">
-            <input class="form-control mt-2" type="text" name="product-color" id="product-color-name${colorFieldIndex}" placeholder="Ex: Amarelo" required>
+        <article class="col-12 d-flex align-items-center flex-nowrap" id="color-field-${colorFieldIndex}">
+            <input class="form-control mt-2" type="text" name="product-color" id="product-color-name-${colorFieldIndex}" placeholder="Ex: Amarelo" required>
             <input class="form-control product-color-input ms-2" type="color" id="product-color-${colorFieldIndex}" value="#FFD700" required>
-            <i class="bi bi-trash new-button ms-2 me-1 mt-1 pointer" onclick="removeField('#color-field${colorFieldIndex}')" title="Remover campo"></i>
+            <i class="bi bi-trash new-button ms-2 me-1 mt-1 pointer" onclick="removeField('#color-field-${colorFieldIndex}')" title="Remover campo" style="cursor: pointer;"></i>
         </article>
     `
     colorDiv.insertAdjacentHTML('beforeend', html)
@@ -738,9 +819,9 @@ function newSizeField() {
     let sizeDiv = document.querySelector('#size-input-form-container')
 
     const html  = `
-        <article class="col-12 d-flex align-items-center flex-nowrap" id="size-field${sizeFieldIndex}">
-            <input class="form-control mt-2" type="text" name="product-size" id="product-size-name${sizeFieldIndex}" placeholder="Ex: 23">
-            <i class="bi bi-trash new-button ms-2 me-1 mt-1 pointer" onclick="removeField('#size-field${sizeFieldIndex}')" title="Remover campo"></i>
+        <article class="col-12 d-flex align-items-center flex-nowrap" id="size-field-${sizeFieldIndex}">
+            <input class="form-control mt-2" type="text" name="product-size" id="product-size-name-${sizeFieldIndex}" placeholder="Ex: 23">
+            <i class="bi bi-trash new-button ms-2 me-1 mt-1 pointer" onclick="removeField('#size-field-${sizeFieldIndex}')" title="Remover campo" style="cursor: pointer;"></i>
         </article>
     `
 
@@ -860,8 +941,7 @@ const _loadViewDisabledProductModal = (item) => {
                         <span>${item.category.toUpperCase()}</span>
                     </div>
                     <span>Estoque: ${item.quantity}</span><br>
-                    <span class="text-secondary text-decoration-line-through">${item.price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span>
-                    <span class="fw-bold text-secondary h4">${item.promotion.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span>
+                    ${item.promotion == 0.00 ? `<span class="fw-bold text-secondary h4">${item.price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span>` : `<span class="text-secondary text-decoration-line-through">${item.price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span> <span class="fw-bold text-secondary h4">${item.promotion.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span>`}
                 </div>
             </article>
 
@@ -872,11 +952,11 @@ const _loadViewDisabledProductModal = (item) => {
                     ${item.color_en.split(",").map((colorName, index) => {
                         return `
                             <div class="mb-2">
-                                <span class="me-2 pe-2">${color_pt[index].toUpperCase()}</span>
-                                <span class="rounded border" style="background-color: ${colorName}; padding: 3px 12px;"></span> <br>
+                                <span class="rounded border" style="background-color: ${colorName}; padding: 3px 12px;"></span>
+                                <span class="ms-2 ps-2">${color_pt[index].toUpperCase()}</span> <br>
                             </div>
                         `
-                    })}
+                    }).join('')}
                 </div>
 
                 <div class="col">
@@ -888,7 +968,7 @@ const _loadViewDisabledProductModal = (item) => {
                                 <span> cm</span>
                             </div>
                         `
-                    })}
+                    }).join('')}
                 </div>
             </div>
 

@@ -47,21 +47,10 @@ const loadCheckout = () => {
                                 <h5 class="text-secondary">${item.product.product_name}</h5>
                                 <div class="text-secondary">
                                     <div class="d-flex flex-row flex-nowrap">
-                                    <div class="me-2">
-                                        <label for="">Cor</label>
-                                        <select class="form-select" name="checkout-item-color" id="">
-                                            ${cores.map((cor) => { 
-                                                return `<option value="${cor}" ${(cor == item.selectedColor ? "selected" : "")}>${cor}</option>`
-                                            })}
-                                        </select>
-                                    </div>
                                     <div>
-                                        <label for="">Tamanho</label>
-                                        <select class="form-select" name="checkout-item-size" id="">
-                                            ${tamanhos.map((tamanho) => { 
-                                                return `<option value="${tamanho}" ${(tamanho == item.selectedSize ? "selected" : "")}>${tamanho}</option>`
-                                            })}
-                                        </select>
+                                        <i class="bi bi-info-circle"></i>
+                                        <span class="me-1">${item.selectedColor} | </span>
+                                        <span>${item.selectedSize}</span>
                                     </div>
                                     </div>
                                 </div>
