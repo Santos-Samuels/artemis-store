@@ -1,44 +1,53 @@
-const loadAccessoryOffer = (products) => {
-    const accessoryOfferContainer = document.querySelector('#accessory-offer-container')
+// const loadAccessoryOffer = (products) => {
+//     const accessoryOfferContainer = document.querySelector('#accessory-offer-container')
 
-    for(i=0; i<products.length;  i++) {
-        if(products[i].type == "calsinha") {
-            const html = `
-                <article class="col mb-5">
-                    <img class="w-100 rounded" src="${products[i].image}" alt="${products[i].title}">
-                    <h5 class="pt-2">${products[i].title}</h5>
-                    <p>Por: <span class="fw-bold price fs-2">${products[i].price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span></p>
-                    <a class="btn btn-primary w-100 text-center">COMPRAR</a>
-                </article>
-            `
+//     for(i=0; i<products.length;  i++) {
+//         if(products[i].type == "calsinha") {
+//             const html = `
+//                 <article class="col mb-5">
+//                     <img class="w-100 rounded" src="${products[i].image}" alt="${products[i].title}">
+//                     <h5 class="pt-2">${products[i].title}</h5>
+//                     <p>Por: <span class="fw-bold price fs-2">${products[i].price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span></p>
+//                     <a class="btn btn-primary w-100 text-center">COMPRAR</a>
+//                 </article>
+//             `
 
-            accessoryOfferContainer.insertAdjacentHTML('beforeend', html)
-        }
-    }
-}
+//             accessoryOfferContainer.insertAdjacentHTML('beforeend', html)
+//         }
+//     }
+// }
+
+const register_form = document.getElementById('signup-form');
+register_form.addEventListener('submit', function(e) {
+    e.preventDefault()
+    
+    console.log("Funcionou");
+
+    registrar()
+});
 
 const GoToCheckout = () =>{
     console.log("Funfando")
     window.location.assign('/checkout');
 }
 
-const loadProducts = (products) => {
-    const productsContainer = document.querySelector('#products-container')
+// const loadProducts = (products) => {
+//     const productsContainer = document.querySelector('#products-container')
     
 
-    products.forEach(product => {
-        const html = `
-            <article class="m-4 product">
-                <img class="rounded" src="${product.image}" alt="${product.title}">
-                <h5 class="pt-2">${product.title}</h5>
-                <p>Por: <span class="fw-bold price fs-2">${product.price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span></p>
-                <a class="btn btn-primary w-100 text-center" onclick="addProductBag(bag, ${product.id}, '${product.title}', ${product.price}, '${product.image}', ${product.stock}, ${1})" data-bs-toggle="offcanvas" data-bs-target="#userBag" aria-controls="userBag">COMPRAR</a>
-            </article>
-        `
+//     products.forEach(product => {
+//         const html = `
+//             <article class="m-4 product">
+//                 <img class="rounded" src="${product.image}" alt="${product.title}">
+//                 <h5 class="pt-2">${product.title}</h5>
+//                 <p>Por: <span class="fw-bold price fs-2">${product.price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span></p>
+//                 <a class="btn btn-primary w-100 text-center" onclick="addProductBag(bag, ${product.id}, '${product.title}', ${product.price}, '${product.image}', ${product.stock}, ${1})" data-bs-toggle="offcanvas" data-bs-target="#userBag" aria-controls="userBag">COMPRAR</a>
+//             </article>
+//         `
 
-        productsContainer.insertAdjacentHTML('beforeend', html)
-    });
-}
+//         productsContainer.insertAdjacentHTML('beforeend', html)
+//     });
+// }
 
 const loadCart = () => {
     const bagContainer = document.querySelector('#bag-container-products')
@@ -87,8 +96,8 @@ const loadCart = () => {
                         <h6>${item.product.product_name}</h6>
                         <div class="mb-1">
                             <i class="bi bi-info-circle me-1"></i>
-                            <span class="me-1 pe-2 border-end">Azul</span>
-                            <span>45 cm</span>
+                            <span class="me-1 pe-2 border-end">${item.selectedColor}</span>
+                            <span>${item.selectedSize}</span>
                         </div>
                         <input onchange="ChangeQuantity(${item.product.id}, 'cart-${item.itemId}' ,${item.itemId})" id="cart-${item.itemId}" class="bag-product-quantity form-control" type="number" name="bag-product-quantity" id="${item.product.id}" min="0" max="${item.stock}" value="${item.quantity}">
                     </div>
@@ -98,7 +107,7 @@ const loadCart = () => {
                     </div>
                 </article>
             `
-            bagTotalPrice += parseInt(item.product.price);
+            bagTotalPrice += (parseFloat(item.product.price) * parseInt(item.quantity));
             bagContainer.insertAdjacentHTML('beforeend', html)
         });
         
@@ -255,8 +264,6 @@ const removeProductBag = (bag, productId) => {
 
 const ChangeQuantity = (id, input_id, itemId) =>{
     const input = document.getElementById(input_id);
-    console.log(id)
-    console.log(input.value);
     var cart = localStorage.getItem("cart");
     cart = JSON.parse(cart);
 
@@ -278,9 +285,8 @@ const searchProduct = (products, searchTerm) => products.filter(product => produ
 document.getElementById("login-button").addEventListener("click", () =>{
     login()
 });
-
-document.getElementById("register-button").addEventListener("click", () =>{
-    registrar()
+document.getElementById("cart-button-1").addEventListener("click", () =>{
+    loadCart()
 });
 
 const login = async () => {
@@ -314,7 +320,7 @@ const registrar = async () => {
     const surname = document.getElementById("signup-last-name").value;
     const login = document.getElementById("signup-email").value.toLowerCase();
     const password = document.getElementById("signup-password").value;
-    const password2 = document.getElementById("signup-password-2").value;
+    const password2 = document.getElementById("signup-password2").value;
 
     if(password2 != password){
         alert("Senhas não coincidem");
@@ -326,7 +332,7 @@ const registrar = async () => {
         return;
     }
 
-    var data = new FormData();
+    var data = new FormData(document.getElementById("signup-form"));
 
     data.append("name", name);
     data.append("surname", surname);
@@ -351,9 +357,44 @@ const registrar = async () => {
 
 }
 
+const logout = async () => {
+    await axios({
+        method: "get",
+        url: "api/logout/",
+        headers: { "Content-Type": "multipart/alternative" },
+    }).then(function (response) {
+        location.reload()
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+
+}
+
+const verifyLogin = async () => {
+    await axios({
+        method: "post",
+        url: `http://${window.location.hostname}/api/login/`,
+        headers: { "Content-Type": "multipart/alternative" },
+    }).then(function (response) {
+        if(response.data.userName){
+            connectedDiv = document.querySelector('#userDropdownConectedOptions')
+            disconnectedDiv =  document.querySelector('#user')
+        
+            connectedDiv.classList.remove('hide')
+            disconnectedDiv.classList.add('hide')
+
+            connectedDiv.querySelector('#dropdownMenuLink').innerHTML = response.data.userName;
+        }
+    })
+}
+
 function validateEmail(email) {
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
 }
 
-window.onload = loadCart;
+window.onload = () => {
+    verifyLogin();
+    loadCart();
+}

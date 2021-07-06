@@ -71,7 +71,7 @@ const _loadOrders = (orders) => {
                         return `
                         <article class="d-flex ps-3 border-bottom pb-3 pt-3">
                             <div>
-                                <img src="${product.product_images[0]}" class="sale-image rounded me-3">
+                                <img src="${product.product_images[0]}" class="order-image rounded me-3">
                             </div>
                             <div>
                                 <h5>${product.product_name}</h5>
@@ -101,15 +101,6 @@ const _loadOrders = (orders) => {
                         <div class="col">
                         <i ${order.status == "Pedido Entregue" ? 'class="bi bi-check-lg fs-4 primary-text"' : 'class="bi bi-clock fs-4 text-secondary"'}></i>
                             <p class="fs-5 fw-bold">Pedido entregue</p>
-                        </div>
-    
-                        <div class="border-top pt-3">
-                            <label for="sale-status" class="form-label fw-bold">Alterar o status: </label>
-                            <select class="form-select" name="banner-select-3" id="banner-select-3">
-                                <option value="1" data-default disabled selected>Pedido Feito</option>
-                                <option value="2">Preparando Produto</option>
-                                <option value="3">Pedido Entregue</option>
-                            </select>
                         </div>
                     </div>
     

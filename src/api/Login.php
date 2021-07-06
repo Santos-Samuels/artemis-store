@@ -7,6 +7,11 @@ switch ($method) {
     case 'POST':
         if(isset($_POST["login"]) and isset($_POST["password"])){
             loginIn();
+        }else if(!isset($_POST["login"]) and !isset($_POST["password"]) and isset($_COOKIE["userToken"])){
+            verifyLogin();
+        }else if(!isset($_POST["login"]) and !isset($_POST["password"]) and !isset($_COOKIE["userToken"])){
+            echo "algumacoisa";
+            break;
         }else{
             $retorno["msg"] = "Login ou Senha não digitados";
 
@@ -44,7 +49,7 @@ function loginIn(){
 
     $jwt_token = JWT_encode($user_data["id"], $user_data["name"]);
 
-    setcookie("userToken", $jwt_token, 0, "/");
+    setcookie("userToken", $jwt_token, time()+3600, "/");
     
     $retorno["msg"] = "Login concluido";
 
@@ -69,7 +74,8 @@ function getUserData(){
                     district, 
                     city, 
                     uf,
-                    reference_point 
+                    reference_point,
+                    cep
             FROM users 
             WHERE id = '$userId'";
 
@@ -86,6 +92,22 @@ function getUserData(){
 
     $retorno["user_data"] = $user_data;
 
+    $json = json_encode($retorno, JSON_UNESCAPED_UNICODE);
+    exit($json);
+}
+
+function verifyLogin(){
+    include "./utils/JWT.php";
+
+    try{
+        $userName = JWT_decode($_COOKIE["userToken"])["userName"];
+    }catch(Exception $e){
+        $retorno["msg"] = "Token não é valido";
+        $json = json_encode($retorno, JSON_UNESCAPED_UNICODE);
+        exit($json);
+    }
+
+    $retorno["userName"] = $userName;
     $json = json_encode($retorno, JSON_UNESCAPED_UNICODE);
     exit($json);
 }

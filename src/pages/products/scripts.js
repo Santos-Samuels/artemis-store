@@ -55,13 +55,13 @@ const filterProducts = async () => {
     });
 }
 
-function logout() {
-    conectedDiv = querySelector('#userDropdownConectedOptions')
-    desconectedDiv =  querySelector('#user')
+// function logout() {
+//     conectedDiv = querySelector('#userDropdownConectedOptions')
+//     desconectedDiv =  querySelector('#user')
 
-    conectedDiv.classList.add('hide')
-    desconectedDiv.classList.remove('hide')
-}
+//     conectedDiv.classList.add('hide')
+//     desconectedDiv.classList.remove('hide')
+// }
 
 // function login() {
 //     conectedDiv = querySelector('#userDropdownConectedOptions')

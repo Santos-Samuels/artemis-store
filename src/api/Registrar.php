@@ -41,7 +41,36 @@ function createNewUser(){
     $email = $_POST["email"];
     $password = criptografar($_POST["password"]);
 
-    $sql = "INSERT INTO users(name, surname, email, password) values ('$name', '$surname', '$email', '$password')";
+    $whatsapp = $_POST["whatsapp"];
+    $address = $_POST["address"];
+    $number = $_POST["number"];
+    $district = $_POST["district"];
+    $city = $_POST["city"];
+    $uf = $_POST["uf"];
+    $reference_point = $_POST["reference-point"];
+    $cep = $_POST["cep"];
+
+    // $retorno["msg"] = array($name,$surname,$email,$password,$whatsapp,$address,$number,$district,$city,$uf,$reference_point);
+    // $json = json_encode($retorno, JSON_UNESCAPED_UNICODE);
+    // exit($json);
+
+    $sql = "INSERT INTO 
+                    users 
+            values 
+                    (NULL,
+                    '$name', 
+                    '$surname', 
+                    '$email', 
+                    '$password',
+                    '$whatsapp',
+                    '$address',
+                    '$number',
+                    '$district',
+                    '$city',
+                    '$uf',
+                    '$reference_point',
+                    '$cep')
+    ";
 
     $resultado = $conexao->query($sql);
     
@@ -72,6 +101,7 @@ function updateUser(){
     $city = $_POST["city"];
     $uf = $_POST["uf"];
     $reference_point = $_POST["reference-point"];
+    $cep = $_POST["cep"];
 
     $sql = "UPDATE users
             SET 
@@ -81,7 +111,8 @@ function updateUser(){
                 district = '$district',
                 city = '$city',
                 uf = '$uf',
-                reference_point = '$reference_point'
+                reference_point = '$reference_point',
+                cep = '$cep'
             WHERE id = '$userId'
             ";
 

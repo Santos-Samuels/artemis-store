@@ -49,9 +49,20 @@
         </span>
         
         <div class="navbar-text d-flex align-items-center fs-4" id="user-options-container">
-          <i class="bi bi-cart mb-1 pe-4 zoom text-secondary" data-bs-toggle="offcanvas" data-bs-target="#userBag" aria-controls="userBag"></i>
+          <i id="cart-button-1" class="bi bi-cart mb-1 pe-4 zoom text-secondary" data-bs-toggle="offcanvas" data-bs-target="#userBag" aria-controls="userBag"></i>
           <a class="pe-4 zoom text-secondary" href="/favoritos"><i class="bi bi-heart"></i></a>
+
           <i class="bi bi-person-fill rounded-circle zoom" id="user" data-bs-toggle="modal" data-bs-target="#userLogin"></i>
+
+          <div class="dropdown hide" id="userDropdownConectedOptions">
+            <i class="dropdown-toggle fs-5" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">UserName</i>
+            
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item" href="/usuario">Meus dados</a>
+              <a class="dropdown-item" href="/pedidos">Meus Pedidos</a>
+              <a class="dropdown-item" id="liveToastBtn" onclick="logout()">Sair</a>
+            </ul>
+          </div>
         </div>
       </div>
     </nav>
@@ -70,7 +81,7 @@
               <form id="login-form">
                 <input class="form-control mt-3" type="email" name="login-email" id="login-email" placeholder="Email">  
                 <input class="form-control mt-3" type="password" name="login-password" id="login-password" placeholder="Senha">
-                <button class="btn btn-primary mt-3 w-100">ENTRAR</button>
+                <button class="btn btn-primary mt-3 w-100" id="login-button">ENTRAR</button>
               </form>
             </div>
             <div class="text-center">
@@ -90,19 +101,34 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <form id="signup-form">
+              <form id="signup-form" method="post">
                 <input class="form-control mt-3" type="text" name="signup-first-name" id="signup-first-name" placeholder="Primeiro nome" required>
                 <input class="form-control mt-3" type="text" name="signup-last-name" id="signup-last-name" placeholder="Último nome" required>
                 <input class="form-control mt-3" type="email" name="signup-email" id="signup-email" placeholder="Email" required>
                 <input class="form-control mt-3" type="password" name="signup-password" id="signup-password" placeholder="Senha" required>
-                <input class="form-control mt-3" type="password" name="signup-password-2" id="signup-password-2" placeholder="Confirmar senha" required>
-                <input class="form-control mt-3" type="tel" name="signup-phone" id="signup-phone" placeholder="Celular" required>
-                <input class="form-control mt-3" type="text" name="signup-address" id="signup-address" placeholder="Endereço">
-                <input class="form-control mt-3" type="text" name="signup-district" id="signup-district" placeholder="Bairro">
-                <input class="form-control mt-3" type="text" name="signup-city" id="signup-city" placeholder="Cidade">
-                <input class="form-control mt-3" type="text" name="signup-reference-point" id="signup-reference-point" placeholder="Ponto de referência">
+                <input class="form-control mt-3" type="password" name="signup-password2" id="signup-password2" placeholder="Confirmar Senha" required>
+        <input class="form-control mt-3" type="tel" name="whatsapp" id="whatsapp" placeholder="Whatsapp" value="" required>
+        
+        <div class="row">
+            <div class="col">
+                <input class="form-control mt-3" type="text" name="address" id="address" placeholder="Endereço" value="">
+            </div>
+            <div class="col-3">
+                <input class="form-control mt-3" type="text" name="number" id="number" placeholder="Nº" value="">
+            </div>
+        </div>
+        <input class="form-control mt-3" type="text" name="district" id="district" placeholder="Bairro" value="">
+        <div class="row">
+            <div class="col">
+                <input class="form-control mt-3" type="text" name="city" id="city" placeholder="Cidade" value="">
+            </div>
+            <div class="col-3">
+                <input class=" form-control mt-3" type="text" name="uf" id="uf" placeholder="Estado" value="">
+            </div>
+        </div>
+                <input class="form-control mt-3" type="text" name="reference-point" id="reference-point" placeholder="Ponto de referência">
                 <input class="form-control mt-3" type="text" name="cep" id="cep" placeholder="CEP">
-                <button class="btn btn-primary mt-3 w-100">EFETUAR CADASTRO</button>
+                <button class="btn btn-primary mt-3 w-100" id="register-button">EFETUAR CADASTRO</button>
               </form>
             </div>
             <div class="text-center">

@@ -15,6 +15,7 @@ CREATE TABLE users(
     city varchar(30),
     uf varchar(2),
     reference_point varchar(255),
+    cep varchar(9),
     PRIMARY KEY(id)
 );
 
@@ -31,6 +32,7 @@ CREATE TABLE products(
     quantity INT NOT NULL,
     price decimal(5,2) NOT NULL,
     promotion decimal(5,2) NOT NULL,
+    active int not null,
     PRIMARY KEY(id)
 );
 
@@ -74,12 +76,12 @@ CREATE TABLE wishlist(
     FOREIGN KEY (user_id) REFERENCES users (id)
 );
 
-INSERT INTO products values(NULL, "Colar blue stone", "", "Um colar de com uma pedra azul","vermelho, azul","red, blue", "23, 25, 30"  , "Joia", "Colar", 10, 29.90, 0);
-INSERT INTO products values(NULL, "Alianças simple style", "", "Um colar de com uma pedra azul","vermelho, azul","red, blue", "23, 25, 30" , "Joia", "Anel", 10, 69.90,0);
-INSERT INTO products values(NULL, "Colar white stone", "", "Colar white stone","vermelho, azul","red, blue", "23, 25, 30" , "Joia", "Colar", 10, 29.90, 0);
-INSERT INTO products values(NULL, "Conjunto joia gold", "", "Conjunto joia gold","vermelho, azul","red, blue", "23, 25, 30" , "Joia", "Conjunto", 10, 119.90,0);
+INSERT INTO products values(NULL, "Colar blue stone", "", "Um colar de com uma pedra azul","vermelho, azul","#fc0324,#0600c4", "23, 25, 30"  , "Joia", "Colar", 10, 29.90, 0, 0);
+INSERT INTO products values(NULL, "Alianças simple style", "", "Um colar de com uma pedra azul","vermelho, azul","#fc0324,#0600c4", "23, 25, 30" , "Joia", "Anel", 10, 69.90,0, 0);
+INSERT INTO products values(NULL, "Colar white stone", "", "Colar white stone","vermelho, azul","#fc0324,#0600c4", "23, 25, 30" , "Joia", "Colar", 10, 29.90, 0, 0);
+INSERT INTO products values(NULL, "Conjunto joia gold", "", "Conjunto joia gold","vermelho, azul","#fc0324,#0600c4", "23, 25, 30" , "Joia", "Conjunto", 10, 119.90,0,0);
 
-INSERT INTO products values(NULL, "Calsinha cintura alta nude", "", "Calsinha cintura alta nude","vermelho, azul","red, blue", "23, 25, 30"  , "Roupa", "Calcinha", 10, 29.99, 0);
-INSERT INTO products values(NULL, "Calsinha cintura alta preto", "", "Calsinha cintura alta preto","vermelho, azul","red, blue", "23, 25, 30" , "Roupa", "Calcinha", 10, 24.99, 0);
-INSERT INTO products values(NULL, "Calsinha cintura alta nude", "", "Calsinha cintura alta nude","vermelho, azul","red, blue", "23, 25, 30" , "Roupa", "Calcinha", 10, 29.90, 0);
-INSERT INTO products values(NULL, "Calsinha cintura alta preto", "", "Calsinha cintura alta preto","vermelho, azul","red, blue", "23, 25, 30" , "Roupa", "Calcinha", 10, 24.90, 0);
+INSERT INTO products values(NULL, "Calsinha cintura alta nude", "", "Calsinha cintura alta nude","vermelho, azul","#fc0324,#0b03fc", "23, 25, 30"  , "Roupa", "Calcinha", 10, 29.99, 0, 0);
+INSERT INTO products values(NULL, "Calsinha cintura alta preto", "", "Calsinha cintura alta preto","vermelho, azul","#fc0324,#0b03fc", "23, 25, 30" , "Roupa", "Calcinha", 10, 24.99, 0, 0);
+INSERT INTO products values(NULL, "Calsinha cintura alta nude", "", "Calsinha cintura alta nude","vermelho, azul","#fc0324,#0b03fc", "23, 25, 30" , "Roupa", "Calcinha", 10, 29.90, 0, 0);
+INSERT INTO products values(NULL, "Calsinha cintura alta preto", "", "Calsinha cintura alta preto","vermelho, azul","#fc0324,#0b03fc", "23, 25, 30" , "Roupa", "Calcinha", 10, 24.90, 0, 0);

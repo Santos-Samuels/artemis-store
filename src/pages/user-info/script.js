@@ -42,7 +42,7 @@ const loadUserData = (user) => {
             </div>
             <div class="col-12 col-lg-4">
                 <label class="text-secondary">Endereço</label>
-                <h5 class="pb-1 text-secondary pt-2">${(user.adress == null) ? "-----------" : user.adress} - n° ${(user.number == null) ? "--" : user.number} <br> Bairro: ${(user.district == null) ? "---------" : user.district} <br> Cidade: ${(user.city == null) ? "---------" : user.city} - ${(user.uf == null) ? "--" : user.uf} <br>${(user.reference_point == null) ? "--------------" : user.reference_point} <br> CEP: 00000-000</h5>
+                <h5 class="pb-1 text-secondary pt-2">${(user.adress == null) ? "-----------" : user.adress} - n° ${(user.number == null) ? "--" : user.number} <br> Bairro: ${(user.district == null) ? "---------" : user.district} <br> Cidade: ${(user.city == null) ? "---------" : user.city} - ${(user.uf == null) ? "--" : user.uf} <br>${(user.reference_point == null) ? "--------------" : user.reference_point} <br> CEP: ${(user.cep == null) ? "--------------" : user.cep}</h5>
             </div>
         </div>
 
@@ -105,7 +105,7 @@ const loadUserDataModal = () => {
             </div>
         </div>
         <input class="form-control mt-3" type="text" name="reference-point" id="reference-point" placeholder="Ponto de referência" value="${(Dados.reference_point == null) ? "" : Dados.reference_point}">
-        <input class="form-control mt-3" type="text" name="cep" id="cep" placeholder="CEP">
+        <input class="form-control mt-3" type="text" name="cep" id="cep" placeholder="CEP"  value="${(Dados.cep == null) ? "" : Dados.cep}">
     `;
 }
 

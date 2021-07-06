@@ -13,47 +13,105 @@ edit_product_form.addEventListener('submit', function(e) {
     e.preventDefault()
     
     console.log("Funcionou");
-    //updateProduct()
+    updateProduct()
 });
 
 const ValidateColors = async () => {
-    var data = new FormData(document.getElementById("new-product-form"));
+    var colors = [];
+    var sizes = [];
 
-    var colors = data.get("product-color");
+    var color_pt = "";
+    var color_hex = "";
+    var size_str = "";
 
-    var coresData = new FormData();
-    coresData.append("colors", colors);
+    const colors_container = document.querySelector('#colors-container');
+    colors_container.querySelectorAll('article').forEach((art) => {
+        let color = {};
+        const inputs = art.querySelectorAll('input');
+        color.name = inputs[0].value;
+        color.hex = inputs[1].value;
 
-    await axios({
-        method: "post",
-        data: coresData,
-        url: `/api/tslt`,
-        headers: { "Content-Type": "multipart/alternative" },
-    }).then(function (response) {
-        var cores = [... response.data];
-        console.log(cores);
-
-        for(i = 0; i < cores.length; i++){
-            var color = cores[i];
-            if(!isColor(color.toLowerCase())){
-                actionFeedback('#error-new-product-color')
-                return;
-            }
-        }
-
-        createProduct(response.data)
+        colors.push(color);
     })
-    .catch(function (error) {
-        console.log(error);
-    });
+
+    const sizes_container = document.querySelector('#sizes-container');
+    sizes_container.querySelectorAll('article').forEach((art) => {
+        let size = {};
+        const inputs = art.querySelectorAll('input');
+        size.size = inputs[0].value;
+        sizes.push(size);
+    })
+
+    for(i = 0; i < colors.length; i ++){
+        color_pt += colors[i].name + ",";
+        color_hex += colors[i].hex + ",";
+    }
+
+    for(i = 0; i < sizes.length; i ++){
+        size_str += sizes[i].size + ",";
+    }
+
+    color_pt = color_pt.substring(0, color_pt.length - 1);
+    color_hex = color_hex.substring(0, color_hex.length - 1);
+    size_str = size_str.substring(0, size_str.length - 1);
+
+    console.log(color_pt);
+    console.log(color_hex);
+    console.log(size_str);
+
+    createProduct(color_pt, color_hex, size_str);
 }
 
-const createProduct = async (_colors) => {
+const ValidateColors2 = async () => {
+    var colors = [];
+    var sizes = [];
+
+    var color_pt = "";
+    var color_hex = "";
+    var size_str = "";
+
+    const colors_container = document.querySelector('#color-input-form-container');
+    colors_container.querySelectorAll('article').forEach((art) => {
+        let color = {};
+        const inputs = art.querySelectorAll('input');
+        color.name = inputs[0].value;
+        color.hex = inputs[1].value;
+
+        colors.push(color);
+    })
+
+    const sizes_container = document.querySelector('#size-input-form-container');
+    sizes_container.querySelectorAll('article').forEach((art) => {
+        let size = {};
+        const inputs = art.querySelectorAll('input');
+        size.size = inputs[0].value;
+        sizes.push(size);
+    })
+
+    for(i = 0; i < colors.length; i ++){
+        color_pt += colors[i].name + ",";
+        color_hex += colors[i].hex + ",";
+    }
+
+    for(i = 0; i < sizes.length; i ++){
+        size_str += sizes[i].size + ",";
+    }
+
+    color_pt = color_pt.substring(0, color_pt.length - 1);
+    color_hex = color_hex.substring(0, color_hex.length - 1);
+    size_str = size_str.substring(0, size_str.length - 1);
+
+    updateProduct(color_pt, color_hex, size_str);
+}
+
+const createProduct = async (color_pt, color_hex, size_str) => {
     var data = new FormData(document.getElementById("new-product-form"));
     var p_name = document.getElementById("product-name").value;
-    var colors = _colors.join(", ")
 
-    data.append("color_en", colors.toLowerCase());
+    data.append("color_en", color_hex);
+    data.append("color_pt", color_pt);
+    data.append("size", size_str);
+
     data.append('folder_name', p_name.toLowerCase().split(" ").join("-"));
 
 
@@ -130,7 +188,7 @@ const _loadEditProducts = (products) => {
                     <td>${product.type}</td>
                     <td class="order-price">${product.price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</td>
                     <td>${product.promotion.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</td>
-                    <td><i class="bi bi-pencil-fill me-2 primary-text-hover cursor-pointer" onclick="editProductModal(${product.id})" title="Editar" data-bs-toggle="modal" data-bs-target="#editProductModal"></i> <i class="bi bi-trash-fill primary-text-hover cursor-pointer" onclick="removeProduct(${product.id}), actionFeedback('#success-remove')" title="Excluir"></i></td>
+                    <td><i class="bi bi-pencil-fill me-2 primary-text-hover cursor-pointer" onclick="editProductModal(${product.id})" title="Editar" data-bs-toggle="modal" data-bs-target="#editProductModal"></i> <i class="bi bi-eye-slash-fill primary-text-hover cursor-pointer" onclick="disableProduct(${product.id}), actionFeedback('#success-disabled-product')" title="Desativar"></i> <i class="bi bi-trash-fill primary-text-hover cursor-pointer" onclick="removeProduct(${product.id}), actionFeedback('#success-remove')" title="Excluir"></i></td>
                 </tr>
             `
     
@@ -155,7 +213,10 @@ const editProductModal = async (productsId) => {
 
 const createModal = (product) => {
     const editContainer = document.querySelector('#edit-product-modal-container')
-
+    count = 0;
+    count2 = 0;
+    sizeCount = 0;
+    var color_pt = product.color_pt.split(",")
     editContainer.innerHTML = `
             <form class="m-3" action="">    
                 <div class="row mt-2 g-2">
@@ -189,13 +250,19 @@ const createModal = (product) => {
                         <label class="form-label" for="product-color">Cor <span class="text-danger" title="Campo obrigatório">*</span></label>
                         <div class="row g-0">
                             <div class="col-12 d-flex align-items-center flex-nowrap">
-                            <input class="form-control col" type="text" name="product-color" id="product-color-name" placeholder="Ex: Amarelo" required>
-                            <input class="form-control product-color-input ms-2" type="color" id="product-color" value="#FFD700" required>
+                            <input class="form-control col" type="text" name="product-color" id="product-color-name" placeholder="Ex: Amarelo" readonly>
+                            <input class="form-control product-color-input ms-2" type="color" id="product-color" value="#FFD700" readonly>
                             <i class="bi bi-plus-circle new-button ms-2 me-1" onclick="newColorField()" title="Adicionar campo"></i>
                             </div>
                         </div>
     
                         <div class="row" id="color-input-form-container">
+                            ${product.color_en.split(",").map((color) => {return `
+                                <article class="col-12 d-flex align-items-center flex-nowrap" id="color-field${++count}">
+                                    <input class="form-control mt-2" type="text" name="product-color" id="product-color-name${count}" placeholder="Ex: Amarelo" value="${color_pt[count2++]}" required>
+                                    <input class="form-control product-color-input ms-2" type="color" id="product-color-${count}" value="${color}" required>
+                                    <i class="bi bi-trash new-button ms-2 me-1 mt-1 pointer" onclick="removeField('#color-field${count}')" title="Remover campo"></i>
+                                </article>`})}
                         </div>
                         </div>
     
@@ -203,12 +270,20 @@ const createModal = (product) => {
                         <label class="form-label" for="product-size">Tamanho (cm) <span class="text-danger" title="Campo obrigatório">*</span></label>
                         <div class="row g-0">
                             <div class="col-12 d-flex align-items-center flex-nowrap">
-                            <input class="form-control col" type="text" name="product-size" id="product-size-name" min="0" placeholder="Ex: 23" required>
+                            <input class="form-control col" type="text" name="product-size" id="product-size-name" min="0" placeholder="Ex: 23" readonly>
                             <i class="bi bi-plus-circle new-button ms-2 me-1" onclick="newSizeField()" title="Adicionar campo"></i>
                             </div>
                         </div>
                         
                         <div class="row" id="size-input-form-container">
+                            ${product.size.split(",").map((size) => {
+                                return `                        
+                                    <article class="col-12 d-flex align-items-center flex-nowrap" id="size-field${sizeCount}">
+                                        <input class="form-control mt-2" type="text" name="product-size" id="product-size-name${sizeCount}" placeholder="Ex: 23" value="${size}">
+                                        <i class="bi bi-trash new-button ms-2 me-1 mt-1 pointer" onclick="removeField('#size-field${sizeCount++}')" title="Remover campo"></i>
+                                    </article>
+                                `})
+                            }
                         </div>
                         </div>
                     </div>
@@ -236,23 +311,16 @@ const createModal = (product) => {
                         </select>
                     </div>
                     </div>
-    
-                <div class="row g-2 mt-3 justify-content-end">
-                    <button class="btn btn-primary col-12 col-lg-3" type="submit">Cadastrar</button>
-                </div>
             </form>
         `;
     
     localStorage.setItem("EditingProduct", product.id);
 }
 
-const updateProduct = async () => {
-    var productId = localStorage.getItem("EditingProduct");
-    localStorage.removeItem("EditingProduct");
-
+const updateProduct = async (color_pt, color_hex, size_str) => {
     const data = new FormData(document.getElementById("edit-product-modal-container"));
-    data.set("productId", productId)
-    var cores = data.get("product-color");
+    var id = localStorage.getItem("EditingProduct")
+    data.set("productId", id)
 
     if(data.get("product-type") == null){
         actionFeedback('#error-void-field')
@@ -260,12 +328,12 @@ const updateProduct = async () => {
     }
     if(data.get("product-category") == null){
         actionFeedback('#error-void-field')
+        return
     }
 
-    cores = cores.toLocaleLowerCase().replace(" ", "").split(",");
-    if(! await validateColor(cores)){
-        return;
-    }
+    data.append("color_en", color_hex);
+    data.append("color_pt", color_pt);
+    data.append("size", size_str);
 
     await axios({
         method: "POST",
@@ -282,7 +350,22 @@ const updateProduct = async () => {
 
 }
 
-const removeProduct = async (productId) => {
+const disableProduct = async (productId) => {
+    await axios({
+        method: "DELETE",
+        url: `api/produtos?productId=${productId}`,
+        headers: { "Content-Type": "multipart/alternative" },
+    }).then(function (response) {
+        console.log(response)
+        loadProducts();
+    })
+    .catch(function (error) {
+        console.log(error);
+    });//
+}
+
+const deleteProduct = async (productId) => {
+    return
     await axios({
         method: "DELETE",
         url: `api/produtos?productId=${productId}`,
@@ -352,8 +435,6 @@ const loadNewSales = async () => {
     });
 }
 
-
-
 const loadNewSale = (orders) => {
     const salseContainer = document.querySelector('#sale-header-body')
     const saleContainerHeaderScope = document.querySelector('#sale-header-scope-table')
@@ -408,7 +489,23 @@ const loadNewSale = (orders) => {
     
 }
 
-const loadDoneSale = (disabledList) => {
+const loadCompletedSales = async () => {
+    await axios({
+        method: "get",
+        url: "api/request?completed=yes",
+        headers: { "Content-Type": "multipart/alternative" },
+    }).then(function (response) {
+        console.log(response.data);
+        _loadCompletedSales(response.data.item);
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+}
+
+
+const _loadCompletedSales = (orders) => {
+    console.table(orders)
     const doneSaleContainer = document.querySelector('#done-sale-header-body')
     const doneSaleContainerHeaderScope = document.querySelector('#done-sale-header-scope-table')
     
@@ -420,7 +517,7 @@ const loadDoneSale = (disabledList) => {
         element.remove()
     })
 
-    if(disabledList.length == 0) {
+    if(orders.length == 0) {
         const html = `
             <th class="text-center mt-5 text-secondary border-0">
                 <i class="bi bi-info-circle fs-1"></i>
@@ -439,14 +536,14 @@ const loadDoneSale = (disabledList) => {
             <th scope="col">Data da Compra</th>
             <th class="primary-text border-dark" scope="col">Ação</th>
         `
-        disabledList.forEach(order => {
+        orders.forEach(order => {
             const html = `
                 <tr>
                     <th scope="row">${order.id}</th>
-                    <td>${titleize(order.title)}</td>
+                    <td>${titleize(order.name + " " + order.surname)}</td>
                     <td>${order.status}</td>
-                    <td class="order-price">Null</td>
-                    <td>${order.date}</td>
+                    <td class="order-price">${order.total_price}</td>
+                    <td>${order.purchase_date}</td>
                     <td><i class="bi bi-eye-fill me-2 primary-text-hover cursor-pointer" title="Ver mais" data-bs-toggle="modal" data-bs-target="#viewOrderModal" onclick="loadViewOrderModal(${order.id})"></i></td>
                 </tr>
             `
@@ -579,6 +676,7 @@ const updateOrder = async () => {
         if(response.data.msg == "Funfou"){
             alert("Produto atualizado com sucesso !");
             loadNewSales();
+            loadCompletedSales();
         }
     })
     .catch(function (error) {
@@ -618,8 +716,8 @@ function actionFeedback(div) {
     });
 }
 
-var colorFieldIndex = 0;
-var sizeFieldIndex = 0;
+var colorFieldIndex = 1;
+var sizeFieldIndex = 1;
 
 function newColorField() {
     colorFieldIndex++
@@ -628,11 +726,10 @@ function newColorField() {
     const html  = `
         <article class="col-12 d-flex align-items-center flex-nowrap" id="color-field${colorFieldIndex}">
             <input class="form-control mt-2" type="text" name="product-color" id="product-color-name${colorFieldIndex}" placeholder="Ex: Amarelo" required>
-            <input class="form-control product-color-input ms-2" type="color" id="product-color" value="#FFD700" required>
+            <input class="form-control product-color-input ms-2" type="color" id="product-color-${colorFieldIndex}" value="#FFD700" required>
             <i class="bi bi-trash new-button ms-2 me-1 mt-1 pointer" onclick="removeField('#color-field${colorFieldIndex}')" title="Remover campo"></i>
         </article>
     `
-
     colorDiv.insertAdjacentHTML('beforeend', html)
 }
 
@@ -654,7 +751,21 @@ function removeField(id) {
     document.querySelector(id).remove()
 }
 
-const loadDisabledProducts = (disabledList) => {
+const loadDisabledProducts = async () => {
+    await axios({
+        method: "get",
+        url: "api/produtos?type=disabled",
+        headers: { "Content-Type": "multipart/alternative" },
+    }).then(function (response) {
+        console.log(response.data);
+        _loadDisabledProducts(response.data.item);
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+}
+
+const _loadDisabledProducts = (disabledList) => {
     const disabledContainer = document.querySelector('#disabled-body-table')
     const disabledContainerHeaderScope = document.querySelector('#disabled-header-scope-table')
     
@@ -690,11 +801,11 @@ const loadDisabledProducts = (disabledList) => {
             const html = `
                 <tr>
                     <th scope="row">${product.id}</th>
-                    <td>${product.title}</td>
+                    <td>${product.product_name}</td>
                     <td>${product.type}</td>
                     <td class="order-price">${product.price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</td>
-                    <td>${product.promo.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</td>
-                    <td><i class="bi bi-eye-fill me-2 primary-text-hover cursor-pointer" data-bs-toggle="modal" data-bs-target="#viewDisabledProductModal" onclick="loadViewDisabledProductModal(${product.id}, disabledList)" title="Ver mais"></i> <i class="bi bi-eye me-2 primary-text-hover cursor-pointer" onclick="actionFeedback('#success-actived')" title="Ativar"></i></i></td>
+                    <td>${product.promotion.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</td>
+                    <td><i class="bi bi-eye-fill me-2 primary-text-hover cursor-pointer" data-bs-toggle="modal" data-bs-target="#viewDisabledProductModal" onclick="loadViewDisabledProductModal(${product.id})" title="Ver mais"></i> <i class="bi bi-eye me-2 primary-text-hover cursor-pointer" onclick="activateProduct(${product.id}),actionFeedback('#success-actived')" title="Ativar"></i></i></td>
                 </tr>
             `
     
@@ -703,68 +814,93 @@ const loadDisabledProducts = (disabledList) => {
     }
 }
 
+const activateProduct = async (productId) =>{
+    await axios({
+        method: "put",
+        url: `api/produtos?productId=${productId}`,
+        headers: { "Content-Type": "multipart/alternative" },
+    }).then(function (response) {
+        console.log(response.data);
+        loadDisabledProducts();
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+}
 
-const loadViewDisabledProductModal = (productID, disabledList) => {
+const loadViewDisabledProductModal = async (productId) =>{
+    await axios({
+        method: "get",
+        url: `api/produtos?id=${productId}`,
+        headers: { "Content-Type": "multipart/alternative" },
+    }).then(function (response) {
+        _loadViewDisabledProductModal(response.data.item[0]);
+    })
+    .catch(function (error) {
+        console.log(error);
+    });//productId
+}
+
+const _loadViewDisabledProductModal = (item) => {
     const viewDisabledProductContainer = document.querySelector('#view-disabled-product-container')
     
     viewDisabledProductContainer.innerHTML = ""
-    disabledList.forEach(item => {
-        if(item.id == productID) {
-            const html = `
-                <div id="${item.type}-${item.id}">
-                    <article class="d-flex ps-3 border-bottom pb-3 pt-3">
-                        <div>
-                            <img src="${item.image}" class="sale-image rounded me-3">
-                        </div>
-                        <div>
-                            <h5 class="mb-0">${item.title}</h5>
-                            <div>
-                                <i class="bi bi-info-circle"></i>
-                                <span class="me-1">${item.type.toUpperCase()} | </span>
-                                <span>${item.category.toUpperCase()}</span>
+    var color_pt = item.color_pt.split(",");
+    const html = `
+        <div id="${item.type}-${item.id}">
+            <article class="d-flex ps-3 border-bottom pb-3 pt-3">
+                <div>
+                    <img src="${item.product_images[0]}" class="sale-image rounded me-3">
+                </div>
+                <div>
+                    <h5 class="mb-0">${item.product_name}</h5>
+                    <div>
+                        <i class="bi bi-info-circle"></i>
+                        <span class="me-1">${item.type.toUpperCase()} | </span>
+                        <span>${item.category.toUpperCase()}</span>
+                    </div>
+                    <span>Estoque: ${item.quantity}</span><br>
+                    <span class="text-secondary text-decoration-line-through">${item.price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span>
+                    <span class="fw-bold text-secondary h4">${item.promotion.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span>
+                </div>
+            </article>
+
+
+            <div class="row ms-2 mt-2">
+                <div class="col">
+                    <h5>Cores</h5>
+                    ${item.color_en.split(",").map((colorName, index) => {
+                        return `
+                            <div class="mb-2">
+                                <span class="me-2 pe-2">${color_pt[index].toUpperCase()}</span>
+                                <span class="rounded border" style="background-color: ${colorName}; padding: 3px 12px;"></span> <br>
                             </div>
-                            <span>Estoque: ${item.stock}</span><br>
-                            <span class="text-secondary text-decoration-line-through">${item.price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span>
-                            <span class="fw-bold text-secondary h4">${item.promo.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span>
-                        </div>
-                    </article>
+                        `
+                    })}
+                </div>
 
-
-                    <div class="row ms-2 mt-2">
-                        <div class="col">
-                            <h5>Cores</h5>
-                            ${item.colorNameList.map((colorName, index) => {
-                                return `
-                                    <div class="mb-2">
-                                        <span class="me-2 pe-2">${colorName.toUpperCase()}</span>
-                                        <span class="rounded border" style="background-color: ${item.colorHexList[index]}; padding: 3px 12px;"></span> <br>
-                                    </div>
-                                `
-                            })}
-                        </div>
-
-                        <div class="col">
-                            <h5>Tamanhos</h5>
-                            ${item.sizeList.map((size) => {
-                                return `
-                                    <div class="mb-2">
-                                        <span class="me-1">${size}</span>
-                                        <span> cm</span>
-                                    </div>
-                                `
-                            })}
-                        </div>
-                    </div>
-
-                    <div class="m-3 border-top pt-2">
-                        <h5>Descrição</h5>
-                        <p class="">${item.description}</p>
-                    </div>
+                <div class="col">
+                    <h5>Tamanhos</h5>
+                    ${item.size.split(",").map((size) => {
+                        return `
+                            <div class="mb-2">
+                                <span class="me-1">${size}</span>
+                                <span> cm</span>
+                            </div>
+                        `
+                    })}
                 </div>
             </div>
-            `
 
-            viewDisabledProductContainer.insertAdjacentHTML('beforeend', html)
-        }
-    })
+            <div class="m-3 border-top pt-2">
+                <h5>Descrição</h5>
+                <p class="">${item.description}</p>
+            </div>
+        </div>
+    </div>
+    `
+
+    viewDisabledProductContainer.insertAdjacentHTML('beforeend', html)
+        
+    
 }

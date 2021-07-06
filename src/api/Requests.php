@@ -32,6 +32,10 @@ switch ($method) {
             break;
         }
 
+        if(isset($_GET["completed"])){
+            getAllCompletedRequests();
+        }
+
         getAllRequests();
 
         break;
@@ -144,6 +148,80 @@ function getAllRequests() {
             FROM requests 
             INNER JOIN users 
             ON requests.user_id = users.id
+            WHERE requests.status != 'Pedido Entregue'
+            ORDER BY requests.id DESC
+    ";
+
+    $resultado = $conexao->query($sql);
+
+    $tmp_array = array();
+    $retorno["status"] = 1;
+    $retorno["qtd"] = $resultado->num_rows;
+    while($list = $resultado->fetch_assoc()){
+        array_push($tmp_array, $list);
+    }
+
+    for($i = 0; $i < count($tmp_array); $i++){
+
+        $req_id = $tmp_array[$i]["id"];
+        $sql = "SELECT 
+                    request_products.*, products.price, products.product_images, products.product_name 
+                FROM request_products
+                INNER JOIN products ON request_products.product_id = products.id
+                WHERE request_id = '$req_id'";
+        $resultado2 = $conexao->query($sql);
+        $tmp_array2 = array();
+        while($list2 = $resultado2->fetch_assoc()){
+            $img_temp = array();
+            $dir = $list2["product_images"];
+            if (!file_exists($dir)) {
+                array_push($tmp_array2, $list2);
+                continue;
+            }
+            $new_dir = str_replace($_SERVER["DOCUMENT_ROOT"], "", $dir);
+            
+            if ($handle = opendir($dir)) {
+                while (false !== ($entry = readdir($handle))) {
+                    if ($entry != "." && $entry != "..") {
+                        array_push($img_temp, $new_dir . "/" . "$entry");
+                    }
+                }
+                closedir($handle);
+            
+            }
+            $list2["product_images"] = $img_temp;
+
+            array_push($tmp_array2, $list2);
+        }
+        $tmp_array[$i]["products"] = $tmp_array2;
+
+    }
+
+    $retorno["item"] = $tmp_array;
+
+    $json = json_encode($retorno, JSON_UNESCAPED_UNICODE);
+    exit($json);
+}
+
+function getAllCompletedRequests(){
+    include "./database/conexao.php";
+
+    $sql = "SELECT 
+                    requests.*, 
+                    users.name,
+                    users.surname,
+                    users.adress,
+                    users.number,
+                    users.district,
+                    users.reference_point,
+                    users.city,
+                    users.uf,
+                    users.whatsapp
+            FROM requests 
+            INNER JOIN users 
+            ON requests.user_id = users.id
+            WHERE requests.status = 'Pedido Entregue'
+            ORDER BY requests.id DESC
     ";
 
     $resultado = $conexao->query($sql);

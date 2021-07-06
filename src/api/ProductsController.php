@@ -30,10 +30,14 @@ switch ($method) {
         break;
     case 'DELETE':
         if(isset($_GET["productId"])){
-            deleteProductWithId();
+            disableProductWithId();
         }
         break;
     case 'PUT':
+        if(isset($_GET["productId"])){
+            activateProductWithId();
+        }
+        
         break;
 }
 
@@ -50,9 +54,9 @@ function createNewProduct(){
     $quantity =  floatval($_POST["product-quantity"]);
     $price = floatval($_POST["product-price"]);
     $promo = floatval($_POST["product-promo"]);
-    $color = $_POST["product-color"];
+    $color = $_POST["color_pt"];
     $color_en = $_POST["color_en"];
-    $size = $_POST["product-size"];
+    $size = $_POST["size"];
 
     $sql = "INSERT INTO products values (NULL, 
                                         '$p_name', 
@@ -65,7 +69,8 @@ function createNewProduct(){
                                         '$category', 
                                         '$quantity', 
                                         '$price',
-                                        '$promo'
+                                        '$promo',
+                                        0
     )";
     
 
@@ -84,7 +89,7 @@ function createNewProduct(){
 function getAllProducts(){
     include './database/conexao.php';
 
-    $sql = "SELECT * FROM products";
+    $sql = "SELECT * FROM products where active = 0";
 
     $resultado = $conexao->query($sql);
 
@@ -182,7 +187,12 @@ function getProductWithFilters($type, $category, $orderby){
 
     $sql = "SELECT * FROM products WHERE true";
 
-    if(!empty($type)) {
+    if($type == "disabled"){
+        $sql .= " AND active = 1";
+    }else{
+        $sql .= " AND active = 0";
+    }
+    if(!empty($type) and $type != "disabled") {
         $sql .= " AND type='$type' ";
     }
     if(!empty($category)) {
@@ -235,6 +245,7 @@ function getProductWithFilters($type, $category, $orderby){
     exit($json);
 }
 
+/*
 function deleteProductWithId(){
     include './database/conexao.php';
 
@@ -277,6 +288,85 @@ function deleteProductWithId(){
     $json = json_encode($retorno, JSON_UNESCAPED_UNICODE);
     exit($json);
 }
+*/
+
+function disableProductWithId(){
+    include './database/conexao.php';
+
+    echo "algo";
+
+    $id = $_GET["productId"];
+
+    $sql = "SELECT * FROM products where id = '$id'";
+
+    $resultado = $conexao->query($sql);
+
+    if(!$resultado or $resultado->num_rows == 0){
+        $retorno["msg"] = "O produto com o id `$id` não existe";
+
+        $json = json_encode($retorno, JSON_UNESCAPED_UNICODE);
+        exit($json);
+    }
+
+    $produto = $resultado->fetch_assoc();
+
+    $sql = "UPDATE products
+        SET active = 1
+        WHERE id =  '$id' 
+    ";
+    $resultado = $conexao->query($sql);
+
+    if(!$resultado){
+        $retorno["msg"] = "O produto com o id `$id` está selecioado como um banner";
+
+        $json = json_encode($retorno, JSON_UNESCAPED_UNICODE);
+        exit($json);
+    }
+    
+
+    $retorno["msg"] = "O produto com o id `$id` foi deletado";
+
+    $json = json_encode($retorno, JSON_UNESCAPED_UNICODE);
+    exit($json);
+}
+
+function activateProductWithId(){
+    include './database/conexao.php';
+
+    $id = $_GET["productId"];
+
+    $sql = "SELECT * FROM products where id = '$id'";
+
+    $resultado = $conexao->query($sql);
+
+    if(!$resultado or $resultado->num_rows == 0){
+        $retorno["msg"] = "O produto com o id `$id` não existe";
+
+        $json = json_encode($retorno, JSON_UNESCAPED_UNICODE);
+        exit($json);
+    }
+
+    $produto = $resultado->fetch_assoc();
+
+    $sql = "UPDATE products
+        SET active = 0
+        WHERE id =  '$id' 
+    ";
+    $resultado = $conexao->query($sql);
+
+    if(!$resultado){
+        $retorno["msg"] = "O produto com o id `$id` está selecioado como um banner";
+
+        $json = json_encode($retorno, JSON_UNESCAPED_UNICODE);
+        exit($json);
+    }
+    
+
+    $retorno["msg"] = "O produto com o id `$id` foi deletado";
+
+    $json = json_encode($retorno, JSON_UNESCAPED_UNICODE);
+    exit($json);
+}
 
 function updateProductWithId(){
     include './database/conexao.php';
@@ -290,8 +380,9 @@ function updateProductWithId(){
     $quantity =  floatval($_POST["product-quantity"]);
     $price = floatval($_POST["product-price"]);
     $promo = floatval($_POST["product-promo"]);
-    $color = $_POST["product-color"];
-    $size = $_POST["product-size"];
+    $color = $_POST["color_pt"];
+    $color_en = $_POST["color_en"];
+    $size = $_POST["size"];
 
     $sql = "SELECT * FROM products where id = '$id'";
 
@@ -307,7 +398,7 @@ function updateProductWithId(){
     $sql = "UPDATE products
         SET product_name='$p_name', description='$description', category='$category',
             type='$type', quantity='$quantity', price='$price', promotion='$promo', 
-            color='$color', size='$size'
+            color_pt='$color', color_en='$color_en',size='$size'
         WHERE id =  '$id' 
     ";
 

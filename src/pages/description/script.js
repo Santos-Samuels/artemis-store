@@ -1,8 +1,10 @@
 var _product;
 
+/*
 document.getElementById("cartButton").addEventListener("click", () =>{
     toggleCart()
 });
+*/
 
 document.getElementById("heartButton").addEventListener("click", () =>{
     toggleHeart()
@@ -27,20 +29,18 @@ var toggleHeart = async () => {
         aux = toggleHeart;
         toggleHeart = JustWait;
 
-        await addOnWishList();
+        await addOnWishList().then((response) => {
+            toggleHeart = aux;
+        });
 
-        toggleHeart = aux;
     }else if(cartIcon.classList.contains("bi-heart-fill")){
         aux = toggleHeart;
         toggleHeart = JustWait;
 
         await removeOfWishList().then((response) => {
-            if(response){
-                
-            }
+            toggleHeart = aux;
         });
 
-        toggleHeart = aux;
     }
 }
 

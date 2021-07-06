@@ -29,6 +29,7 @@ ErrorDocument 404 /erros/404.php
     RewriteRule ^api/registro/?$                       /src/api/Registrar.php
     RewriteRule ^api/favoritos/?$                       /src/api/Wishlist.php
     RewriteRule ^api/request/?$                       /src/api/Requests.php
+    RewriteRule ^api/logout/?$                       /src/api/Logout.php
 
 </IfModule>
 

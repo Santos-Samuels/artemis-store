@@ -40,7 +40,7 @@ const loadCheckout = () => {
                     <div class="checkout-header-type-info mb-2"><span class="fw-bold">Produto</span></div>
                         <div class="col-12 col-lg-8 product d-flex flex-row flex-nowrap align-items-center mb-3">
                             <div class="me-4">
-                                <img class="rounded" src="/assets/img/colar-blue-stone.jpeg" alt="">
+                                <img class="rounded" src="${item.product.product_images[0]}" alt="">
                             </div>
 
                             <div>

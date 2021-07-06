@@ -37,7 +37,7 @@ const loadFavorite = (favorites) => {
                     <p>Por: <span class="fw-bold price fs-2">${product.price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span></p>
                     <a class="btn btn-primary w-100 text-center" onclick="addProductBag(bag)" data-bs-toggle="offcanvas" data-bs-target="#userBag" aria-controls="userBag">COMPRAR</a>
                     <div class="mt-2">
-                        <div class="d-flex align-items-center border border-2 rounded p-0 cursor-pointer text-secondary justify-content-center heartButton" style="background-color: white;">
+                        <div onclick="removeOfWishList(${product.id})" class="d-flex align-items-center border border-2 rounded p-0 cursor-pointer text-secondary justify-content-center heartButton" style="background-color: white;">
                             <i class="bi fs-4 me-2 ms-3 bi-trash-fill" id="heartIcon"></i>
                             <p class="mb-0 h6">REMOVER</p>
                         </div>
@@ -50,6 +50,34 @@ const loadFavorite = (favorites) => {
     }
 
     
+}
+
+const removeOfWishList = async (favoriteId) => {
+    var data = new FormData();
+    data.append("deletedProductId", favoriteId);
+
+    await axios({
+        method: "post",
+        data: data,
+        url: `/api/favoritos`,
+        headers: { "Content-Type": "multipart/form-data" },
+    }).then(function (response) {
+        console.log(response.data)
+        if(response.data.qtd == 0){
+            window.location.href = "/404";
+            return
+        }
+
+        if(response.data.msg == "Produto Removido na Wishlist"){
+            updateFavorites()
+        }else{
+            return false;
+        }
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+
 }
 
 window.onload = updateFavorites();
