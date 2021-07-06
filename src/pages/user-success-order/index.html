@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
-    <link rel="stylesheet" href="/src/css/navbar.css">
-    <link rel="stylesheet" href="/src/css/accountModal.css">
-    <link rel="stylesheet" href="/src/css/global.css">
-    <link rel="stylesheet" href="/src/pages/products/style.css">
-    
-    <title>Artemis - Produtos</title>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+  <link rel="stylesheet" href="/src/css/user.css">
+  <link rel="stylesheet" href="/src/css/navbar.css">
+  <link rel="stylesheet" href="/src/css/accountModal.css">
+  <link rel="stylesheet" href="/src/css/global.css">
+
+  <title>Artemis - Usuário</title>
 </head>
+
 <body>
   <header class="shadow-sm mb-4">
     <nav class="navbar navbar-expand-lg navbar-light p-4">
@@ -33,7 +36,7 @@
             <a class="nav-link" href="/sobre">Sobre</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="/produtos"><i class="bi bi-box-seam"></i> Produtos</a>
+            <a class="nav-link" href="/produtos"><i class="bi bi-box-seam"></i> Produtos</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/contato">Contato</a>
@@ -48,8 +51,9 @@
         <div class="navbar-text d-flex align-items-center fs-4" id="user-options-container">
           <i id="cart-button-1" class="bi bi-cart mb-1 pe-4 zoom text-secondary" data-bs-toggle="offcanvas" data-bs-target="#userBag" aria-controls="userBag"></i>
           <a class="pe-4 zoom text-secondary" href="/favoritos"><i class="bi bi-heart"></i></a>
+
           <i class="bi bi-person-fill rounded-circle zoom" id="user" data-bs-toggle="modal" data-bs-target="#userLogin"></i>
-          
+
           <div class="dropdown hide" id="userDropdownConectedOptions">
             <i class="dropdown-toggle fs-5" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">UserName</i>
             
@@ -59,6 +63,7 @@
               <a class="dropdown-item" id="liveToastBtn" onclick="logout()">Sair</a>
             </ul>
           </div>
+        </div>
       </div>
     </nav>
   </header>
@@ -76,7 +81,7 @@
               <form id="login-form">
                 <input class="form-control mt-3" type="email" name="login-email" id="login-email" placeholder="Email">  
                 <input class="form-control mt-3" type="password" name="login-password" id="login-password" placeholder="Senha">
-                <button type="button" class="btn btn-primary mt-3 w-100" id="login-button">ENTRAR</button>
+                <button class="btn btn-primary mt-3 w-100" id="login-button">ENTRAR</button>
               </form>
             </div>
             <div class="text-center">
@@ -142,57 +147,107 @@
         </div>
         <div class="offcanvas-body">
           <div class="" id="bag-container-products">
+            <article class="row g-2 mb-3">
+              <div class="col-3 me-2">
+                <img class="bag-product-image rounded me-3" src="/assets/img/aliancas-white-stone.jpeg" alt="">
+              </div>
+              <div class="me-4 col">
+                <h6>Colar white stone</h6>
+                <input class="bag-product-quantity form-control" type="number" name="bag-product-quantity" id="" min="0" max="" value="1">
+              </div>
+              <div class="col-2 text-end">
+                <p class="mb-0 bag-product-price">R$ 29,90</p>
+                <span class="primary-text primary-text-hover cursor-pointer bag-button-trash" id=""><i class="bi bi-trash-fill fs-4"></i></span>
+              </div>
+            </article>
+            <article class="row g-2 mb-3">
+              <div class="col-3 me-2">
+                <img class="bag-product-image rounded me-3" src="/assets/img/aliancas-white-stone.jpeg" alt="">
+              </div>
+              <div class="me-4 col">
+                <h6>Colar white stone</h6>
+                <input class="bag-product-quantity form-control" type="number" name="bag-product-quantity" id="" min="0" max="" value="1">
+              </div>
+              <div class="col-2 text-end">
+                <p class="mb-0 bag-product-price">R$ 29,90</p>
+                <span class="primary-text primary-text-hover cursor-pointer bag-button-trash" id=""><i class="bi bi-trash-fill fs-4"></i></span>
+              </div>
+            </article>
+          </div>
+
+          <div class="text-center text-secondary mt-5 hide" id="bag-container-empty">
+            <i class="bi bi-info-circle fs-1"></i>
+            <h3 class="">Seu carrinho está vazio</h3>
           </div>
         </div>
-
         <div class="offcanvas-footer border-top p-4 pt-0"  id="bag-container-footer">
+          <div class="row pt-3">
+            <h5 class="col text-secondary">Total</h5>
+            <h5 class="col text-end fw-bold">R$ 29,90</h5>
+          </div>
+          <div class="mt-4">
+            <button class="btn btn-primary w-100" id="bag-button-finalizar-compra">Finalizar Compra</button>
+          </div>
         </div>
       </div>
     </section>
-  </modal>
-  
-  <main class="container">
-    <form class="row g-2 mb-2" name="filter-form" id="filter-form">
-      <div class="col-12 col-lg-2">
-        <h3 class="primary-text" id="filter-title"><i class="bi bi-funnel-fill"></i> FILTRAR</h3>
-      </div>
-        <div class="col">
-          <select onchange="filterProducts()" class="form-select" name="category-filter" id="category-filter">
-            <option value="" data-default disabled selected>Categoria</option>
-            <option value="Joia">Jóia</option>
-            <option value="Semijoia">Semijóias</option>
-            <option value="Bijuteria">Bijuteria</option>
-            <option value="Lingerie">Lingerie</option>
-            <option value="">Tudo</option>
-          </select>
-        </div>
 
-        <div class="col">
-          <select onchange="filterProducts()" class="form-select" name="type-filter" id="type-filter">
-            <option value="" data-default disabled selected>Tipo</option>
-            <option value="Anel">Anel</option>
-            <option value="Colar">Colar</option>
-            <option value="Pingente">Pingente</option>
-            <option value="Tiara">Tiara</option>
-            <option value="Lingerie">Lingerie</option>
-            <option value="">Tudo</option>
-          </select>
-        </div>
-
-        <div class="col">
-          <select onchange="filterProducts()" class="form-select" name="price-filter" id="price-filter">
-            <option value="" data-default disabled selected>Preco</option>
-            <option value="promo">Promoção</option>
-            <option value="ASC">Menor preço</option>
-            <option value="DSC">Maior preço</option>
-            <option value="">Tudo</option>
-          </select>
+    <section>
+        <div class="modal fade" id="userSignupEditInfo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="userSignupEditInfoLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title logo" id="userSignupEditInfoLabel">MEUS DADOS</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form id="signup-form-edit">
+                </form>
+              </div>
+              <div class="modal-footer">
+                  <button class="btn btn-danger" class="btn-close" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>
+                  <button onclick="editarInformacoesDeUsuario()" type="button" class="btn btn-success">Editar</button>
+              </div>
+            </div>
+          </div>
         </div>
     </section>
 
     <section>
-      <div class="d-flex flex-wrap justify-content-center" id="products-container">
-      </div>
+        <div class="modal fade" id="userSignupEditPassword" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="userSignupEditPasswordLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title logo" id="userSignupEditPasswordLabel">MUDAR SENHA</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form id="signup-form-edit-password">
+                </form>
+              </div>
+              <div class="modal-footer">
+                  <button class="btn btn-danger" class="btn-close" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>
+                  <button type="button" class="btn btn-success">Editar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+  </modal>
+
+  <main class="m-4">
+    <section class="container">
+        <h1>Compra bem sucedida!</h1>
+        <h4 id="order-id">Número do pedido: 0987</h4>
+        <p>A sua compra foi realizada com sucesso. Agora é só aguardar até a gente entrar em contado com você para combinar a forma de pagamento!</p>
+        <p class="border rounded p-3">Você pode consultar o andamento do seu pedido na página do usuário em <a class="text-decoration-none primary-text" href="/pedidos">Meus Pedidos</a>.</p>
+        <h6>Estamos felizes por ter nos escolhido!</h6>
+    </section>
+
+    <section class="container mt-4 border-top pt-2">
+        <h3 class="primary-text">Conheça nossas ofertas</h3>
+
+        <div class="d-flex flex-wrap justify-content-center" id="offers-container"></div>
     </section>
   </main>
 
@@ -236,12 +291,9 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-    <script src="/src/script/app.js"></script>
-    <script src="/src/pages/products/script.js"></script> 
-    <!--<script src="/src/script/products-list.js"></script>
-    <script src="/src/script/bag-list.js"></script>
-     -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+  <script src="/src/script/app.js"></script>
+  <script src="/src/pages/user-info/script.js"></script>
 </body>
+
 </html>
