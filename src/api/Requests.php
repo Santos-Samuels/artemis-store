@@ -302,7 +302,8 @@ function getUserOrders() {
                     users.reference_point,
                     users.city,
                     users.uf,
-                    users.whatsapp
+                    users.whatsapp,
+                    users.cep
             FROM requests 
             INNER JOIN users 
             ON requests.user_id = users.id
