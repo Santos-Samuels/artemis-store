@@ -122,6 +122,7 @@ const _loadOrders = (orders) => {
                             <p class="fs-6 fw-bold">Endereço:</p>
                             <p>${order.adress} - ${order.number} - ${order.district} <br>
                             ${order.reference_point} <br> ${order.city} - ${order.uf}</p>
+                            
                             <p><i class="bi bi-whatsapp"></i> ${order.whatsapp}</p>
     
                         </div>

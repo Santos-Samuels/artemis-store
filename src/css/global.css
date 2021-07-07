@@ -148,3 +148,7 @@ tbody tr:hover {
   transition: all 0.4s;
   border-color: var(--accents-6) !important;
 }
+
+/* .modal.fade {
+  z-index: 20 !important;
+} */
