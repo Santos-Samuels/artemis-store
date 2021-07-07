@@ -2,6 +2,13 @@ create database loja_artemis;
 
 use loja_artemis;
 
+CREATE TABLE admin(
+    id INT NOT NULL AUTO_INCREMENT,
+    name varchar(255) NOT NULL,
+    password varchar(16) NOT NULL,
+    PRIMARY KEY(id)
+);
+
 CREATE TABLE users(
     id INT NOT NULL AUTO_INCREMENT,
     name varchar(255) NOT NULL,
@@ -62,7 +69,7 @@ CREATE TABLE request_products(
 
 CREATE TABLE frontpagebanners(
 	id INT NOT NULL AUTO_INCREMENT,
-    product_id INT NOT NULL,
+    product_id INT,
     PRIMARY KEY(id),
     FOREIGN KEY (product_id) REFERENCES products (id)
 );
@@ -85,3 +92,10 @@ INSERT INTO products values(NULL, "Calsinha cintura alta nude", "", "Calsinha ci
 INSERT INTO products values(NULL, "Calsinha cintura alta preto", "", "Calsinha cintura alta preto","vermelho, azul","#fc0324,#0b03fc", "23, 25, 30" , "Roupa", "Calcinha", 10, 24.99, 0, 0);
 INSERT INTO products values(NULL, "Calsinha cintura alta nude", "", "Calsinha cintura alta nude","vermelho, azul","#fc0324,#0b03fc", "23, 25, 30" , "Roupa", "Calcinha", 10, 29.90, 0, 0);
 INSERT INTO products values(NULL, "Calsinha cintura alta preto", "", "Calsinha cintura alta preto","vermelho, azul","#fc0324,#0b03fc", "23, 25, 30" , "Roupa", "Calcinha", 10, 24.90, 0, 0);
+
+insert into frontpagebanners(id) values(null);
+insert into frontpagebanners(id) values(null);
+insert into frontpagebanners(id) values(null);
+insert into frontpagebanners(id) values(null);
+
+insert into admin VALUES(null, "admin", "MTIzNDU2");

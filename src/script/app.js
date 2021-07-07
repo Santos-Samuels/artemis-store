@@ -321,6 +321,7 @@ const registrar = async () => {
     const login = document.getElementById("signup-email").value.toLowerCase();
     const password = document.getElementById("signup-password").value;
     const password2 = document.getElementById("signup-password2").value;
+    const uf = document.getElementById("uf").value;
 
     if(password2 != password){
         alert("Senhas não coincidem");
@@ -329,6 +330,11 @@ const registrar = async () => {
 
     if(!validateEmail(login)){
         alert("Email Invalido");
+        return;
+    }
+
+    if(uf.length != 2){
+        alert("Estado só pode ter 2 letras");
         return;
     }
 
@@ -377,6 +383,7 @@ const verifyLogin = async () => {
         url: `http://${window.location.hostname}/api/login/`,
         headers: { "Content-Type": "multipart/alternative" },
     }).then(function (response) {
+        console.log(response);
         if(response.data.userName){
             connectedDiv = document.querySelector('#userDropdownConectedOptions')
             disconnectedDiv =  document.querySelector('#user')

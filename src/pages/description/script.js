@@ -244,6 +244,6 @@ function isColor(strColor){
 }
 
 
-
-
-window.onload = updateData();
+$( document ).ready(function() {
+    updateData();
+});

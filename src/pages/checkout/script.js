@@ -171,6 +171,8 @@ const createRequest = async () => {
             var temp = [];
             localStorage.setItem("cart", JSON.stringify(temp));
             window.location.reload();
+        }else if(response.data.msg == "Você não está logado"){
+            alert("Você não está logado !");
         }
     })
     .catch(function (error) {
@@ -178,4 +180,6 @@ const createRequest = async () => {
     });
 }
 
-window.onload = loadCheckout()  ;
+$( document ).ready(function() {
+    loadCheckout();
+});

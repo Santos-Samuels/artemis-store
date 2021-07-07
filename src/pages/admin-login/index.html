@@ -25,7 +25,7 @@
           <form id="admin-login-form">
             <input class="form-control mt-3" type="email" name="admin-email" id="admin-login-email" placeholder="Email">  
             <input class="form-control mt-3" type="password" name="admin-login-password" id="admin-login-password" placeholder="Senha">
-            <button type="button" class="btn btn-primary mt-3 w-100" id="login-button">ENTRAR</button>
+            <button type="button" onclick="loginIn()" class="btn btn-primary mt-3 w-100" id="login-button">ENTRAR</button>
           </form>
     
           <p class="cursor-pointer text-primary link mt-4 text-center">Esqueci a senha</p>
@@ -33,8 +33,9 @@
       </section>
   </main>
 
-
+      <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-  <script src="/src/pages/admin/script.js"></script>
+  <script src="/src/pages/admin-login/script.js"></script>
 </body>
 </html>
