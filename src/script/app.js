@@ -306,7 +306,7 @@ const login = async () => {
     }).then(function (response) {
         console.log(response.data);
         if(response.data.msg == "Login concluido"){
-            alert("Login Concluido")
+            actionFeedback('#success-login')
             location.reload()
         }
     })
@@ -324,17 +324,17 @@ const registrar = async () => {
     const uf = document.getElementById("uf").value;
 
     if(password2 != password){
-        alert("Senhas não coincidem");
+        actionFeedback('#error-invalid-passwords')
         return;
     }
 
     if(!validateEmail(login)){
-        alert("Email Invalido");
+        actionFeedback('#error-invalid-email')
         return;
     }
 
     if(uf.length != 2){
-        alert("Estado só pode ter 2 letras");
+        actionFeedback('#error-invalid-uf')
         return;
     }
 
@@ -353,7 +353,7 @@ const registrar = async () => {
     }).then(function (response) {
         console.log(response.data);
         if(response.data.msg == "Registro Concluido"){
-            alert("Registro Concluido")
+            actionFeedback('#success-register')
             location.reload()
         }
     })

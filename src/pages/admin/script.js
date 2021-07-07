@@ -799,7 +799,7 @@ const updateOrder = async () => {
     }).then(function (response) {
         console.log(response.data);
         if(response.data.msg == "Funfou"){
-            alert("Produto atualizado com sucesso !");
+            actionFeedback('#success-updated-product')
             loadNewSales();
             loadCompletedSales();
         }
@@ -1071,9 +1071,9 @@ const updateBannerProducts = async () => {
     }).then(function (response) {
         console.log(response.data);
         if(response.data.msg != "Deu algo errado"){
-            alert("Banner Atualizado");
+            actionFeedback('#success-updated-banner')
         }else{
-            alert("Banner Não foi Atualizado");
+            actionFeedback('#error-something-wrong')
         }
     })
     .catch(function (error) {

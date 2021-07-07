@@ -98,4 +98,4 @@ insert into frontpagebanners(id) values(null);
 insert into frontpagebanners(id) values(null);
 insert into frontpagebanners(id) values(null);
 
-insert into admin VALUES(null, "admin", "MTIzNDU2");
+insert into admin VALUES(null, "admin", "");

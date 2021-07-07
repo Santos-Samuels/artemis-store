@@ -15,10 +15,10 @@ const loginIn = async () => {
     }).then(function (response) {
         console.log(response.data);
         if(response.data.msg == "Login concluido"){
-            alert("Login Concluido")
+            actionFeedback('#success-login')
             window.location = "/admin";
         }else{
-            actionFeedback('#')
+            actionFeedback('#error-admin-login')
         }
     })
     .catch(function (error) {
