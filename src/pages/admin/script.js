@@ -1,6 +1,49 @@
 var _orders;
 var current_id;
 
+const checkAdminLogin = async () => {
+    await axios({
+        method: "get",
+        url: `api/admin/`,
+        headers: { "Content-Type": "multipart/alternative" },
+    }).then(function (response) {
+        console.log(response);
+        if(response.data.msg == "Token não é valido"){
+            window.location = "/admin-login";
+            console.log("Funfou")
+        }
+        console.log("Funfou2")
+    })
+}
+
+const updatePanel = async () => {
+    const newSales = document.getElementById("newSales")
+    const finishedSales = document.getElementById("finishedSales")
+    const activeProducts = document.getElementById("activeProducts")
+    const promoProducts = document.getElementById("promoProducts")
+    const disabledProducts = document.getElementById("disabledProducts")
+
+    await axios({
+        method: "get",
+        url: "api/admin?panel=y",
+        headers: { "Content-Type": "multipart/alternative" },
+    }).then(function (response) {
+        console.log(response.data);
+        if(response.data.newSales >= 0){
+            const panel = response.data;
+            newSales.innerText = panel.newSales;
+            finishedSales.innerText = panel.finishedSales;
+            activeProducts.innerText = panel.activeProducts;
+            promoProducts.innerText = panel.promoProducts;
+            disabledProducts.innerText = panel.disabledProducts;
+        }
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+
+}
+
 const add_new_product_form = document.getElementById('new-product-form')
 add_new_product_form.addEventListener('submit', function(e) {
     e.preventDefault()
@@ -289,7 +332,9 @@ const createModal = (product) => {
                         <option value="Colar">Colar</option>
                         <option value="Brinco">Brinco</option>
                         <option value="Pulseira">Pulseira</option>
-                        <option value="Calcinha">Lingerie</option>
+                        <option value="Tiara">Tiara</option>
+                        <option value="Pingente">Pingente</option>
+                        <option value="Lingerie">Lingerie</option>
                         </select>
                     </div>
                     <div class="col-6">
@@ -494,7 +539,6 @@ const loadCompletedSales = async () => {
         console.log(error);
     });
 }
-
 
 const _loadCompletedSales = (orders) => {
     console.table(orders)
@@ -981,6 +1025,77 @@ const _loadViewDisabledProductModal = (item) => {
     `
 
     viewDisabledProductContainer.insertAdjacentHTML('beforeend', html)
-        
-    
+}
+
+const updateBanners = async () => {
+    await axios({
+        method: "get",
+        url: "api/produtos/",
+        headers: { "Content-Type": "multipart/alternative" },
+    }).then(function (response) {
+        console.log(response.data);
+        _updateBanners(response.data.item);
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+}
+
+const _updateBanners = (p) =>{
+    const bannerSelect1 = document.getElementById("banner-select-1");
+    const bannerSelect2 = document.getElementById("banner-select-2");
+    const bannerSelect3 = document.getElementById("banner-select-3");
+    const bannerSelect4 = document.getElementById("banner-select-4");
+
+    bannerSelect1.innerHTML = `${p.map((_p) => { return `<option value="${_p.id}">${_p.product_name}</option>` }).join("")}`
+    bannerSelect2.innerHTML = `${p.map((_p) => { return `<option value="${_p.id}">${_p.product_name}</option>` }).join("")}`
+    bannerSelect3.innerHTML = `${p.map((_p) => { return `<option value="${_p.id}">${_p.product_name}</option>` }).join("")}`
+    bannerSelect4.innerHTML = `${p.map((_p) => { return `<option value="${_p.id}">${_p.product_name}</option>` }).join("")}`
+
+    console.log("Funfou")                  //<option value="">Produto 1</option>
+}
+
+const updateBannerProducts = async () => {
+    const data = new FormData(document.getElementById("bannerSelect"));
+
+    console.log(data.get("productId1"))
+    console.log(data.get("productId2"))
+    console.log(data.get("productId3"))
+    console.log(data.get("productId4"))
+
+    await axios({
+        method: "post",
+        data: data,
+        url: "api/banners/",
+        headers: { "Content-Type": "multipart/alternative" },
+    }).then(function (response) {
+        console.log(response.data);
+        if(response.data.msg != "Deu algo errado"){
+            alert("Banner Atualizado");
+        }else{
+            alert("Banner Não foi Atualizado");
+        }
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+}
+
+const adminLogout = async () => {
+    await axios({
+        method: "DELETE",
+        url: "api/admin/",
+        headers: { "Content-Type": "multipart/alternative" },
+    }).then(function (response) {
+        window.location.reload();
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+}
+
+window.onload = async () => {
+    await checkAdminLogin().then( async () => {
+        await updatePanel();
+    });
 }

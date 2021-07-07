@@ -2,6 +2,13 @@ main .offer-container {
     cursor: pointer;
 }
 
+main .offer-container img{
+    max-width: 250px;
+    min-width: 250px;
+    max-height: 250px;
+    min-height: 250px;
+}
+
 main .offer-label {
     transition: all 0.5s;
 }

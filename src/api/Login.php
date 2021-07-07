@@ -55,7 +55,6 @@ function loginIn(){
 
     $json = json_encode($retorno, JSON_UNESCAPED_UNICODE);
     exit($json);
-
 }
 
 function getUserData(){
@@ -98,6 +97,10 @@ function getUserData(){
 
 function verifyLogin(){
     include "./utils/JWT.php";
+
+    if(!isset($_COOKIE["userToken"])){
+        return;
+    }
 
     try{
         $userName = JWT_decode($_COOKIE["userToken"])["userName"];

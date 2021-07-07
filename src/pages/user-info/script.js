@@ -124,4 +124,19 @@ const loadUserPasswordModal = () => {
 }
 
 
-window.onload = updateUserData()
+const checkLoginAgain = async () => {
+    await axios({
+        method: "post",
+        url: `http://${window.location.hostname}/api/login/`,
+        headers: { "Content-Type": "multipart/alternative" },
+    }).then(function (response) {
+        if(!response.data.userName){
+            window.location = "/";
+        }
+    })
+}
+
+$( document ).ready(function() {
+    updateUserData();
+    checkLoginAgain();
+});

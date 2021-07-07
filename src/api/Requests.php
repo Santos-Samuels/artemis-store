@@ -18,12 +18,23 @@ switch ($method) {
             
         ){
             CreateRequest();
+        }else if(
+            isset($_POST["products_id"]) and 
+            isset($_POST["quantity"]) and 
+            isset($_POST["payment_type"]) and
+            isset($_POST["total_price"]) and
+            isset($_POST["discounted_price"]) and
+            isset($_POST["selected_color_pt"]) and
+            isset($_POST["selected_size"]) and
+            isset($_POST["date"]) and
+            !isset($_COOKIE["userToken"])
+        ){
+            $retorno["msg"] = "Você não está logado";
+            $json = json_encode($retorno, JSON_UNESCAPED_UNICODE);
+            exit($json);
         }
         else if(isset($_POST["request_id"]) and isset($_POST["status"])){
             updateStatus();
-        }
-        else if(isset($_POST[""])){
-
         }
         break;
     case 'GET':
