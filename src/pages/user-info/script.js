@@ -92,7 +92,7 @@ const loadUserDataModal = () => {
                 <input class="form-control mt-3" type="text" name="address" id="address" placeholder="Endereço" value="${(Dados.adress == null) ? "" : Dados.adress}">
             </div>
             <div class="col-3">
-                <input class="form-control mt-3" type="text" name="number" id="number" placeholder="Nº" minlength="1" value="${(Dados.number == null) ? "" : Dados.number}">
+                <input class="form-control mt-3" type="text" name="number" id="number" placeholder="Nº" value="${(Dados.number == null) ? "" : Dados.number}">
             </div>
         </div>
         <input class="form-control mt-3" type="text" name="district" id="district" placeholder="Bairro" value="${(Dados.district == null) ? "" : Dados.district}">

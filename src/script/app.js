@@ -401,6 +401,14 @@ function validateEmail(email) {
     return re.test(String(email).toLowerCase());
 }
 
+function actionFeedback(div) {
+    $(div).fadeIn(700, function(){
+        setTimeout(function(){
+            $(div).fadeOut();
+        }, 2000);
+    });
+}
+
 window.onload = () => {
     verifyLogin();
     loadCart();

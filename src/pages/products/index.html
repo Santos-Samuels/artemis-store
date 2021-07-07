@@ -75,7 +75,7 @@
             <div class="modal-body">
               <form id="login-form">
                 <input class="form-control mt-3" type="email" name="login-email" id="login-email" placeholder="Email">  
-                <input class="form-control mt-3" type="password" name="login-password" id="login-password" placeholder="Senha" minlength="8">
+                <input class="form-control mt-3" type="password" name="login-password" id="login-password" placeholder="Senha">
                 <button type="button" class="btn btn-primary mt-3 w-100" id="login-button">ENTRAR</button>
               </form>
             </div>
@@ -100,30 +100,29 @@
                 <input class="form-control mt-3" type="text" name="signup-first-name" id="signup-first-name" placeholder="Primeiro nome" required>
                 <input class="form-control mt-3" type="text" name="signup-last-name" id="signup-last-name" placeholder="Último nome" required>
                 <input class="form-control mt-3" type="email" name="signup-email" id="signup-email" placeholder="Email" required>
-                <input class="form-control mt-3" type="password" name="signup-password" id="signup-password" placeholder="Senha" minlength="8" required>
-                <input class="form-control mt-3" type="password" name="signup-password2" id="signup-password2" placeholder="Confirmar Senha" minlength="8" required>
-                
-                <input class="form-control mt-3" type="tel" name="whatsapp" id="whatsapp" placeholder="Whatsapp" value="" required>
-                
-                <div class="row">
-                    <div class="col">
-                        <input class="form-control mt-3" type="text" name="address" id="address" placeholder="Endereço" value="">
-                    </div>
-                    <div class="col-3">
-                        <input class="form-control mt-3" type="text" name="number" id="number" placeholder="Nº" value="">
-                    </div>
-                </div>
-                <input class="form-control mt-3" type="text" name="district" id="district" placeholder="Bairro" value="">
-                <div class="row">
-                    <div class="col">
-                        <input class="form-control mt-3" type="text" name="city" id="city" placeholder="Cidade" value="">
-                    </div>
-                    <div class="col-3">
-                        <input class=" form-control mt-3" type="text" name="uf" id="uf" placeholder="Estado" value="">
-                    </div>
-                </div>
+                <input class="form-control mt-3" type="password" name="signup-password" id="signup-password" placeholder="Senha" required>
+                <input class="form-control mt-3" type="password" name="signup-password2" id="signup-password2" placeholder="Confirmar Senha" required>
+        <input class="form-control mt-3" type="tel" name="whatsapp" id="whatsapp" placeholder="Whatsapp" value="" required>
+        
+        <div class="row">
+            <div class="col">
+                <input class="form-control mt-3" type="text" name="address" id="address" placeholder="Endereço" value="">
+            </div>
+            <div class="col-3">
+                <input class="form-control mt-3" type="text" name="number" id="number" placeholder="Nº" value="">
+            </div>
+        </div>
+        <input class="form-control mt-3" type="text" name="district" id="district" placeholder="Bairro" value="">
+        <div class="row">
+            <div class="col">
+                <input class="form-control mt-3" type="text" name="city" id="city" placeholder="Cidade" value="">
+            </div>
+            <div class="col-3">
+                <input class=" form-control mt-3" type="text" name="uf" id="uf" placeholder="Estado" value="">
+            </div>
+        </div>
                 <input class="form-control mt-3" type="text" name="reference-point" id="reference-point" placeholder="Ponto de referência">
-                <input class="form-control mt-3" type="text" name="cep" id="cep" placeholder="CEP" minlength="8">
+                <input class="form-control mt-3" type="text" name="cep" id="cep" placeholder="CEP">
                 <button class="btn btn-primary mt-3 w-100" id="register-button">EFETUAR CADASTRO</button>
               </form>
             </div>
@@ -151,33 +150,6 @@
       </div>
     </section>
   </modal>
-
-  <feedback>
-    <div class="bg-success p-2 ps-3 pe-3 rounded text-white position-absolute bottom-0 start-50 translate-middle mb-4 me-4" style="display: none;" id="success-user-login">
-      <i class="bi bi-check-circle fs-5 me-2"></i>
-      <span style="font-weight: 600;">Você entrou!</span>
-    </div>
-
-    <div class="bg-success p-2 ps-3 pe-3 rounded text-white position-absolute bottom-0 start-50 translate-middle mb-4 me-4" style="display: none;" id="success-user-logout">
-      <i class="bi bi-check-circle fs-5 me-2"></i>
-      <span style="font-weight: 600;">Você saiu!</span>
-    </div>
-
-    <div class="bg-success p-2 ps-3 pe-3 rounded text-white position-absolute bottom-0 start-50 translate-middle mb-4 me-4" style="display: none;" id="success-user-register">
-      <i class="bi bi-check-circle fs-5 me-2"></i>
-      <span style="font-weight: 600;">Cadastro efetuado!</span>
-    </div>
-    
-    <div class="bg-danger p-2 ps-3 pe-3 rounded text-white position-absolute bottom-0 start-50 translate-middle mb-4 me-4" style="display: none;" id=error-user-password">
-      <i class="bi bi-exclamation-circle fs-5 me-2"></i>
-      <span style="font-weight: 600;">Senhas diferentes!</span>
-    </div>
-    
-    <div class="bg-danger p-2 ps-3 pe-3 rounded text-white position-absolute bottom-0 start-50 translate-middle mb-4 me-4" style="display: none;" id=error-user-invalid-email">
-      <i class="bi bi-exclamation-circle fs-5 me-2"></i>
-      <span style="font-weight: 600;">Email inválido!</span>
-    </div>
-  </feedback>
   
   <main class="container">
     <form class="row g-2 mb-2" name="filter-form" id="filter-form">

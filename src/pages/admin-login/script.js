@@ -18,10 +18,18 @@ const loginIn = async () => {
             alert("Login Concluido")
             window.location = "/admin";
         }else{
-            alert("Login ou senha errados");
+            actionFeedback('#')
         }
     })
     .catch(function (error) {
         console.log(error);
+    });
+}
+
+function actionFeedback(div) {
+    $(div).fadeIn(700, function(){
+        setTimeout(function(){
+            $(div).fadeOut();
+        }, 2000);
     });
 }

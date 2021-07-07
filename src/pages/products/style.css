@@ -14,10 +14,6 @@ main .product img {
     max-height: 250px;
 }
 
-main .product {
-    min-height: 410px;
-}
-
 .product-title {
     max-width: 250px;
 }

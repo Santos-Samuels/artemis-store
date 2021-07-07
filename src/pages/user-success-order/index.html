@@ -80,8 +80,8 @@
             <div class="modal-body">
               <form id="login-form">
                 <input class="form-control mt-3" type="email" name="login-email" id="login-email" placeholder="Email">  
-                <input class="form-control mt-3" type="password" name="login-password" id="login-password" placeholder="Senha" minlength="8">
-                <button type="button" class="btn btn-primary mt-3 w-100" id="login-button">ENTRAR</button>
+                <input class="form-control mt-3" type="password" name="login-password" id="login-password" placeholder="Senha">
+                <button class="btn btn-primary mt-3 w-100" id="login-button">ENTRAR</button>
               </form>
             </div>
             <div class="text-center">
@@ -105,30 +105,29 @@
                 <input class="form-control mt-3" type="text" name="signup-first-name" id="signup-first-name" placeholder="Primeiro nome" required>
                 <input class="form-control mt-3" type="text" name="signup-last-name" id="signup-last-name" placeholder="Último nome" required>
                 <input class="form-control mt-3" type="email" name="signup-email" id="signup-email" placeholder="Email" required>
-                <input class="form-control mt-3" type="password" name="signup-password" id="signup-password" placeholder="Senha" minlength="8" required>
-                <input class="form-control mt-3" type="password" name="signup-password2" id="signup-password2" placeholder="Confirmar Senha" minlength="8" required>
-                
-                <input class="form-control mt-3" type="tel" name="whatsapp" id="whatsapp" placeholder="Whatsapp" value="" required>
-                
-                <div class="row">
-                    <div class="col">
-                        <input class="form-control mt-3" type="text" name="address" id="address" placeholder="Endereço" value="">
-                    </div>
-                    <div class="col-3">
-                        <input class="form-control mt-3" type="text" name="number" id="number" placeholder="Nº" value="">
-                    </div>
-                </div>
-                <input class="form-control mt-3" type="text" name="district" id="district" placeholder="Bairro" value="">
-                <div class="row">
-                    <div class="col">
-                        <input class="form-control mt-3" type="text" name="city" id="city" placeholder="Cidade" value="">
-                    </div>
-                    <div class="col-3">
-                        <input class=" form-control mt-3" type="text" name="uf" id="uf" placeholder="Estado" value="">
-                    </div>
-                </div>
+                <input class="form-control mt-3" type="password" name="signup-password" id="signup-password" placeholder="Senha" required>
+                <input class="form-control mt-3" type="password" name="signup-password2" id="signup-password2" placeholder="Confirmar Senha" required>
+        <input class="form-control mt-3" type="tel" name="whatsapp" id="whatsapp" placeholder="Whatsapp" value="" required>
+        
+        <div class="row">
+            <div class="col">
+                <input class="form-control mt-3" type="text" name="address" id="address" placeholder="Endereço" value="">
+            </div>
+            <div class="col-3">
+                <input class="form-control mt-3" type="text" name="number" id="number" placeholder="Nº" value="">
+            </div>
+        </div>
+        <input class="form-control mt-3" type="text" name="district" id="district" placeholder="Bairro" value="">
+        <div class="row">
+            <div class="col">
+                <input class="form-control mt-3" type="text" name="city" id="city" placeholder="Cidade" value="">
+            </div>
+            <div class="col-3">
+                <input class=" form-control mt-3" type="text" name="uf" id="uf" placeholder="Estado" value="">
+            </div>
+        </div>
                 <input class="form-control mt-3" type="text" name="reference-point" id="reference-point" placeholder="Ponto de referência">
-                <input class="form-control mt-3" type="text" name="cep" id="cep" placeholder="CEP" minlength="8">
+                <input class="form-control mt-3" type="text" name="cep" id="cep" placeholder="CEP">
                 <button class="btn btn-primary mt-3 w-100" id="register-button">EFETUAR CADASTRO</button>
               </form>
             </div>
@@ -148,41 +147,93 @@
         </div>
         <div class="offcanvas-body">
           <div class="" id="bag-container-products">
+            <article class="row g-2 mb-3">
+              <div class="col-3 me-2">
+                <img class="bag-product-image rounded me-3" src="/assets/img/aliancas-white-stone.jpeg" alt="">
+              </div>
+              <div class="me-4 col">
+                <h6>Colar white stone</h6>
+                <input class="bag-product-quantity form-control" type="number" name="bag-product-quantity" id="" min="0" max="" value="1">
+              </div>
+              <div class="col-2 text-end">
+                <p class="mb-0 bag-product-price">R$ 29,90</p>
+                <span class="primary-text primary-text-hover cursor-pointer bag-button-trash" id=""><i class="bi bi-trash-fill fs-4"></i></span>
+              </div>
+            </article>
+            <article class="row g-2 mb-3">
+              <div class="col-3 me-2">
+                <img class="bag-product-image rounded me-3" src="/assets/img/aliancas-white-stone.jpeg" alt="">
+              </div>
+              <div class="me-4 col">
+                <h6>Colar white stone</h6>
+                <input class="bag-product-quantity form-control" type="number" name="bag-product-quantity" id="" min="0" max="" value="1">
+              </div>
+              <div class="col-2 text-end">
+                <p class="mb-0 bag-product-price">R$ 29,90</p>
+                <span class="primary-text primary-text-hover cursor-pointer bag-button-trash" id=""><i class="bi bi-trash-fill fs-4"></i></span>
+              </div>
+            </article>
+          </div>
+
+          <div class="text-center text-secondary mt-5 hide" id="bag-container-empty">
+            <i class="bi bi-info-circle fs-1"></i>
+            <h3 class="">Seu carrinho está vazio</h3>
           </div>
         </div>
-
         <div class="offcanvas-footer border-top p-4 pt-0"  id="bag-container-footer">
+          <div class="row pt-3">
+            <h5 class="col text-secondary">Total</h5>
+            <h5 class="col text-end fw-bold">R$ 29,90</h5>
+          </div>
+          <div class="mt-4">
+            <button class="btn btn-primary w-100" id="bag-button-finalizar-compra">Finalizar Compra</button>
+          </div>
         </div>
       </div>
     </section>
+
+    <section>
+        <div class="modal fade" id="userSignupEditInfo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="userSignupEditInfoLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title logo" id="userSignupEditInfoLabel">MEUS DADOS</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form id="signup-form-edit">
+                </form>
+              </div>
+              <div class="modal-footer">
+                  <button class="btn btn-danger" class="btn-close" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>
+                  <button onclick="editarInformacoesDeUsuario()" type="button" class="btn btn-success">Editar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="modal fade" id="userSignupEditPassword" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="userSignupEditPasswordLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title logo" id="userSignupEditPasswordLabel">MUDAR SENHA</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form id="signup-form-edit-password">
+                </form>
+              </div>
+              <div class="modal-footer">
+                  <button class="btn btn-danger" class="btn-close" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>
+                  <button type="button" class="btn btn-success">Editar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
   </modal>
-
-  <feedback>
-    <div class="bg-success p-2 ps-3 pe-3 rounded text-white position-absolute bottom-0 start-50 translate-middle mb-4 me-4" style="display: none;" id="success-user-login">
-      <i class="bi bi-check-circle fs-5 me-2"></i>
-      <span style="font-weight: 600;">Você entrou!</span>
-    </div>
-
-    <div class="bg-success p-2 ps-3 pe-3 rounded text-white position-absolute bottom-0 start-50 translate-middle mb-4 me-4" style="display: none;" id="success-user-logout">
-      <i class="bi bi-check-circle fs-5 me-2"></i>
-      <span style="font-weight: 600;">Você saiu!</span>
-    </div>
-
-    <div class="bg-success p-2 ps-3 pe-3 rounded text-white position-absolute bottom-0 start-50 translate-middle mb-4 me-4" style="display: none;" id="success-user-register">
-      <i class="bi bi-check-circle fs-5 me-2"></i>
-      <span style="font-weight: 600;">Cadastro efetuado!</span>
-    </div>
-    
-    <div class="bg-danger p-2 ps-3 pe-3 rounded text-white position-absolute bottom-0 start-50 translate-middle mb-4 me-4" style="display: none;" id=error-user-password">
-      <i class="bi bi-exclamation-circle fs-5 me-2"></i>
-      <span style="font-weight: 600;">Senhas diferentes!</span>
-    </div>
-    
-    <div class="bg-danger p-2 ps-3 pe-3 rounded text-white position-absolute bottom-0 start-50 translate-middle mb-4 me-4" style="display: none;" id=error-user-invalid-email">
-      <i class="bi bi-exclamation-circle fs-5 me-2"></i>
-      <span style="font-weight: 600;">Email inválido!</span>
-    </div>
-  </feedback>
 
   <main class="m-4">
     <section class="container">
