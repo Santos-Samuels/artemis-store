@@ -148,32 +148,7 @@
         </div>
         <div class="offcanvas-body">
           <div class="" id="bag-container-products">
-            <article class="row g-2 mb-3">
-              <div class="col-3 me-2">
-                <img class="bag-product-image rounded me-3" src="/assets/img/aliancas-white-stone.jpeg" alt="">
-              </div>
-              <div class="me-4 col">
-                <h6>Colar white stone</h6>
-                <input class="bag-product-quantity form-control" type="number" name="bag-product-quantity" id="" min="0" max="" value="1">
-              </div>
-              <div class="col-2 text-end">
-                <p class="mb-0 bag-product-price">R$ 29,90</p>
-                <span class="primary-text primary-text-hover cursor-pointer bag-button-trash" id=""><i class="bi bi-trash-fill fs-4"></i></span>
-              </div>
-            </article>
-            <article class="row g-2 mb-3">
-              <div class="col-3 me-2">
-                <img class="bag-product-image rounded me-3" src="/assets/img/aliancas-white-stone.jpeg" alt="">
-              </div>
-              <div class="me-4 col">
-                <h6>Colar white stone</h6>
-                <input class="bag-product-quantity form-control" type="number" name="bag-product-quantity" id="" min="0" max="" value="1">
-              </div>
-              <div class="col-2 text-end">
-                <p class="mb-0 bag-product-price">R$ 29,90</p>
-                <span class="primary-text primary-text-hover cursor-pointer bag-button-trash" id=""><i class="bi bi-trash-fill fs-4"></i></span>
-              </div>
-            </article>
+            <div class="loader">Loading...</div>
           </div>
 
           <div class="text-center text-secondary mt-5 hide" id="bag-container-empty">
@@ -182,13 +157,6 @@
           </div>
         </div>
         <div class="offcanvas-footer border-top p-4 pt-0"  id="bag-container-footer">
-          <div class="row pt-3">
-            <h5 class="col text-secondary">Total</h5>
-            <h5 class="col text-end fw-bold">R$ 29,90</h5>
-          </div>
-          <div class="mt-4">
-            <button class="btn btn-primary w-100" id="bag-button-finalizar-compra">Finalizar Compra</button>
-          </div>
         </div>
       </div>
     </section>
@@ -203,6 +171,7 @@
               </div>
               <div class="modal-body">
                 <form id="signup-form-edit">
+                  <div class="loader">Loading...</div>
                 </form>
               </div>
               <div class="modal-footer">
@@ -216,42 +185,42 @@
   </modal>
 
   <feedback>
-    <div class="bg-success p-2 ps-3 pe-3 rounded text-white position-absolute bottom-0 start-50 translate-middle mb-4 me-4" style="display: none;" id="success-register">
+    <div class="bg-success p-2 ps-3 pe-3 rounded text-white position-fixed bottom-0 start-50 translate-middle mb-4 me-4" style="display: none;" id="success-register">
       <i class="bi bi-check-circle fs-5 me-2"></i>
       <span style="font-weight: 600;">Usuário cadastrado!</span>
     </div>
 
-    <div class="bg-success p-2 ps-3 pe-3 rounded text-white position-absolute bottom-0 start-50 translate-middle mb-4 me-4" style="display: none;" id="success-login">
+    <div class="bg-success p-2 ps-3 pe-3 rounded text-white position-fixed bottom-0 start-50 translate-middle mb-4 me-4" style="display: none;" id="success-login">
       <i class="bi bi-check-circle fs-5 me-2"></i>
       <span style="font-weight: 600;">Conectado!</span>
     </div>
 
-    <div class="bg-success p-2 ps-3 pe-3 rounded text-white position-absolute bottom-0 start-50 translate-middle mb-4 me-4" style="display: none;" id="success-logout">
+    <div class="bg-success p-2 ps-3 pe-3 rounded text-white position-fixed bottom-0 start-50 translate-middle mb-4 me-4" style="display: none;" id="success-logout">
       <i class="bi bi-check-circle fs-5 me-2"></i>
       <span style="font-weight: 600;">Desconectado!</span>
     </div>
     
-    <div class="bg-danger p-2 ps-3 pe-3 rounded text-white position-absolute bottom-0 start-50 translate-middle mb-4 me-4" style="display: none;" id="error-invalid-passwords">
+    <div class="bg-danger p-2 ps-3 pe-3 rounded text-white position-fixed bottom-0 start-50 translate-middle mb-4 me-4" style="display: none;" id="error-invalid-passwords">
       <i class="bi bi-exclamation-circle fs-5 me-2"></i>
       <span style="font-weight: 600;">Senhas diferentes!</span>
     </div>
     
-    <div class="bg-danger p-2 ps-3 pe-3 rounded text-white position-absolute bottom-0 start-50 translate-middle mb-4 me-4" style="display: none;" id="error-invalid-email">
+    <div class="bg-danger p-2 ps-3 pe-3 rounded text-white position-fixed bottom-0 start-50 translate-middle mb-4 me-4" style="display: none;" id="error-invalid-email">
       <i class="bi bi-exclamation-circle fs-5 me-2"></i>
       <span style="font-weight: 600;">Email inválido!</span>
     </div>
     
-    <div class="bg-danger p-2 ps-3 pe-3 rounded text-white position-absolute bottom-0 start-50 translate-middle mb-4 me-4" style="display: none;" id="error-user-login">
+    <div class="bg-danger p-2 ps-3 pe-3 rounded text-white position-fixed bottom-0 start-50 translate-middle mb-4 me-4" style="display: none;" id="error-user-login">
       <i class="bi bi-exclamation-circle fs-5 me-2"></i>
       <span style="font-weight: 600;">Email ou senha incorretos!</span>
     </div>
     
-    <div class="bg-danger p-2 ps-3 pe-3 rounded text-white position-absolute bottom-0 start-50 translate-middle mb-4 me-4" style="display: none;" id="error-admin-login">
+    <div class="bg-danger p-2 ps-3 pe-3 rounded text-white position-fixed bottom-0 start-50 translate-middle mb-4 me-4" style="display: none;" id="error-admin-login">
       <i class="bi bi-exclamation-circle fs-5 me-2"></i>
       <span style="font-weight: 600;">Usuario ou senha incorretos!</span>
     </div>
     
-    <div class="bg-danger p-2 ps-3 pe-3 rounded text-white position-absolute bottom-0 start-50 translate-middle mb-4 me-4" style="display: none;" id="error-invalid-uf">
+    <div class="bg-danger p-2 ps-3 pe-3 rounded text-white position-fixed bottom-0 start-50 translate-middle mb-4 me-4" style="display: none;" id="error-invalid-uf">
       <i class="bi bi-exclamation-circle fs-5 me-2"></i>
       <span style="font-weight: 600;">Use apenas 2 letras para UF!</span>
     </div>
@@ -275,6 +244,7 @@
     </section>
 
     <section class="container mt-5" id="order-container">
+      <div class="loader">Loading...</div>
     </section>
   </main>
 

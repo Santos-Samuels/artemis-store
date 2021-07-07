@@ -42,6 +42,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form class="modal-body" id="edit-product-modal-container">
+              <div class="loader">Loading...</div>
             </form>
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
@@ -61,7 +62,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div id="view-order-container">
-
+              <div class="loader">Loading...</div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
@@ -81,7 +82,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div id="view-order-container">
-
+              <div class="loader">Loading...</div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
@@ -101,6 +102,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div id="view-disabled-product-container">
+              <div class="loader">Loading...</div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-success" data-bs-dismiss="modal">Ok</button>
@@ -112,47 +114,47 @@
   </modal>
 
   <feedback>
-    <div class="bg-success p-2 ps-3 pe-3 rounded text-white position-absolute bottom-0 start-50 translate-middle mb-4 me-4" style="display: none;" id="success-sale">
+    <div class="bg-success p-2 ps-3 pe-3 rounded text-white position-fixed bottom-0 start-50 translate-middle mb-4 me-4" style="display: none;" id="success-sale">
       <i class="bi bi-check-circle fs-5 me-2"></i>
       <span style="font-weight: 600;">Venda concluída!</span>
     </div>
   
-    <div class="bg-success p-2 ps-3 pe-3 rounded text-white position-absolute bottom-0 start-50 translate-middle mb-4 me-4" style="display: none;" id="success-new-product">
+    <div class="bg-success p-2 ps-3 pe-3 rounded text-white position-fixed bottom-0 start-50 translate-middle mb-4 me-4" style="display: none;" id="success-new-product">
       <i class="bi bi-check-circle fs-5 me-2"></i>
       <span style="font-weight: 600;">Produto cadastrado!</span>
     </div>
   
-    <div class="bg-success p-2 ps-3 pe-3 rounded text-white position-absolute bottom-0 start-50 translate-middle mb-4 me-4" style="display: none;" id="success-updated-product">
+    <div class="bg-success p-2 ps-3 pe-3 rounded text-white position-fixed bottom-0 start-50 translate-middle mb-4 me-4" style="display: none;" id="success-updated-product">
       <i class="bi bi-check-circle fs-5 me-2"></i>
       <span style="font-weight: 600;">Produto atualizado!</span>
     </div>
   
-    <div class="bg-success p-2 ps-3 pe-3 rounded text-white position-absolute bottom-0 start-50 translate-middle mb-4 me-4" style="display: none;" id="success-updated-banner">
+    <div class="bg-success p-2 ps-3 pe-3 rounded text-white position-fixed bottom-0 start-50 translate-middle mb-4 me-4" style="display: none;" id="success-updated-banner">
       <i class="bi bi-check-circle fs-5 me-2"></i>
       <span style="font-weight: 600;">Benner atualizado!</span>
     </div>
   
-    <div class="bg-danger p-2 ps-3 pe-3 rounded text-white position-absolute bottom-0 start-50 translate-middle mb-4 me-4" style="display: none;" id="error-new-product-color">
+    <div class="bg-danger p-2 ps-3 pe-3 rounded text-white position-fixed bottom-0 start-50 translate-middle mb-4 me-4" style="display: none;" id="error-new-product-color">
       <i class="bi bi-exclamation-circle fs-5 me-2"></i>
       <span style="font-weight: 600;">Cor inválida!</span>
     </div>
     
-    <div class="bg-success p-2 ps-3 pe-3 rounded text-white position-absolute bottom-0 start-50 translate-middle mb-4 me-4" style="display: none;" id="success-actived">
+    <div class="bg-success p-2 ps-3 pe-3 rounded text-white position-fixed bottom-0 start-50 translate-middle mb-4 me-4" style="display: none;" id="success-actived">
       <i class="bi bi-check-circle fs-5 me-2"></i>
       <span style="font-weight: 600;">Produto ativado!</span>
     </div>
 
-    <div class="bg-success p-2 ps-3 pe-3 rounded text-white position-absolute bottom-0 start-50 translate-middle mb-4 me-4" style="display: none;" id="success-disabled-product">
+    <div class="bg-success p-2 ps-3 pe-3 rounded text-white position-fixed bottom-0 start-50 translate-middle mb-4 me-4" style="display: none;" id="success-disabled-product">
       <i class="bi bi-check-circle fs-5 me-2"></i>
       <span style="font-weight: 600;">Produto desativado!</span>
     </div>
     
-    <div class="bg-danger p-2 ps-3 pe-3 rounded text-white position-absolute bottom-0 start-50 translate-middle mb-4 me-4" style="display: none;" id="error-void-field">
+    <div class="bg-danger p-2 ps-3 pe-3 rounded text-white position-fixed bottom-0 start-50 translate-middle mb-4 me-4" style="display: none;" id="error-void-field">
       <i class="bi bi-exclamation-circle fs-5 me-2"></i>
       <span style="font-weight: 600;">Campo vazio!</span>
     </div>
     
-    <div class="bg-danger p-2 ps-3 pe-3 rounded text-white position-absolute bottom-0 start-50 translate-middle mb-4 me-4" style="display: none;" id="error-something-wrong">
+    <div class="bg-danger p-2 ps-3 pe-3 rounded text-white position-fixed bottom-0 start-50 translate-middle mb-4 me-4" style="display: none;" id="error-something-wrong">
       <i class="bi bi-exclamation-circle fs-5 me-2"></i>
       <span style="font-weight: 600;">Ocorreu algum erro!</span>
     </div>
@@ -219,6 +221,7 @@
           <table class="table">
             <thead>
               <tr id="sale-header-scope-table">
+                <div class="loader">Loading...</div>
               </tr>
             </thead>
             <tbody id="sale-header-body">
@@ -232,6 +235,7 @@
           <table class="table">
             <thead>
               <tr id="done-sale-header-scope-table">
+                <div class="loader">Loading...</div>
               </tr>
             </thead>
             <tbody id="done-sale-header-body">
@@ -337,6 +341,7 @@
           <table class="table">
             <thead>
               <tr id="edit-header-scope-table">
+                <div class="loader">Loading...</div>
               </tr>
             </thead>
             <tbody id="edit-body-table">
@@ -350,6 +355,7 @@
         <table class="table">
           <thead>
             <tr id="disabled-header-scope-table">
+              <div class="loader">Loading...</div>
             </tr>
           </thead>
           <tbody id="disabled-body-table">

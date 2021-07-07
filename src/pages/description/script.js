@@ -163,6 +163,7 @@ const updatingData = async (product) => {
     var active = false
     var i = 0
 
+    document.getElementById("images").innerHTML = ""
 
     if(product.product_images != ""){
         product.product_images.map((product_image) => {
