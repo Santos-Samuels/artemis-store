@@ -121,7 +121,8 @@ const _loadOrders = (orders) => {
                             <p>Comprador: ${titleize(order.name) + " " + titleize(order.surname)}</p>
                             <p class="fs-6 fw-bold">Endereço:</p>
                             <p>${order.adress} - ${order.number} - ${order.district} <br>
-                            ${order.reference_point} <br> ${order.city} - ${order.uf}</p>
+                            ${order.reference_point} <br> ${order.city} - ${order.uf} <br>
+                            CEP: ${order.cep}</p>
                             
                             <p><i class="bi bi-whatsapp"></i> ${order.whatsapp}</p>
     
