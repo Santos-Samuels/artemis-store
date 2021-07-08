@@ -481,7 +481,7 @@ const _loadNewSale = (orders) => {
     
     const html_0 = ``
     saleContainerHeaderScope.insertAdjacentHTML('beforeend', html_0) //armengue
-    saleContainerHeaderScope.innerHTML = ""
+    salseContainer.innerHTML = ""
 
     if(orders.length == 0) {
         const html = `
