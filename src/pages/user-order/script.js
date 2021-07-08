@@ -140,7 +140,7 @@ const _loadOrders = (orders) => {
 }
 
 const titleize = (text) => {
-    var words = text.toLowerCase().split(" ");
+    var words = text.toLowerCase().trimEnd().split(" ");
     for (var a = 0; a < words.length; a++) {
         var w = words[a];
         words[a] = w[0].toUpperCase() + w.slice(1);

@@ -160,7 +160,8 @@ function getAllRequests() {
                     users.reference_point,
                     users.city,
                     users.uf,
-                    users.whatsapp
+                    users.whatsapp,
+                    users.cep
             FROM requests 
             INNER JOIN users 
             ON requests.user_id = users.id
@@ -232,7 +233,8 @@ function getAllCompletedRequests(){
                     users.reference_point,
                     users.city,
                     users.uf,
-                    users.whatsapp
+                    users.whatsapp,
+                    users.cep
             FROM requests 
             INNER JOIN users 
             ON requests.user_id = users.id

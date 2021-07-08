@@ -10,6 +10,14 @@ $request = explode("/", substr(@$_SERVER['PATH_INFO'], 1));
 
 switch ($method) {
     case 'POST':
+        if(isset($_POST["productId"]) and isset($_POST["methodType"]) and $_POST["methodType"] == "delete"){
+            echo "delete";
+            disableProductWithId();
+        }
+        if(isset($_POST["productId"]) and isset($_POST["methodType"]) and $_POST["methodType"] == "update"){
+            activateProductWithId();
+        }
+        
         if(isset($_POST["productId"])){
             updateProductWithId();
         }else{
@@ -32,17 +40,6 @@ switch ($method) {
             getAllProducts();
         }
 
-        break;
-    case 'DELETE':
-        if(isset($_GET["productId"])){
-            disableProductWithId();
-        }
-        break;
-    case 'PUT':
-        if(isset($_GET["productId"])){
-            activateProductWithId();
-        }
-        
         break;
 }
 
@@ -298,9 +295,7 @@ function deleteProductWithId(){
 function disableProductWithId(){
     include './database/conexao.php';
 
-    echo "algo";
-
-    $id = $_GET["productId"];
+    $id = $_POST["productId"];
 
     $sql = "SELECT * FROM products where id = '$id'";
 
@@ -312,8 +307,6 @@ function disableProductWithId(){
         $json = json_encode($retorno, JSON_UNESCAPED_UNICODE);
         exit($json);
     }
-
-    $produto = $resultado->fetch_assoc();
 
     $sql = "UPDATE products
         SET active = 1
@@ -338,7 +331,7 @@ function disableProductWithId(){
 function activateProductWithId(){
     include './database/conexao.php';
 
-    $id = $_GET["productId"];
+    $id = $_POST["productId"];
 
     $sql = "SELECT * FROM products where id = '$id'";
 

@@ -385,12 +385,18 @@ const updateProduct = async (color_pt, color_hex, size_str) => {
 }
 
 const disableProduct = async (productId) => {
+    var data = new FormData();
+
+    data.set("productId", productId);
+    data.set("methodType", "delete");
+
     await axios({
-        method: "DELETE",
-        url: `api/produtos?productId=${productId}`,
+        method: "POST",
+        data,
+        url: `api/produtos/`,
         headers: { "Content-Type": "multipart/alternative" },
     }).then(function (response) {
-        console.log(response)
+        console.log(response.data);
         loadProducts();
     })
     .catch(function (error) {
@@ -462,14 +468,14 @@ const loadNewSales = async () => {
         headers: { "Content-Type": "multipart/alternative" },
     }).then(function (response) {
         console.log(response.data);
-        loadNewSale(response.data.item);
+        _loadNewSale(response.data.item);
     })
     .catch(function (error) {
         console.log(error);
     });
 }
 
-const loadNewSale = (orders) => {
+const _loadNewSale = (orders) => {
     const salseContainer = document.querySelector('#sale-header-body')
     const saleContainerHeaderScope = document.querySelector('#sale-header-scope-table')
     
@@ -802,7 +808,7 @@ const updateOrder = async () => {
 }
 
 const titleize = (text) => {
-    var words = text.toLowerCase().split(" ");
+    var words = text.toLowerCase().trimEnd().split(" ");
     for (var a = 0; a < words.length; a++) {
         var w = words[a];
         words[a] = w[0].toUpperCase() + w.slice(1);
@@ -924,9 +930,15 @@ const _loadDisabledProducts = (disabledList) => {
 }
 
 const activateProduct = async (productId) =>{
+    var data = new FormData();
+
+    data.set("productId", productId);
+    data.set("methodType", "update");
+
     await axios({
-        method: "put",
-        url: `api/produtos?productId=${productId}`,
+        method: "POST",
+        data,
+        url: `api/produtos/`,
         headers: { "Content-Type": "multipart/alternative" },
     }).then(function (response) {
         console.log(response.data);

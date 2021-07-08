@@ -25,6 +25,7 @@ const _updateBanners = (products) =>{
                     <p>a partir de <span class="fw-bold price">${product.price}</span></p>
                 </div>
             <img class="w-100 rounded" src="${product.product_images[0]}" alt="Colar blue stone">
+            
         </a>`
     })
     updatePromotions();
