@@ -56,7 +56,7 @@ const _loadProducts = (products) => {
         }
 
         const html = `
-            <article class="m-4 product col">
+            <article class="m-4 product col-12 col-lg-3">
                 <img class="rounded" src="${product.product_images[0]}" alt="${product.product_name}">
                 <h5 class="pt-2 product-title">${product.product_name}</h5>
                 <p class="mb-0">De: <span class="fs-6 text-decoration-line-through">${product.price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span></p>
