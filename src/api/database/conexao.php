@@ -1,9 +1,9 @@
 <?php
-$servidor = "localhost";
-$userName = "root";
-$password = "";
+$servidor = "sql202.epizy.com";
+$userName = "epiz_29082049";
+$password = "0L2K1AaBYpIfD9";
 
-$dbName = "loja_artemis";
+$dbName = "epiz_29082049_loja_artemis";
 $conexao = new mysqli($servidor, $userName, $password, $dbName);
 
 
