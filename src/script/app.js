@@ -53,13 +53,8 @@ const loadCart = () => {
     const bagContainer = document.querySelector('#bag-container-products')
     const bagFooterContainer = document.querySelector('#bag-container-footer')
 
-    bagContainer.querySelectorAll('article').forEach(item => {
-        item.remove()
-    })
-
-    bagFooterContainer.querySelectorAll('payment').forEach(content => {
-        content.remove()
-    })
+    bagContainer.innerHTML = ""
+    bagFooterContainer.innerHTML = ""
 
     var cart = JSON.parse(localStorage.getItem("cart"));
     

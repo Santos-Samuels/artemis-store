@@ -16,6 +16,7 @@ const updateUserData = async () => {
 const loadUserData = (user) => {
     const userDataContainer = document.querySelector('#user-data')
     
+    userDataContainer.innerHTML = ""
     const html = `
         <div class="border shadow-sm p-3 pt-0 rounded row">
             <div class="row border-bottom mb-4 g-2 pb-2">
@@ -84,6 +85,7 @@ var Dados;
 const loadUserDataModal = () => {
     const userDataContainer = document.getElementById('signup-form-edit')
     
+    userDataContainer.innerHTML = ""
     userDataContainer.innerHTML = `
         <input class="form-control mt-3" type="tel" name="whatsapp" id="whatsapp" placeholder="Whatsapp" value="${(Dados.whatsapp == null) ? "" : Dados.whatsapp}" required>
         
@@ -113,6 +115,7 @@ const loadUserDataModal = () => {
 const loadUserPasswordModal = () => {
     const userPasswordContainer = document.getElementById('signup-form-edit-password')
     
+    userPasswordContainer.innerHTML = ""
     userPasswordContainer.innerHTML = `
         <label class="form-label" for="user-old-password">Senha atual <span class="primary-text">*</span></label>
         <input class="form-control mb-5" type="password" name="user-old-password" id="user-old-password">

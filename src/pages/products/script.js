@@ -19,7 +19,7 @@ const loadProducts = async () => {
 const _loadProducts = (products) => {
     const productsContainer = document.querySelector('#products-container')
     
-
+    productsContainer.innerHTML = ""
     products.forEach(product => {
         const html = `
             <article class="m-4 product">

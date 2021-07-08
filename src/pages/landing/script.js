@@ -15,7 +15,7 @@ const updateBanners = async () =>{
 const _updateBanners = (products) =>{
     const allBanners = document.getElementById("MainBanner");
 
-
+    allBanners.innerHTML = ""
     products.map((product) => {
 
         allBanners.innerHTML += `
@@ -48,7 +48,7 @@ const updatePromotions = async () => {
 const _loadProducts = (products) => {
     const productsContainer = document.querySelector('#accessory-offer-container')
     
-
+    productsContainer.innerHTML = ""
     products.forEach((product, index) => {
         if(index >= 7){
             return;

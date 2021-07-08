@@ -194,13 +194,8 @@ const _loadEditProducts = (products) => {
     const editContainer = document.querySelector('#edit-body-table')
     const editContainerHeaderScope = document.querySelector('#edit-header-scope-table')
     
-    editContainer.querySelectorAll('tr').forEach(element => {
-        element.remove()
-    })
-
-    editContainerHeaderScope.querySelectorAll('th').forEach(element => {
-        element.remove()
-    })
+    editContainer.innerHTML = ""
+    editContainerHeaderScope.innerHTML = ""
 
     console.log(products);
 
@@ -260,6 +255,8 @@ const createModal = (product) => {
     count2 = 0;
     sizeCount = 0;
     var color_pt = product.color_pt.split(",")
+
+    editContainer.innerHTML = ""
     editContainer.innerHTML = `
             <form class="m-3" action="">    
                 <div class="row mt-2 g-2">
@@ -476,13 +473,8 @@ const loadNewSale = (orders) => {
     const salseContainer = document.querySelector('#sale-header-body')
     const saleContainerHeaderScope = document.querySelector('#sale-header-scope-table')
     
-    salseContainer.querySelectorAll('tr').forEach(element => {
-        element.remove()
-    })
-
-    saleContainerHeaderScope.querySelectorAll('th').forEach(element => {
-        element.remove()
-    })
+    salseContainer.innerHTML = ""
+    saleContainerHeaderScope.innerHTML = ""
 
     if(orders.length == 0) {
         const html = `
@@ -545,13 +537,8 @@ const _loadCompletedSales = (orders) => {
     const doneSaleContainer = document.querySelector('#done-sale-header-body')
     const doneSaleContainerHeaderScope = document.querySelector('#done-sale-header-scope-table')
     
-    doneSaleContainer.querySelectorAll('tr').forEach(element => {
-        element.remove()
-    })
-
-    doneSaleContainerHeaderScope.querySelectorAll('th').forEach(element => {
-        element.remove()
-    })
+    doneSaleContainer.innerHTML = ""
+    doneSaleContainerHeaderScope.innerHTML = ""
 
     if(orders.length == 0) {
         const html = `
@@ -896,13 +883,8 @@ const _loadDisabledProducts = (disabledList) => {
     const disabledContainer = document.querySelector('#disabled-body-table')
     const disabledContainerHeaderScope = document.querySelector('#disabled-header-scope-table')
     
-    disabledContainer.querySelectorAll('tr').forEach(element => {
-        element.remove()
-    })
-
-    disabledContainerHeaderScope.querySelectorAll('th').forEach(element => {
-        element.remove()
-    })
+    disabledContainer.innerHTML = ""
+    disabledContainerHeaderScope.innerHTML = ""
 
 
     if(disabledList.length == 0) {
