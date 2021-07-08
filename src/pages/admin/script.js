@@ -479,7 +479,7 @@ const _loadNewSale = (orders) => {
     const salseContainer = document.querySelector('#sale-header-body')
     const saleContainerHeaderScope = document.querySelector('#sale-header-scope-table')
     
-    const html_0 = ``
+    const html_0 = ""
     saleContainerHeaderScope.insertAdjacentHTML('beforeend', html_0) //armengue
     salseContainer.innerHTML = ""
 
