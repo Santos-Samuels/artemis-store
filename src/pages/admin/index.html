@@ -184,7 +184,7 @@
               <a class="text-decoration-none cursor-pointer text-secondary dropdown-link-product option-link hide" id="disabled-product-option" onclick="setContainerOption('#disabled-product-container', '#disabled-product-option'), loadDisabledProducts(disabledList)"><i class="bi bi-eye-slash-fill"></i> Desativado</a>
             </div>
 
-            <a class="text-decoration-none cursor-pointer text-secondary option-link" id="banners-option" onclick="updateBanners(), setContainerOption('#banners-container','#banners-option')"><i class="bi bi-card-image"></i>  Banners</a>
+            <a class="text-decoration-none cursor-pointer text-secondary option-link" id="banners-option" onclick="loadBanners(currentBanners, products), setContainerOption('#banners-container','#banners-option')"><i class="bi bi-card-image"></i>  Banners</a>
         </div>
       </sidebar>
 
@@ -217,26 +217,26 @@
 
       <section class="container hide option-container" id="new-sale-container">
         <h5 class="border-b pb-1 mb-4 mt-3">NOVAS VENDAS</h5>
+        <div id="new-sale-load-animation"><div class="loader"></div></div>
           <table class="table">
             <thead>
               <tr id="sale-header-scope-table">
               </tr>
             </thead>
             <tbody id="sale-header-body">
-              <div class="loader"></div>
             </tbody>
           </table>
       </section>
 
       <section class="container hide option-container" id="done-sale-container">
         <h5 class="border-b pb-1 mb-4 mt-3">VENDAS CONCLUÍDAS</h5>
+        <div id="done-sale-load-animation"><div class="loader"></div></div>
           <table class="table">
             <thead>
               <tr id="done-sale-header-scope-table">
               </tr>
             </thead>
             <tbody id="done-sale-header-body">
-              <div class="loader"></div>
             </tbody>
           </table>
       </section>
@@ -335,88 +335,63 @@
 
       <section class="container hide option-container" id="edit-product-container">
           <h5 class="border-b pb-1 mb-4 mt-3">EDITAR PRODUTO</h5>
-        <div class="d-flex justify-content-center flex-wrap">
+          <div id="edit-product-load-animation"><div class="loader"></div></div>
           <table class="table">
             <thead>
               <tr id="edit-header-scope-table">
               </tr>
             </thead>
             <tbody id="edit-body-table">
-              <div class="loader"></div>
             </tbody>
           </table>
       </section>
 
       <section class="container hide option-container" id="disabled-product-container">
         <h5 class="border-b pb-1 mb-4 mt-3">PRODUTOS DESATIVADOS</h5>
-      <div class="d-flex justify-content-center flex-wrap">
+        <div id="disabled-product-load-animation"><div class="loader"></div></div>
         <table class="table">
           <thead>
             <tr id="disabled-header-scope-table">
             </tr>
           </thead>
           <tbody id="disabled-body-table">
-            <div class="loader"></div>
           </tbody>
         </table>
     </section>
 
       <section class="container hide option-container" id="banners-container">
         <h5 class="border-b pb-1 mb-4 mt-3">BANNERS</h5>
-        <div>
-          <artile class="m-4" id="current-banners">
-            <div class="row g-2">
-              <div class="col-6 col-lg-3 offer-container">
-                <div class="position-absolute pt-1">
-                  <span class="fw-bold banner-index rounded">1</span>
-                </div>
-                <img class="w-100 rounded" src="/assets/img/colar-blue-stone.jpeg" alt="Colar blue stone">
-              </div>
-              <div class="col-6 col-lg-3 offer-container">
-                <div class="position-absolute pt-1">
-                  <span class="fw-bold banner-index rounded">1</span>
-                </div>
-                <img class="w-100 rounded" src="/assets/img/colar-blue-stone.jpeg" alt="Colar blue stone">
-              </div>
-              <div class="col-6 col-lg-3 offer-container">
-                <div class="position-absolute pt-1">
-                  <span class="fw-bold banner-index rounded">1</span>
-                </div>
-                <img class="w-100 rounded" src="/assets/img/colar-blue-stone.jpeg" alt="Colar blue stone">
-              </div>
-              <div class="col-6 col-lg-3 offer-container">
-                <div class="position-absolute pt-1">
-                  <span class="fw-bold banner-index rounded">1</span>
-                </div>
-                <img class="w-100 rounded" src="/assets/img/colar-blue-stone.jpeg" alt="Colar blue stone">
-              </div>
+        <div id="banners-load-animation"><div class="loader"></div></div>
+        <div id="banners-content">
+          <div class="">
+            <div class="row g-2" id="current-banners-container">
             </div>
-          </artile>
+          </div>
 
           <form class="mb-5 mt-4" id="bannerSelect">
             <div class="row">
               <div class="col-12 col-lg-6">
                 <h3 class="rounded shadow-sm border p-1 bg-dark text-light mb-3"><i class="bi bi-pencil-fill fs-4 ms-3"></i> Banner 1</h3>
-                <select class="form-select" name="productId1" id="banner-select-1">
+                <select class="form-select" name="productId1" id="banner-select-1" required>
                 </select>
               </div>
               <div class="col-12 col-lg-6 mt-3 mt-lg-0">
                 <h3 class="rounded shadow-sm border p-1 bg-dark text-light mb-3"><i class="bi bi-pencil-fill fs-4 ms-3"></i> Banner 2</h3>
-                <select class="form-select" name="productId2" id="banner-select-2">
+                <select class="form-select" name="productId2" id="banner-select-2" required>
                 </select>
               </div>
               <div class="col-12 col-lg-6 mt-3 mt-lg-5">
                 <h3 class="rounded shadow-sm border p-1 bg-dark text-light mb-3"><i class="bi bi-pencil-fill fs-4 ms-3"></i> Banner 3</h3>
-                <select class="form-select" name="productId3" id="banner-select-3">
+                <select class="form-select" name="productId3" id="banner-select-3" required>
                 </select>
               </div>
               <div class="col-12 col-lg-6 mt-3 mt-lg-5">
                 <h3 class="rounded shadow-sm border p-1 bg-dark text-light mb-3"><i class="bi bi-pencil-fill fs-4 ms-3"></i> Banner 4</h3>
-                <select class="form-select" name="productId4" id="banner-select-4">
+                <select class="form-select" name="productId4" id="banner-select-4" required>
                 </select>
               </div>
             </div>
-            <div class="row g-2 mt-3 justify-content-end">
+            <div class="row g-2 mt-3 ms-lg-3 justify-content-end">
               <button onclick="updateBannerProducts()" class="btn btn-primary col-12 col-lg-6" type="button">Editar</button>
             </div>
           </form>
@@ -432,7 +407,8 @@
       <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="/src/pages/admin/script.js"></script>
-  <script src="/src/pages/admin/disabled-list.js"></script>
+  <script src="/src/pages/admin/currentBannersList.js"></script>
+  <script src="/src/pages/admin/productList.js"></script>
   <script src="/src/script/adminApp.js"></script>
 </body>
 </html>

@@ -193,9 +193,11 @@ const loadProducts = async () => {
 const _loadEditProducts = (products) => {
     const editContainer = document.querySelector('#edit-body-table')
     const editContainerHeaderScope = document.querySelector('#edit-header-scope-table')
+    const animationDiv = document.querySelector('#edit-product-load-animation')
     
     editContainer.innerHTML = ""
     editContainerHeaderScope.innerHTML = ""
+    animationDiv.innerHTML = ""
 
     console.log(products);
 
@@ -478,10 +480,12 @@ const loadNewSales = async () => {
 const _loadNewSale = (orders) => {
     const saleContainer = document.querySelector('#sale-header-body')
     const saleContainerHeaderScope = document.querySelector('#sale-header-scope-table')
+    const animationDiv = document.querySelector('#new-sale-load-animation')
     
 
     saleContainerHeaderScope.innerHTML = ""
     saleContainer.innerHTML = ""
+    animationDiv.innerHTML = ""
 
     if(orders.length == 0) {
         const html = `
@@ -543,9 +547,11 @@ const _loadCompletedSales = (orders) => {
     console.table(orders)
     const doneSaleContainer = document.querySelector('#done-sale-header-body')
     const doneSaleContainerHeaderScope = document.querySelector('#done-sale-header-scope-table')
+    const animationDiv = document.querySelector('#done-sale-load-animation')
     
     doneSaleContainer.innerHTML = ""
     doneSaleContainerHeaderScope.innerHTML = ""
+    animationDiv.innerHTML = ""
 
     if(orders.length == 0) {
         const html = `
@@ -889,9 +895,11 @@ const loadDisabledProducts = async () => {
 const _loadDisabledProducts = (disabledList) => {
     const disabledContainer = document.querySelector('#disabled-body-table')
     const disabledContainerHeaderScope = document.querySelector('#disabled-header-scope-table')
+    const animationDiv = document.querySelector('#disabled-product-load-animation')
     
     disabledContainer.innerHTML = ""
     disabledContainerHeaderScope.innerHTML = ""
+    animationDiv.innerHTML = ""
 
 
     if(disabledList.length == 0) {
@@ -1038,7 +1046,7 @@ const updateBanners = async () => {
     });
 }
 
-const _updateBanners = (p) =>{
+const _updateBanners = (p) => {
     const bannerSelect1 = document.getElementById("banner-select-1");
     const bannerSelect2 = document.getElementById("banner-select-2");
     const bannerSelect3 = document.getElementById("banner-select-3");
@@ -1050,6 +1058,37 @@ const _updateBanners = (p) =>{
     bannerSelect4.innerHTML = `${p.map((_p) => { return `<option value="${_p.id}">${_p.product_name}</option>` }).join("")}`
 
     console.log("Funfou")                  //<option value="">Produto 1</option>
+}
+
+
+const loadBanners = (currentBanners, products) => {
+    const currentBannersContainer = document.getElementById("current-banners-container");
+    const animationDiv = document.querySelector('#banners-load-animation')
+    const bannerSelect1 = document.getElementById("banner-select-1");
+    const bannerSelect2 = document.getElementById("banner-select-2");
+    const bannerSelect3 = document.getElementById("banner-select-3");
+    const bannerSelect4 = document.getElementById("banner-select-4");
+
+    currentBannersContainer.innerHTML = ""
+    animationDiv.innerHTML = ""
+
+    currentBanners.forEach(banner => {
+        const html = `
+        <article class="col-6 col-lg-3 offer-container">
+        <div class="position-absolute pt-1">
+            <span class="fw-bold banner-index rounded">${banner.id}</span>
+        </div>
+        <img class="w-100 h-100 rounded" src="${banner.image}" alt="${banner.title}">
+        </article>
+        `
+        currentBannersContainer.insertAdjacentHTML('beforeend', html)
+    });
+
+    bannerSelect1.innerHTML = `${products.map((product) => { return currentBanners[0].bannerPosition == product.bannerPosition ? `<option value="${product.id}" data-default disabled selected>${product.title}</option>` : `<option value="${product.id}">${product.title}</option>` }).join("")}`
+    bannerSelect2.innerHTML = `${products.map((product) => { return currentBanners[1].bannerPosition == product.bannerPosition ? `<option value="${product.id}" data-default disabled selected>${product.title}</option>` : `<option value="${product.id}">${product.title}</option>` }).join("")}`
+    bannerSelect3.innerHTML = `${products.map((product) => { return currentBanners[2].bannerPosition == product.bannerPosition ? `<option value="${product.id}" data-default disabled selected>${product.title}</option>` : `<option value="${product.id}">${product.title}</option>` }).join("")}`
+    bannerSelect4.innerHTML = `${products.map((product) => { return currentBanners[3].bannerPosition == product.bannerPosition ? `<option value="${product.id}" data-default disabled selected>${product.title}</option>` : `<option value="${product.id}">${product.title}</option>` }).join("")}`
+
 }
 
 const updateBannerProducts = async () => {
