@@ -2,11 +2,12 @@ main .offer-container {
     cursor: pointer;
 }
 
-main .offer-container img{
-    max-width: 250px;
-    min-width: 250px;
-    max-height: 250px;
-    min-height: 250px;
+/* main .offer-container img {
+    height: 250px !important;
+} */
+
+main .accessory-offer-container article {
+    width: 250px !important;
 }
 
 main .offer-label {
@@ -14,34 +15,18 @@ main .offer-label {
 }
 
 main .offer-container:hover .offer-label {
-    border-radius: 3px;
-    background-color: rgba(0, 0, 0, 0.445);
+    background-color: rgba(0, 0, 0, 0.281);
 }
 
-main .offer-container:hover .offer-label span{
-    color: var( --purple);
+main .offer-container .offer-label .price {
+    color: var(--text-secondary);
+}
+
+main .offer-container:hover .offer-label .price {
+    color: var(--purple);
 }
 
 main .offer-label {
+    background-color: var(--primary);
     color: var(--text-secondary);
-    padding: 2rem;
 }
-
-
-
-
-
-@media (max-width: 1000px) {
-    main .offer-label {
-        padding: 1rem;
-        max-width: 200px;
-    }
-}
-
-
-@media (max-width: 700px) {
-    main .price {
-        font-size: 25px;
-    }
-}
-

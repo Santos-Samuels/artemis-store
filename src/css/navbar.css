@@ -66,6 +66,35 @@ header #user-nav i:hover {
     white-space: nowrap;
 }
 
+#userDropdownConectedOptions {
+    position: relative;
+}
+
+#check-conectedUser-dropdown {
+    display: none;
+}
+
+#userDropdownConectedOptions .dropdown-options {
+    display: none !important;
+    position: absolute;
+    right: 0;
+    width: 150px;
+
+    background-color: var(--accents-1);
+    border: 1px solid var(--accents-4);
+    border-radius: 5px;
+}
+
+#userDropdownConectedOptions .dropdown-options a:hover {
+    background-color: var(--primary);
+    border-radius: 5px;
+}
+
+@media (min-width: 992px) {
+    #userDropdownConectedOptions:hover .dropdown-options {
+        display: block !important;
+    }
+}
 @media (max-width: 991px) {
     .navbar-nav {
         margin-top: 15px;
@@ -83,4 +112,39 @@ header #user-nav i:hover {
     #user-options-container {
         margin-top: 15px;
     }
+
+    #check-conectedUser-dropdown:checked ~ .dropdown-options {
+        display: block !important;
+    }
 }
+
+
+/* Animação do usuario
+    Adicionei essa animação pra resolver o seguinte probleme:
+
+    A header contem uma div desconectedUser, para os usuarios que estão desconectados poder ativar o modal de cadastro ou login,
+    contem também uma div conectedUser para ativar o dropdown com as opções de usuario conectado;
+    Ambas as opções estão "escondidas" e só aparecem depois que o script verifica se o usuario está logado ou não, e então seta uma dessas divs.
+    Enquando o script está fazendo essa verificação o espaço que será ocupado por uma dessas divs fica em branco por alguns segundos
+    e quabra o "padrão visual" da header, por esse motivo achei necessário adicionar essa animação
+*/
+.Userloader {
+    border: 5px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 5px solid rgb(166, 91, 153);
+    width: 25px;
+    height: 25px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+  }
+  
+  /* Safari */
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }

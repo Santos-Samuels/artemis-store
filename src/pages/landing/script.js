@@ -19,14 +19,14 @@ const _updateBanners = (products) =>{
     products.map((product) => {
 
         allBanners.innerHTML += `
-        <a href="/descricao/?${product.id}" class="col-6 col-lg-3 offer-container">
-            <div class="position-absolute offer-label">
-                <h3>${product.product_name}</h3>
-                    <p>a partir de <span class="fw-bold price">${product.price}</span></p>
+            <a href="/descricao/?${product.id}" class="col-6 col-md-3 col-lg-3 offer-container text-decoration-none">
+                <img class="w-100 rounded-top" src="${product.product_images[0]}" alt="${product.product_name}">
+                <div class="offer-label p-2 text-center rounded-bottom w-100">
+                    <h6 class="mb-0">${product.product_name}</h6>
+                    <p class="mb-0 fs-6">a partir de <span class="fw-bold price">${product.price}</span></p>
                 </div>
-            <img class="w-100 rounded" src="${product.product_images[0]}" alt="Colar blue stone">
-            
-        </a>`
+            </a>
+        `
     })
     updatePromotions();
 }
@@ -57,7 +57,7 @@ const _loadProducts = (products) => {
 
         const html = `
             <article class="m-4 product col-12 col-lg-3">
-                <img class="rounded" src="${product.product_images[0]}" alt="${product.product_name}">
+                <img class="rounded w-100" src="${product.product_images[0]}" alt="${product.product_name}">
                 <h5 class="pt-2 product-title">${product.product_name}</h5>
                 <p class="mb-0">De: <span class="fs-6 text-decoration-line-through">${product.price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span></p>
                 <p>Por: <span class="fw-bold price fs-2">${product.price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span></p>
