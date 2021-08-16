@@ -378,15 +378,22 @@ const verifyLogin = async () => {
         url: `http://${window.location.hostname}/api/login/`,
         headers: { "Content-Type": "multipart/alternative" },
     }).then(function (response) {
-        console.log(response);
         if(response.data.userName){
+            loader = document.querySelector('#verifyLoginAnimation')
             connectedDiv = document.querySelector('#userDropdownConectedOptions')
             disconnectedDiv =  document.querySelector('#user')
         
             connectedDiv.classList.remove('hide')
-            disconnectedDiv.classList.add('hide')
+            loader.classList.add('hide')
 
             connectedDiv.querySelector('#dropdownMenuLink').innerHTML = response.data.userName;
+        }else{
+            loader = document.querySelector('#verifyLoginAnimation')
+            connectedDiv = document.querySelector('#userDropdownConectedOptions')
+            disconnectedDiv =  document.querySelector('#user')
+        
+            disconnectedDiv.classList.remove('hide')
+            loader.classList.add('hide')
         }
     })
 }
