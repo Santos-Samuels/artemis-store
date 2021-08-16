@@ -476,12 +476,12 @@ const loadNewSales = async () => {
 }
 
 const _loadNewSale = (orders) => {
-    const salseContainer = document.querySelector('#sale-header-body')
+    const saleContainer = document.querySelector('#sale-header-body')
     const saleContainerHeaderScope = document.querySelector('#sale-header-scope-table')
     
 
     saleContainerHeaderScope.innerHTML = ""
-    salseContainer.innerHTML = ""
+    saleContainer.innerHTML = ""
 
     if(orders.length == 0) {
         const html = `
@@ -518,7 +518,7 @@ const _loadNewSale = (orders) => {
                 </tr>
             `
     
-            salseContainer.insertAdjacentHTML('beforeend', html)
+            saleContainer.insertAdjacentHTML('beforeend', html)
         })
         _orders = orders;
     }
