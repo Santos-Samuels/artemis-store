@@ -32,6 +32,7 @@ ErrorDocument 404 /erros/404.php
     RewriteRule ^api/request/?$                       /src/api/Requests.php
     RewriteRule ^api/logout/?$                       /src/api/Logout.php
     RewriteRule ^api/admin/?$                       /src/api/Admin.php
+    RewriteRule ^api/admin-logout/?$                       /src/api/AdminLogout.php
     RewriteRule ^api/banners/?$                       /src/api/Banners.php
     RewriteRule ^api/adminlogout/?$                       /src/api/AdminLogout.php
 

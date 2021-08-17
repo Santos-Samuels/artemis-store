@@ -1118,8 +1118,8 @@ const updateBannerProducts = async () => {
 
 const adminLogout = async () => {
     await axios({
-        method: "DELETE",
-        url: "api/admin/",
+        method: "POST",
+        url: "api/adminlogout/",
         headers: { "Content-Type": "multipart/alternative" },
     }).then(function (response) {
         window.location.reload();
