@@ -174,14 +174,14 @@
             <a class="text-decoration-none cursor-pointer text-secondary option-link dropdown-toggle" id="products-option" onclick="toggleDropDown('.dropdown-link-sale')"><i class="bi bi-cart-fill"></i>  Vendas</a>
             <div class="dropdown d-flex flex-column flex-nowrap">
               <a class="text-decoration-none cursor-pointer text-secondary dropdown-link-sale option-link hide" id="new-sale-option" onclick="setContainerOption('#new-sale-container', '#new-sale-option'), loadNewSales()"><i class="bi bi-cart-plus-fill"></i> Nova</a>
-              <a class="text-decoration-none cursor-pointer text-secondary dropdown-link-sale option-link hide" id="done-sale-option" onclick="setContainerOption('#done-sale-container', '#done-sale-option'), loadCompletedSales(disabledList)"><i class="bi bi-cart-check-fill"></i> Concluída</a>
+              <a class="text-decoration-none cursor-pointer text-secondary dropdown-link-sale option-link hide" id="done-sale-option" onclick="setContainerOption('#done-sale-container', '#done-sale-option'), loadCompletedSales()"><i class="bi bi-cart-check-fill"></i> Concluída</a>
             </div>
         
             <a class="text-decoration-none cursor-pointer text-secondary option-link dropdown-toggle" id="products-option" onclick="toggleDropDown('.dropdown-link-product')"><i class="bi bi-box-seam"></i>  Produtos</a>
             <div class="dropdown d-flex flex-column flex-nowrap">
               <a class="text-decoration-none cursor-pointer text-secondary dropdown-link-product option-link hide" id="new-product-option"  onclick="setContainerOption('#new-product-container', '#new-product-option')"><i class="bi bi-plus-lg"></i> Adicionar</a>
               <a class="text-decoration-none cursor-pointer text-secondary dropdown-link-product option-link hide" id="edit-product-option" onclick="setContainerOption('#edit-product-container', '#edit-product-option'), loadProducts()"><i class="bi bi-pencil-fill"></i> Editar</a>
-              <a class="text-decoration-none cursor-pointer text-secondary dropdown-link-product option-link hide" id="disabled-product-option" onclick="setContainerOption('#disabled-product-container', '#disabled-product-option'), loadDisabledProducts(disabledList)"><i class="bi bi-eye-slash-fill"></i> Desativado</a>
+              <a class="text-decoration-none cursor-pointer text-secondary dropdown-link-product option-link hide" id="disabled-product-option" onclick="setContainerOption('#disabled-product-container', '#disabled-product-option'), loadDisabledProducts()"><i class="bi bi-eye-slash-fill"></i> Desativado</a>
             </div>
 
             <a class="text-decoration-none cursor-pointer text-secondary option-link" id="banners-option" onclick="loadBanners(currentBanners, products), setContainerOption('#banners-container','#banners-option')"><i class="bi bi-card-image"></i>  Banners</a>
