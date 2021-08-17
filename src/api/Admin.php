@@ -83,6 +83,7 @@ function loginIn(){
     $jwt_token = JWT_encode($user_data["id"], "admin");
 
     setcookie("adminToken", $jwt_token, time()+3600, "/api/admin");
+    setcookie("adminToken", $jwt_token, time()+3600, "/admin");
     
     $retorno["msg"] = "Login concluido";
 

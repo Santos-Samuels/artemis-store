@@ -9,7 +9,7 @@ const loginIn = async () => {
 
     await axios({
         method: "post",
-        url: "api/admin/",
+        url: `${window.location.protocol}`+ "//" + `${window.location.host}` + "/api/admin/",
         data: data,
         headers: { "Content-Type": "multipart/alternative" },
     }).then(function (response) {

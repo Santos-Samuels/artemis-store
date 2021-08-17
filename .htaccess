@@ -12,7 +12,7 @@ ErrorDocument 404 /erros/404.php
     RewriteRule ^contato/?$                      /src/pages/contact/           
     RewriteRule ^descricao/?$                      /src/pages/description/         
     RewriteRule ^admin-login/?$                      /src/pages/admin-login/  
-    RewriteRule ^admin/?$                      /src/pages/admin/  
+    RewriteRule ^admin/?$                      /src/api/AdminLogin.php 
     RewriteRule ^usuario/?$                      /src/pages/user-info/  
     RewriteRule ^favoritos/?$                      /src/pages/user-favorite/  
     RewriteRule ^pedidos/?$                      /src/pages/user-order/  
