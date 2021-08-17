@@ -170,7 +170,7 @@ const createRequest = async () => {
             alert("Pedido Concluido");
             var temp = [];
             localStorage.setItem("cart", JSON.stringify(temp));
-            window.location.reload();
+            window.location.href = window.location.origin + "/compra-finalizada/?" + response.data.requestId;
         }else if(response.data.msg == "Você não está logado"){
             alert("Você não está logado !");
         }

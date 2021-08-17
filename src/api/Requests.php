@@ -143,6 +143,7 @@ function CreateRequest(){
     // $retorno["8"] = $date;
 
     $retorno["msg"] = "tudo certo";
+    $retorno["requestId"] = $requestId;
     $json = json_encode($retorno, JSON_UNESCAPED_UNICODE);
     exit($json);
 }
