@@ -59,7 +59,7 @@ const _loadProducts = (products) => {
             <article class="m-4 product">
                 <img class="rounded w-100" src="${product.product_images[0]}" alt="${product.product_name}">
                 <h5 class="pt-2 product-title">${product.product_name}</h5>
-                <p class="mb-0">De: <span class="fs-6 text-decoration-line-through">${product.price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span></p>
+                <p class="mb-0 ${product.promotion == 0 ? "hide" : ""}">De: <span class="fs-6 text-decoration-line-through ${product.promotion == 0 ? "hide" : ""}">${product.promotion.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span></p>
                 <p>Por: <span class="fw-bold price fs-2">${product.price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span></p>
                 <a class="btn btn-primary w-100 text-center" href="/descricao/?${product.id}">COMPRAR</a>
             </article>
