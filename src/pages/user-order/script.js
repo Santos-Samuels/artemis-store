@@ -22,7 +22,7 @@ const _loadOrders = (orders) => {
         const html = `
             <div class="text-center mt-5 text-secondary border-0">
                 <i class="bi bi-info-circle fs-1"></i>
-                <h3 class="">Você ainda não fe pedidos</h3>
+                <h3 class="">Você ainda não tem pedidos</h3>
             </div>
         `
 

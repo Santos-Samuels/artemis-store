@@ -333,7 +333,6 @@ const createModal = (product) => {
                         <option value="Pulseira">Pulseira</option>
                         <option value="Tiara">Tiara</option>
                         <option value="Pingente">Pingente</option>
-                        <option value="Lingerie">Lingerie</option>
                         </select>
                     </div>
                     <div class="col-6">
@@ -343,7 +342,7 @@ const createModal = (product) => {
                         <option value="Joia">Jóia</option>
                         <option value="Semijoia">Semijóias</option>
                         <option value="Bijuteria">Bijuterias</option>
-                        <option value="Lingerie">Lingerie</option>
+                        
                         </select>
                     </div>
                     </div>
