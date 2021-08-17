@@ -198,7 +198,7 @@ function getProductWithFilters($type, $category, $orderby){
         $sql .= " AND type='$type' ";
     }
     if(!empty($category)) {
-        $sql .= " AND type='$category' ";
+        $sql .= " AND category='$category' ";
     }
     if(!empty($orderby)) {
         if($orderby == "ASC"){
