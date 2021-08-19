@@ -276,7 +276,7 @@ const login = async () => {
 
     await axios({
         method: "post",
-        url: "api/login/",
+        url: `${window.location.protocol}`+ "//" + `${window.location.host}` + "/api/login/",
         data: data,
         headers: { "Content-Type": "multipart/alternative" },
     }).then(function (response) {
@@ -323,7 +323,7 @@ const registrar = async () => {
 
     await axios({
         method: "post",
-        url: "api/registro/",
+        url: `${window.location.protocol}`+ "//" + `${window.location.host}` + "/api/registro/",
         data: data,
         headers: { "Content-Type": "multipart/alternative" },
     }).then(function (response) {
@@ -342,7 +342,7 @@ const registrar = async () => {
 const logout = async () => {
     await axios({
         method: "get",
-        url: "api/logout/",
+        url: `${window.location.protocol}`+ "//" + `${window.location.host}` + "/api/logout/",
         headers: { "Content-Type": "multipart/alternative" },
     }).then(function (response) {
         location.reload()

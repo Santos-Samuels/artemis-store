@@ -59,7 +59,7 @@ const filterProducts = async () => {
 
     await axios({
         method: "get",
-        url: `api/produtos?category=${category}&type=${type}&orderby=${orderby}`,
+       url: `${window.location.protocol}`+ "//" + `${window.location.host}` + `/api/produtos?category=${category}&type=${type}&orderby=${orderby}`,
         headers: { "Content-Type": "multipart/alternative" },
     }).then(function (response) {
         console.log(response.data);

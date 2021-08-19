@@ -1,7 +1,7 @@
 const updateBanners = async () =>{
     await axios({
         method: "get",
-        url: "api/banners/",
+        url: `${window.location.protocol}`+ "//" + `${window.location.host}` + "/api/banners/",
         headers: { "Content-Type": "multipart/alternative" },
     }).then(function (response) {
         console.log(response.data);
@@ -35,7 +35,7 @@ const updatePromotions = async () => {
 
     await axios({
         method: "get",
-        url: `api/produtos?orderby=promo`,
+       url: `${window.location.protocol}`+ "//" + `${window.location.host}` + `/api/produtos?orderby=promo`,
         headers: { "Content-Type": "multipart/alternative" },
     }).then(function (response) {
         console.log(response.data);

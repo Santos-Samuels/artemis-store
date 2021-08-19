@@ -4,7 +4,7 @@ var current_id;
 const checkAdminLogin = async () => {
     await axios({
         method: "get",
-        url: `api/admin/`,
+       url: `${window.location.protocol}`+ "//" + `${window.location.host}` + `/api/admin/`,
         headers: { "Content-Type": "multipart/alternative" },
     }).then(function (response) {
         console.log(response);
@@ -25,7 +25,7 @@ const updatePanel = async () => {
 
     await axios({
         method: "get",
-        url: "api/admin?panel=y",
+        url: `${window.location.protocol}`+ "//" + `${window.location.host}` + "/api/admin?panel=y",
         headers: { "Content-Type": "multipart/alternative" },
     }).then(function (response) {
         console.log(response.data);
@@ -160,7 +160,7 @@ const createProduct = async (color_pt, color_hex, size_str) => {
 
     await axios({
         method: "post",
-        url: "api/produtos/",
+        url: `${window.location.protocol}`+ "//" + `${window.location.host}` + "/api/produtos/",
         data: data,
         headers: { "Content-Type": "multipart/alternative" },
     }).then(function (response) {
@@ -179,7 +179,7 @@ const createProduct = async (color_pt, color_hex, size_str) => {
 const loadProducts = async () => {
     await axios({
         method: "get",
-        url: "api/produtos/",
+        url: `${window.location.protocol}`+ "//" + `${window.location.host}` + "/api/produtos/",
         headers: { "Content-Type": "multipart/alternative" },
     }).then(function (response) {
         console.log(response.data);
@@ -240,7 +240,7 @@ const _loadEditProducts = (products) => {
 const editProductModal = async (productsId) => {
     await axios({
         method: "get",
-        url: `api/produtos?id=${productsId}`,
+       url: `${window.location.protocol}`+ "//" + `${window.location.host}` + `/api/produtos?id=${productsId}`,
         headers: { "Content-Type": "multipart/alternative" },
     }).then(function (response) {
         createModal(response.data.item[0]);
@@ -372,7 +372,7 @@ const updateProduct = async (color_pt, color_hex, size_str) => {
 
     await axios({
         method: "POST",
-        url: `api/produtos/`,
+       url: `${window.location.protocol}`+ "//" + `${window.location.host}` + `/api/produtos/`,
         data: data,
         headers: { "Content-Type": "multipart/alternative" },
     }).then(function (response) {
@@ -394,7 +394,7 @@ const disableProduct = async (productId) => {
     await axios({
         method: "POST",
         data,
-        url: `api/produtos/`,
+       url: `${window.location.protocol}`+ "//" + `${window.location.host}` + `/api/produtos/`,
         headers: { "Content-Type": "multipart/alternative" },
     }).then(function (response) {
         console.log(response.data);
@@ -409,7 +409,7 @@ const deleteProduct = async (productId) => {
     return
     await axios({
         method: "DELETE",
-        url: `api/produtos?productId=${productId}`,
+       url: `${window.location.protocol}`+ "//" + `${window.location.host}` + `/api/produtos?productId=${productId}`,
         headers: { "Content-Type": "multipart/alternative" },
     }).then(function (response) {
         console.log(response)
@@ -475,7 +475,7 @@ function isColor(strColor){
 const loadNewSales = async () => {
     await axios({
         method: "get",
-        url: "api/request/",
+        url: `${window.location.protocol}`+ "//" + `${window.location.host}` + "/api/request/",
         headers: { "Content-Type": "multipart/alternative" },
     }).then(function (response) {
         console.log(response.data);
@@ -541,7 +541,7 @@ const _loadNewSale = (orders) => {
 const loadCompletedSales = async () => {
     await axios({
         method: "get",
-        url: "api/request?completed=yes",
+        url: `${window.location.protocol}`+ "//" + `${window.location.host}` + "/api/request?completed=yes",
         headers: { "Content-Type": "multipart/alternative" },
     }).then(function (response) {
         console.log(response.data);
@@ -804,7 +804,7 @@ const updateOrder = async () => {
 
     await axios({
         method: "post",
-        url: "api/request/",
+        url: `${window.location.protocol}`+ "//" + `${window.location.host}` + "/api/request/",
         data: data,
         headers: { "Content-Type": "multipart/alternative" },
     }).then(function (response) {
@@ -890,7 +890,7 @@ function removeField(id) {
 const loadDisabledProducts = async () => {
     await axios({
         method: "get",
-        url: "api/produtos?type=disabled",
+        url: `${window.location.protocol}`+ "//" + `${window.location.host}` + "/api/produtos?type=disabled",
         headers: { "Content-Type": "multipart/alternative" },
     }).then(function (response) {
         console.log(response.data);
@@ -956,7 +956,7 @@ const activateProduct = async (productId) =>{
     await axios({
         method: "POST",
         data,
-        url: `api/produtos/`,
+       url: `${window.location.protocol}`+ "//" + `${window.location.host}` + `/api/produtos/`,
         headers: { "Content-Type": "multipart/alternative" },
     }).then(function (response) {
         console.log(response.data);
@@ -970,7 +970,7 @@ const activateProduct = async (productId) =>{
 const loadViewDisabledProductModal = async (productId) =>{
     await axios({
         method: "get",
-        url: `api/produtos?id=${productId}`,
+       url: `${window.location.protocol}`+ "//" + `${window.location.host}` + `/api/produtos?id=${productId}`,
         headers: { "Content-Type": "multipart/alternative" },
     }).then(function (response) {
         _loadViewDisabledProductModal(response.data.item[0]);
@@ -1044,7 +1044,7 @@ const _loadViewDisabledProductModal = (item) => {
 const updateBanners = async () => {
     await axios({
         method: "get",
-        url: "api/produtos/",
+        url: `${window.location.protocol}`+ "//" + `${window.location.host}` + "/api/produtos/",
         headers: { "Content-Type": "multipart/alternative" },
     }).then(function (response) {
         console.log(response.data);
@@ -1058,7 +1058,7 @@ const updateBanners = async () => {
 const updateBanners2 = async (products) =>{
     await axios({
         method: "get",
-        url: "api/banners/",
+        url: `${window.location.protocol}`+ "//" + `${window.location.host}` + "/api/banners/",
         headers: { "Content-Type": "multipart/alternative" },
     }).then(function (response) {
         console.log(response.data);
@@ -1126,7 +1126,7 @@ const updateBannerProducts = async () => {
     await axios({
         method: "post",
         data: data,
-        url: "api/banners/",
+        url: `${window.location.protocol}`+ "//" + `${window.location.host}` + "/api/banners/",
         headers: { "Content-Type": "multipart/alternative" },
     }).then(function (response) {
         console.log(response.data);
@@ -1145,7 +1145,7 @@ const updateBannerProducts = async () => {
 const adminLogout = async () => {
     await axios({
         method: "POST",
-        url: "api/adminlogout/",
+        url: `${window.location.protocol}`+ "//" + `${window.location.host}` + "/api/adminlogout/",
         headers: { "Content-Type": "multipart/alternative" },
     }).then(function (response) {
         window.location.reload();

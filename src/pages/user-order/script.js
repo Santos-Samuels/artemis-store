@@ -1,7 +1,7 @@
 const loadOrders = async () => {
     await axios({
         method: "get",
-        url: "api/request?quant=all",
+        url: `${window.location.protocol}`+ "//" + `${window.location.host}` + "/api/request?quant=all",
         headers: { "Content-Type": "multipart/alternative" },
     }).then(function (response) {
         console.log(response.data);

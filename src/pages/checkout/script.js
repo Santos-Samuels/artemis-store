@@ -162,7 +162,7 @@ const createRequest = async () => {
 
     await axios({
         method: "post",
-        url: "api/request/",
+        url: `${window.location.protocol}`+ "//" + `${window.location.host}` + "/api/request/",
         data: data,
         headers: { "Content-Type": "multipart/alternative" },
     }).then(function (response) {
