@@ -453,7 +453,17 @@ const setContainerOption = (optionContainer, linkId) => {
 const toggleSidebar = () => {
     const sidebarContainer = document.querySelector('#sidebar-container')
 
-    sidebarContainer.classList.contains('toggle-sidebar') ? sidebarContainer.classList.remove('toggle-sidebar') : sidebarContainer.classList.add('toggle-sidebar')
+    if(sidebarContainer.classList.contains('toggle-sidebar')) {
+        sidebarContainer.classList.remove('toggle-sidebar')
+        document.body.style.overflowX = "hidden"
+    }
+    else if(!sidebarContainer.classList.contains('toggle-sidebar')) {
+        sidebarContainer.classList.add('toggle-sidebar')
+        document.body.style.overflowX = "initial"
+    }
+
+    // sidebarContainer.classList.contains('toggle-sidebar') ? sidebarContainer.classList.remove('toggle-sidebar') : sidebarContainer.classList.add('toggle-sidebar')
+    // sidebarContainer.classList.contains('toggle-sidebar') ? document.body.style.overflowX = "initial" : document.body.style.overflowX = "hidden"
 }
 
 function isColor(strColor){
@@ -579,7 +589,7 @@ const _loadCompletedSales = (orders) => {
                     <td>${order.status}</td>
                     <td class="order-price">${order.total_price}</td>
                     <td>${order.purchase_date}</td>
-                    <td><i class="bi bi-eye-fill me-2 primary-text-hover cursor-pointer" title="Ver mais" data-bs-toggle="modal" data-bs-target="#viewOrderModal" onclick="loadViewDoneOrderModal(${order.id})"></i></td>
+                    <td><i class="bi bi-eye-fill me-2 primary-text-hover cursor-pointer" title="Ver mais" data-bs-toggle="modal" data-bs-target="#ViewDoneOrderModal" onclick="loadViewDoneOrderModal(${order.id})"></i></td>
                 </tr>
             `
     
@@ -1099,10 +1109,10 @@ const loadBanners = (banners, products) => {
 
     console.log(products);
 
-    bannerSelect1.innerHTML = `${products.map((product) => { return currentBanners[0].bannerPosition == product.bannerPosition ? `<option value="${product.id}" data-default disabled selected>${product.product_name}</option>` : `<option value="${product.id}">${product.product_name}</option>` }).join("")}`
-    bannerSelect2.innerHTML = `${products.map((product) => { return currentBanners[1].bannerPosition == product.bannerPosition ? `<option value="${product.id}" data-default disabled selected>${product.product_name}</option>` : `<option value="${product.id}">${product.product_name}</option>` }).join("")}`
-    bannerSelect3.innerHTML = `${products.map((product) => { return currentBanners[2].bannerPosition == product.bannerPosition ? `<option value="${product.id}" data-default disabled selected>${product.product_name}</option>` : `<option value="${product.id}">${product.product_name}</option>` }).join("")}`
-    bannerSelect4.innerHTML = `${products.map((product) => { return currentBanners[3].bannerPosition == product.bannerPosition ? `<option value="${product.id}" data-default disabled selected>${product.product_name}</option>` : `<option value="${product.id}">${product.product_name}</option>` }).join("")}`
+    bannerSelect1.innerHTML = `${products.map((product) => { return currentBanners[0].title == product.title ? `<option value="${product.id}" data-default disabled selected>${product.product_name}</option>` : `<option value="${product.id}">${product.product_name}</option>` }).join("")}`
+    bannerSelect2.innerHTML = `${products.map((product) => { return currentBanners[1].title == product.title ? `<option value="${product.id}" data-default disabled selected>${product.product_name}</option>` : `<option value="${product.id}">${product.product_name}</option>` }).join("")}`
+    bannerSelect3.innerHTML = `${products.map((product) => { return currentBanners[2].title == product.title ? `<option value="${product.id}" data-default disabled selected>${product.product_name}</option>` : `<option value="${product.id}">${product.product_name}</option>` }).join("")}`
+    bannerSelect4.innerHTML = `${products.map((product) => { return currentBanners[3].title == product.title ? `<option value="${product.id}" data-default disabled selected>${product.product_name}</option>` : `<option value="${product.id}">${product.product_name}</option>` }).join("")}`
 }
 
 const updateBannerProducts = async () => {
