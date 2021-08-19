@@ -701,7 +701,7 @@ const loadViewOrderModal = (orderID) => {
 
 const loadViewDoneOrderModal = (orderID) => {
     const orders = _orders;
-    const viewSaleContainer = document.querySelector('#view-order-container')
+    const viewSaleContainer = document.querySelector('#view-done-order-container')
     
     viewSaleContainer.innerHTML = ""
     orders.forEach(order => {
