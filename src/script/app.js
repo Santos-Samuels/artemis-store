@@ -1,21 +1,20 @@
-// const loadAccessoryOffer = (products) => {
-//     const accessoryOfferContainer = document.querySelector('#accessory-offer-container')
+var searchInput = document.getElementById("search");
+searchInput.addEventListener("keydown", function (e) {
+    if (e.code === "Enter") { 
+        SearchProduct()
+    }
+});
 
-//     for(i=0; i<products.length;  i++) {
-//         if(products[i].type == "calsinha") {
-//             const html = `
-//                 <article class="col mb-5">
-//                     <img class="w-100 rounded" src="${products[i].image}" alt="${products[i].title}">
-//                     <h5 class="pt-2">${products[i].title}</h5>
-//                     <p>Por: <span class="fw-bold price fs-2">${products[i].price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span></p>
-//                     <a class="btn btn-primary w-100 text-center">COMPRAR</a>
-//                 </article>
-//             `
+const SearchProduct = () => {
+    var wordToSearch = document.getElementById("search").value;
 
-//             accessoryOfferContainer.insertAdjacentHTML('beforeend', html)
-//         }
-//     }
-// }
+    if(window.location.pathname != "/produtos"){
+        window.location.href = `/produtos?` + wordToSearch;
+    }else{
+        searchWord = wordToSearch.toLowerCase();
+        loadProducts();
+    }
+}
 
 const register_form = document.getElementById('signup-form');
 register_form.addEventListener('submit', function(e) {
@@ -30,24 +29,6 @@ const GoToCheckout = () =>{
     console.log("Funfando")
     window.location.assign('/checkout');
 }
-
-// const loadProducts = (products) => {
-//     const productsContainer = document.querySelector('#products-container')
-    
-
-//     products.forEach(product => {
-//         const html = `
-//             <article class="m-4 product">
-//                 <img class="rounded" src="${product.image}" alt="${product.title}">
-//                 <h5 class="pt-2">${product.title}</h5>
-//                 <p>Por: <span class="fw-bold price fs-2">${product.price.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span></p>
-//                 <a class="btn btn-primary w-100 text-center" onclick="addProductBag(bag, ${product.id}, '${product.title}', ${product.price}, '${product.image}', ${product.stock}, ${1})" data-bs-toggle="offcanvas" data-bs-target="#userBag" aria-controls="userBag">COMPRAR</a>
-//             </article>
-//         `
-
-//         productsContainer.insertAdjacentHTML('beforeend', html)
-//     });
-// }
 
 const loadCart = () => {
     const bagContainer = document.querySelector('#bag-container-products')

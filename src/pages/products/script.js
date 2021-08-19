@@ -1,11 +1,12 @@
+var searchWord = "";
+
 const loadProducts = async () => {
     var data = new FormData(document.getElementById("filter-form"));
-    console.log("Algo")
     teste = data;
     
     await axios({
         method: "get",
-        url: "api/produtos/",
+        url: `${window.location.protocol}`+ "//" + `${window.location.host}` + "/api/produtos/",
         headers: { "Content-Type": "multipart/alternative" },
     }).then(function (response) {
         console.log(response.data);
@@ -17,6 +18,8 @@ const loadProducts = async () => {
 }
 
 const _loadProducts = (products) => {
+    products = search(products);
+
     const productsContainer = document.querySelector('#products-container')
     
     productsContainer.innerHTML = ""
@@ -33,6 +36,18 @@ const _loadProducts = (products) => {
 
         productsContainer.insertAdjacentHTML('beforeend', html)
     });
+}
+
+const search = (products) => {
+    var temp = []
+
+    products.map((product) => {
+        if(product.product_name.toLowerCase().includes(searchWord) || product.description.toLowerCase().includes(searchWord)){
+            temp.push(product);
+        }
+    })
+
+    return temp;
 }
 
 const filterProducts = async () => {
@@ -56,22 +71,7 @@ const filterProducts = async () => {
     });
 }
 
-// function logout() {
-//     conectedDiv = document.querySelector('#userDropdownConectedOptions')
-//     desconectedDiv =  document.querySelector('#user')
-
-//     conectedDiv.classList.add('hide')
-//     desconectedDiv.classList.remove('hide')
-// }
-
-// function login() {
-//     conectedDiv = querySelector('#userDropdownConectedOptions')
-//     desconectedDiv =  querySelector('#user')
-
-//     conectedDiv.classList.remove('hide')
-//     desconectedDiv.classList.add('hide')
-// }
-
 $( document ).ready(function() {
+    searchWord = window.location.search.substring(1).toLowerCase();
     loadProducts();
 });
