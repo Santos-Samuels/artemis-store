@@ -589,7 +589,7 @@ const _loadCompletedSales = (orders) => {
                     <td>${order.status}</td>
                     <td class="order-price">${order.total_price}</td>
                     <td>${order.purchase_date}</td>
-                    <td><i class="bi bi-eye-fill me-2 primary-text-hover cursor-pointer" title="Ver mais" data-bs-toggle="modal" data-bs-target="#ViewDoneOrderModal" onclick="loadViewDoneOrderModal(${order.id})"></i></td>
+                    <td><i class="bi bi-eye-fill me-2 primary-text-hover cursor-pointer" title="Ver mais" data-bs-toggle="modal" data-bs-target="#viewDoneSaleModal" onclick="loadViewDoneSaleModal(${order.id})"></i></td>
                 </tr>
             `
     
@@ -699,9 +699,9 @@ const loadViewOrderModal = (orderID) => {
     current_id = orderID;
 }
 
-const loadViewDoneOrderModal = (orderID) => {
+const loadViewDoneSaleModal = (orderID) => {
     const orders = _orders;
-    const viewSaleContainer = document.querySelector('#view-done-order-container')
+    const viewSaleContainer = document.querySelector('#view-done-sale-container')
     
     viewSaleContainer.innerHTML = ""
     orders.forEach(order => {
