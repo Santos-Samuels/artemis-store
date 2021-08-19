@@ -164,12 +164,13 @@ const updatingData = async (product) => {
     var i = 0
 
     document.getElementById("images").innerHTML = ""
+    document.getElementById("indicators").innerHTML = "";
 
     if(product.product_images != ""){
-        product.product_images.map((product_image) => {
-            console.log(active)
+        product.product_images.map((product_image, index) => {
+            console.log(product_image);
             document.getElementById("indicators").innerHTML += `
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="${i}" class="active" aria-current="true" aria-label="Slide ${i + 1}"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="${index}" class="active" aria-current="true" aria-label="Slide ${index}"></button>
             `
             
             document.getElementById("images").innerHTML += `<div class="carousel-item ${active == false ? "active" : ""}">
