@@ -148,9 +148,6 @@ const titleize = (text) => {
     return words.join(" ");
 }
 
-window.onload = loadOrders()
-
-
 const checkLoginAgain = async () => {
     await axios({
         method: "post",
@@ -164,5 +161,7 @@ const checkLoginAgain = async () => {
 }
 
 $( document ).ready(async function() {
-    await checkLoginAgain();
+    await verifyLogin();
+    await loadCart();
+    await loadOrders()
 });

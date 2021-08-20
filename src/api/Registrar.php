@@ -23,6 +23,12 @@ switch ($method) {
             and isset($_COOKIE["userToken"])
         ){
             updateUser();
+        }else if (
+            isset($_POST["old-password"]) 
+            and isset($_POST["new-password"]) 
+            and isset($_COOKIE["userToken"])
+        ){
+            updatePassword();
         }
         else{
             $retorno["msg"] = "Algum dos dados não foi digitado";
@@ -131,6 +137,46 @@ function updateUser(){
         exit($json);
     }
     $retorno["msg"] = "Informações atualizadas";
+
+    $json = json_encode($retorno, JSON_UNESCAPED_UNICODE);
+    exit($json);
+}
+
+function updatePassword(){
+    include "./database/conexao.php";
+    include './utils/Criptografia.php';
+    include "./utils/JWT.php";
+
+    $userId = JWT_decode($_COOKIE["userToken"])["userId"];
+    $password = criptografar($_POST["old-password"]);
+
+    $sql = "SELECT * FROM users WHERE password='$password' and id='$userId'";
+
+    $resultado = $conexao->query($sql);
+
+    if(!$resultado or $resultado->num_rows == 0){
+        $retorno["msg"] = "Senha antiga não condiz";
+
+        $json = json_encode($retorno, JSON_UNESCAPED_UNICODE);
+        exit($json);
+    }
+    
+    $new_password = criptografar($_POST["new-password"]);
+
+    $sql = "UPDATE users SET 
+        password='$new_password'
+    WHERE id='$userId'";
+
+    $resultado = $conexao->query($sql);
+
+    if(!$resultado){
+        $retorno["msg"] = "Deu erro ao mudar a senha";
+
+        $json = json_encode($retorno, JSON_UNESCAPED_UNICODE);
+        exit($json);
+    }
+
+    $retorno["msg"] = "Senha Alterada";
 
     $json = json_encode($retorno, JSON_UNESCAPED_UNICODE);
     exit($json);

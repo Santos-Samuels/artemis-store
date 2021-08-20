@@ -1,7 +1,7 @@
 const updateUserData = async () => {
     await axios({
         method: "get",
-        url: `/api/login`,
+        url: `${window.location.protocol}`+ "//" + `${window.location.host}` + "/api/login",
         headers: { "Content-Type": "multipart/form-data" },
     }).then(function (response) {
         console.log(response.data)
@@ -66,7 +66,7 @@ const editarInformacoesDeUsuario = async () => {
     await axios({
         method: "post",
         data,
-        url: `/api/registro`,
+        url: `${window.location.protocol}`+ "//" + `${window.location.host}` + "/api/registro",
         headers: { "Content-Type": "multipart/form-data" },
     }).then(function (response) {
         console.log(response.data)
@@ -118,14 +118,43 @@ const loadUserPasswordModal = () => {
     userPasswordContainer.innerHTML = ""
     userPasswordContainer.innerHTML = `
         <label class="form-label" for="user-old-password">Senha atual <span class="primary-text">*</span></label>
-        <input class="form-control mb-5" type="password" name="user-old-password" id="user-old-password">
+        <input class="form-control mb-5" type="password" name="old-password" id="user-old-password">
         <label class="form-label" for="user-old-password">Nova senha <span class="primary-text">*</span></label>
-        <input class="form-control mb-2" type="password" name="user-new-password" id="user-new-password">
+        <input class="form-control mb-2" type="password" name="new-password" id="user-new-password">
         <label class="form-label" for="user-old-password">Confirmar nova senha <span class="primary-text">*</span></label>
-        <input class="form-control" type="password" name="user-new-password-2" id="user-new-password-2">
+        <input class="form-control" type="password" name="new-password2" id="user-new-password-2">
     `
 }
 
+const updateUserPassword = async () => {
+    var data = new FormData(document.getElementById("signup-form-edit-password"));
+
+    console.log(data.get("old-password"))
+    if(data.get("new-password") != data.get("new-password2")){
+        alert("Senhas não coincidem");
+    }
+    
+    // isset($_POST["old-password"]) 
+    // and isset($_POST["new-password"]) 
+    // and isset($_COOKIE["userToken"])
+
+    await axios({
+        method: "post",
+        data,
+        url: `${window.location.protocol}`+ "//" + `${window.location.host}` + "/api/registro",
+        headers: { "Content-Type": "multipart/form-data" },
+    }).then(function (response) {
+        console.log(response.data)
+        if(response.data.msg == "Informações atualizadas"){
+            alert("Informações Atualizadas");
+            window.location.reload();
+        }
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+
+}
 
 const checkLoginAgain = async () => {
     await axios({
