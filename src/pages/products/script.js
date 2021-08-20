@@ -18,6 +18,8 @@ const loadProducts = async () => {
 }
 
 const _loadProducts = (products) => {
+    document.getElementById("searchWord").innerHTML = searchWord == "" ? "" : "Procurou por: " + searchWord;
+    
     products = search(products);
 
     const productsContainer = document.querySelector('#products-container')
