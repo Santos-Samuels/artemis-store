@@ -832,16 +832,27 @@ const titleize = (text) => {
     return words.join(" ");
 }
 
-const removeSale = (orders, orderID) => {
-    if(orders.length != 0) {
-        orders.forEach((order, index) => {
-            if(order.id == orderID) {
-                orders.splice(index, 1)
-            }
-         })
-    }
+const removeSale = async (orderID) => {
+    var data = new FormData();
+    data.append("request_id", orderID);
+    data.append("status", 3);
 
-    loadNewSale(orders)
+    await axios({
+        method: "post",
+        url: `${window.location.protocol}`+ "//" + `${window.location.host}` + "/api/request/",
+        data: data,
+        headers: { "Content-Type": "multipart/alternative" },
+    }).then(function (response) {
+        console.log(response.data);
+        if(response.data.msg == "Funfou"){
+            actionFeedback('#success-updated-product')
+            loadNewSales();
+            loadCompletedSales();
+        }
+    })
+    .catch(function (error) {
+        console.log(error);
+    });  
 }
 
 function actionFeedback(div) {
