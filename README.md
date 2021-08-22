@@ -6,7 +6,7 @@
 
 > Status: Em andamento ⚠️
 
-#### Desenvolvido por [Lucas Souza](https://github.com/LucasSjesus) , [Samuel Santos](https://github.com/Santos-Samuels) e [Filipe Fiusa].
+#### Desenvolvido por [Lucas Souza](https://github.com/LucasSjesus) , [Samuel Santos](https://github.com/Santos-Samuels) e Filipe Fiusa.
 
 # Site desenvolvido com
 >
