@@ -1,6 +1,6 @@
-# artemis-store
+#artemis-store
 <p>A Artemis Store é uma loja virtual situada em Feira de Santana - Bahia, onde tem como foco a venda de joias e semi joias .</p>
-# Sobre o projeto
+#Sobre o projeto
 
 ### Este site foi desenvolvido para a Artemis Store, com o objetivo de melhorar a interação do publico com a loja e assim facilitar a compra dos produtos. 
 
