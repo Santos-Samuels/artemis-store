@@ -32,3 +32,10 @@ main .product img {
     padding-left: 35px;
     margin-right: -35px;
 }
+
+#searchWord {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--selection);
+}

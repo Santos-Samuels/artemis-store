@@ -18,7 +18,7 @@ const loadProducts = async () => {
 }
 
 const _loadProducts = (products) => {
-    document.getElementById("searchWord").innerHTML = searchWord == "" ? "" : "Procurou por: " + searchWord;
+    document.getElementById("searchWord").innerHTML = searchWord == "" ? "" : '<span class="text-light">Procurou por: </span>' + searchWord;
     
     products = search(products);
 
