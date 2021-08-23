@@ -43,6 +43,10 @@
 
 # Como rodar o projeto
 
+### Acesse o link para teste
+http://loja-artemis.infinityfreeapp.com/
+> Acesse a pagina do administrador em /admin e use o login <b>admin</b> e a senha <b>123456</b>
+
 ### Clone este repositório
 $ git clone <https://github.com/tgmarinho/nlw1>
 
