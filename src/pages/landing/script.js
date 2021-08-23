@@ -51,7 +51,7 @@ const _loadProducts = (products) => {
     
     productsContainer.innerHTML = ""
     products.forEach((product, index) => {
-        if(index >= 7){
+        if(index >= 4){
             return;
         }
 
