@@ -48,6 +48,11 @@
   color: var(--text-secondary);
 }
 
+.bg-primary {
+  background-color: var(--primary) !important;
+  color: var(--text-secondary);
+}
+
 .bg-white {
   background-color: var(--primary);
 }
